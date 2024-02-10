@@ -10,22 +10,22 @@
 ---@class gui 
 
 ---@param filename string 
----@param pos_x number 0
----@param pos_y number 0
+---@param pos_x number? 0
+---@param pos_y number? 0
 ---@return entity_id entity_id
 function EntityLoad(filename, pos_x, pos_y) end
 
 
 ---@param filename string 
----@param pos_x number 0
----@param pos_y number 0
+---@param pos_x number? 0
+---@param pos_y number? 0
 ---@return entity_id entity_id
 function EntityLoadEndGameItem(filename, pos_x, pos_y) end
 
 
 ---@param filename string 
----@param pos_x number 0
----@param pos_y number 0
+---@param pos_x number? 0
+---@param pos_y number? 0
 function EntityLoadCameraBound(filename, pos_x, pos_y) end
 
 --- Loads components from 'filename' to 'entity'. Does not load tags and other stuff.
@@ -39,7 +39,7 @@ function EntityLoadToEntity(filename, entity) end
 function EntitySave(entity_id, filename) end
 
 
----@param name string ""
+---@param name string? ""
 ---@return entity_id entity_id
 function EntityCreateNew(name) end
 
@@ -55,7 +55,7 @@ function EntityGetIsAlive(entity_id) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
----@param table_of_component_values string[] nil
+---@param table_of_component_values string[]? nil
 ---@return component_id component_id
 function EntityAddComponent(entity_id, component_type_name, table_of_component_values) end
 
@@ -72,47 +72,47 @@ function EntityGetAllComponents(entity_id) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
----@param tag string ""
+---@param tag string? ""
 ---@return component_id[]|nil
 function EntityGetComponent(entity_id, component_type_name, tag) end
 
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
----@param tag string ""
+---@param tag string? ""
 ---@return component_id|nil
 function EntityGetFirstComponent(entity_id, component_type_name, tag) end
 
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
----@param tag string ""
+---@param tag string? ""
 ---@return component_id[]|nil
 function EntityGetComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
----@param tag string ""
+---@param tag string? ""
 ---@return component_id|nil
 function EntityGetFirstComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 
 ---@param entity_id entity_id 
 ---@param x number 
----@param y number 0
----@param rotation number 0
----@param scale_x number 1
----@param scale_y number 1
+---@param y number? 0
+---@param rotation number? 0
+---@param scale_x number? 1
+---@param scale_y number? 1
 function EntitySetTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 
 --- Sets the transform and tries to immediately refresh components that calculate values based on an entity's transform.
 ---@param entity_id entity_id 
 ---@param x number 
----@param y number 0
----@param rotation number 0
----@param scale_x number 1
----@param scale_y number 1
+---@param y number? 0
+---@param rotation number? 0
+---@param scale_x number? 1
+---@param scale_y number? 1
 function EntityApplyTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 
 
@@ -131,7 +131,7 @@ function EntityAddChild(parent_id, child_id) end
 
 --- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are returned, might return either an empty table or nil.
 ---@param entity_id entity_id 
----@param tag string ""
+---@param tag string? ""
 ---@return entity_id}|nil {entity_id
 function EntityGetAllChildren(entity_id, tag) end
 
@@ -372,7 +372,7 @@ function ComponentObjectSetValue2(component_id, object_name, field_name, value_o
 
 
 ---@param entity_id entity_id 
----@param table_of_component_values {string:any} nil
+---@param table_of_component_values {string:any}? nil
 ---@return component_id
 function EntityAddComponent2(entity_id, table_of_component_values) end
 
@@ -435,7 +435,7 @@ function GetUpdatedComponentID() end
 
 ---@param time_to_execute number 
 ---@param file_to_execute string 
----@param function_to_call string nil
+---@param function_to_call string? nil
 function SetTimeOut(time_to_execute, file_to_execute, function_to_call) end
 
 
@@ -478,14 +478,14 @@ function AddMaterialInventoryMaterial(entity_id, material_name, count) end
 
 --- Returns the id of the material taking the largest part of the first MaterialInventoryComponent in 'entity_id', or 0 if nothing is found.
 ---@param entity_id entity_id 
----@param ignore_box2d_materials boolean true
+---@param ignore_box2d_materials boolean? true
 ---@return integer material_type
 function GetMaterialInventoryMainMaterial(entity_id, ignore_box2d_materials) end
 
 
 ---@param strength number 
----@param x number camera_x
----@param y number camera_y
+---@param x number? camera_x
+---@param y number? camera_y
 function GameScreenshake(strength, x, y) end
 
 
@@ -507,7 +507,7 @@ function GetParallelWorldPosition(world_pos_x, world_pos_y) end
 
 
 ---@param filename string 
----@param pixel_scenes string "data/biome/_pixel_scenes.xml"
+---@param pixel_scenes string? "data/biome/_pixel_scenes.xml"
 function BiomeMapLoad_KeepPlayer(filename, pixel_scenes) end
 
 --- Deprecated. Might trigger various bugs. Use BiomeMapLoad_KeepPlayer() instead.
@@ -611,32 +611,32 @@ function CellFactory_GetType(material_name) end
 function CellFactory_GetUIName(material_id) end
 
 
----@param include_statics boolean true
----@param include_particle_fx_materials boolean false
+---@param include_statics boolean? true
+---@param include_particle_fx_materials boolean? false
 ---@return string[]
 function CellFactory_GetAllLiquids(include_statics, include_particle_fx_materials) end
 
 
----@param include_statics boolean true
----@param include_particle_fx_materials boolean false
+---@param include_statics boolean? true
+---@param include_particle_fx_materials boolean? false
 ---@return string[]
 function CellFactory_GetAllSands(include_statics, include_particle_fx_materials) end
 
 
----@param include_statics boolean true
----@param include_particle_fx_materials boolean false
+---@param include_statics boolean? true
+---@param include_particle_fx_materials boolean? false
 ---@return string[]
 function CellFactory_GetAllGases(include_statics, include_particle_fx_materials) end
 
 
----@param include_statics boolean true
----@param include_particle_fx_materials boolean false
+---@param include_statics boolean? true
+---@param include_particle_fx_materials boolean? false
 ---@return string[]
 function CellFactory_GetAllFires(include_statics, include_particle_fx_materials) end
 
 
----@param include_statics boolean true
----@param include_particle_fx_materials boolean false
+---@param include_statics boolean? true
+---@param include_particle_fx_materials boolean? false
 ---@return string[]
 function CellFactory_GetAllSolids(include_statics, include_particle_fx_materials) end
 
@@ -686,7 +686,7 @@ function GameKillInventoryItem(inventory_owner_entity_id, item_entity_id) end
 
 ---@param who_picks_up_entity_id entity_id 
 ---@param item_entity_id entity_id 
----@param do_pick_up_effects boolean true
+---@param do_pick_up_effects boolean? true
 function GamePickUpInventoryItem(who_picks_up_entity_id, item_entity_id, do_pick_up_effects) end
 
 --- Returns all the inventory items that entity_id has.
@@ -719,19 +719,19 @@ function GameTriggerGameOver() end
 ---@param x number 
 ---@param y number 
 ---@param background_file string 
----@param skip_biome_checks boolean false
----@param skip_edge_textures boolean false
----@param color_to_material_table {string:string} {}
----@param background_z_index integer 50
----@param load_even_if_duplicate boolean false
+---@param skip_biome_checks boolean? false
+---@param skip_edge_textures boolean? false
+---@param color_to_material_table {string:string}? {}
+---@param background_z_index integer? 50
+---@param load_even_if_duplicate boolean? false
 function LoadPixelScene(materials_filename, colors_filename, x, y, background_file, skip_biome_checks, skip_edge_textures, color_to_material_table, background_z_index, load_even_if_duplicate) end
 
 
 ---@param background_file string 
 ---@param x number 
 ---@param y number 
----@param background_z_index number 40.0
----@param check_biome_corners boolean false
+---@param background_z_index number? 40.0
+---@param check_biome_corners boolean? false
 function LoadBackgroundSprite(background_file, x, y, background_z_index, check_biome_corners) end
 
 --- NOTE! Removes the pixel scene sprite if the name and position match. Will return true if manages the find and destroy the background sprite
@@ -755,15 +755,15 @@ function RemovePixelSceneBackgroundSprites(x_min, y_min, x_max, y_max) end
 ---@param how_many integer 
 ---@param xvel number 
 ---@param yvel number 
----@param color unsigned_integer 0
----@param lifetime_min number 5.0
----@param lifetime_max number 10
----@param force_create boolean true
----@param draw_front boolean false
----@param collide_with_grid boolean true
----@param randomize_velocity boolean true
----@param gravity_x number 0
----@param gravity_y number 100.0
+---@param color unsigned_integer? 0
+---@param lifetime_min number? 5.0
+---@param lifetime_max number? 10
+---@param force_create boolean? true
+---@param draw_front boolean? false
+---@param collide_with_grid boolean? true
+---@param randomize_velocity boolean? true
+---@param gravity_x number? 0
+---@param gravity_y number? 100.0
 function GameCreateCosmeticParticle(material_name, x, y, how_many, xvel, yvel, color, lifetime_min, lifetime_max, force_create, draw_front, collide_with_grid, randomize_velocity, gravity_x, gravity_y) end
 
 
@@ -774,19 +774,19 @@ function GameCreateCosmeticParticle(material_name, x, y, how_many, xvel, yvel, c
 ---@param xvel number 
 ---@param yvel number 
 ---@param just_visual boolean 
----@param draw_as_long boolean false
----@param randomize_velocity boolean true
+---@param draw_as_long boolean? false
+---@param randomize_velocity boolean? true
 function GameCreateParticle(material_name, x, y, how_many, xvel, yvel, just_visual, draw_as_long, randomize_velocity) end
 
 
 ---@param filename string 
 ---@param x number 
 ---@param y number 
----@param centered boolean true
----@param sprite_offset_x number 0
----@param sprite_offset_y number 0
----@param frames integer 1
----@param emissive boolean false
+---@param centered boolean? true
+---@param sprite_offset_x number? 0
+---@param sprite_offset_y number? 0
+---@param frames integer? 1
+---@param emissive boolean? false
 function GameCreateSpriteForXFrames(filename, x, y, centered, sprite_offset_x, sprite_offset_y, frames, emissive) end
 
 --- 'shooter_entity' can be 0. Warning: If 'projectile_entity' has PhysicsBodyComponent and ItemComponent, components without the "enabled_in_world" tag will be disabled, as if the entity was thrown by player.
@@ -796,8 +796,8 @@ function GameCreateSpriteForXFrames(filename, x, y, centered, sprite_offset_x, s
 ---@param target_x number 
 ---@param target_y number 
 ---@param projectile_entity entity_id 
----@param send_message boolean true
----@param verlet_parent_entity entity_id 0
+---@param send_message boolean? true
+---@param verlet_parent_entity entity_id? 0
 function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectile_entity, send_message, verlet_parent_entity) end
 
 
@@ -808,10 +808,10 @@ function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectil
 ---@param ragdoll_fx string 
 ---@param impulse_x number 
 ---@param impulse_y number 
----@param entity_who_is_responsible entity_id 0
----@param world_pos_x number entity_x
----@param world_pos_y number entity_y
----@param knockback_force number 0
+---@param entity_who_is_responsible entity_id? 0
+---@param world_pos_x number? entity_x
+---@param world_pos_y number? entity_y
+---@param knockback_force number? 0
 function EntityInflictDamage(entity, amount, damage_type, description, ragdoll_fx, impulse_x, impulse_y, entity_who_is_responsible, world_pos_x, world_pos_y, knockback_force) end
 
 --- Has the same effects that would occur if 'entity' eats 'amount' number of cells of 'material_type' from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use CellFactory_GetType() to convert a material name to material type.
@@ -851,8 +851,8 @@ function EntityGetWandCapacity(entity) end
 ---@param entity_id entity_id 
 ---@param name string 
 ---@param priority integer 
----@param followup_name string ""
----@param followup_priority integer 0
+---@param followup_name string? ""
+---@param followup_priority integer? 0
 function GamePlayAnimation(entity_id, name, priority, followup_name, followup_priority) end
 
 
@@ -889,14 +889,14 @@ function GetGameEffectLoadTo(entity_id, game_effect_name, always_load_new) end
 
 --- Adds the entity to the polymorph random table
 ---@param entity_xml string 
----@param is_rare boolean false
----@param add_only_one_copy boolean true
+---@param is_rare boolean? false
+---@param add_only_one_copy boolean? true
 function PolymorphTableAddEntity(entity_xml, is_rare, add_only_one_copy) end
 
 --- Removes the entity from the polymorph random table
 ---@param entity_xml string 
----@param from_common_table boolean true
----@param from_rare_table boolean true
+---@param from_common_table boolean? true
+---@param from_rare_table boolean? true
 function PolymorphTableRemoveEntity(entity_xml, from_common_table, from_rare_table) end
 
 --- Returns a list of all the entities in the polymorph random table
@@ -1077,8 +1077,8 @@ function GamePrint(log_line) end
 
 
 ---@param title string 
----@param description string ""
----@param ui_custom_decoration_file string ""
+---@param description string? ""
+---@param ui_custom_decoration_file string? ""
 function GamePrintImportant(title, description, ui_custom_decoration_file) end
 
 
@@ -1089,10 +1089,10 @@ function DEBUG_GetMouseWorld() end
 
 ---@param x number 
 ---@param y number 
----@param message string ""
----@param color_r number 1
----@param color_g number 0
----@param color_b number 0
+---@param message string? ""
+---@param color_r number? 1
+---@param color_g number? 0
+---@param color_b number? 0
 function DEBUG_MARK(x, y, message, color_r, color_g, color_b) end
 
 
@@ -1163,7 +1163,7 @@ function InputIsJoystickConnected(joystick_index) end
 
 
 ---@param joystick_index integer 
----@param stick_id integer 0
+---@param stick_id integer? 0
 ---@return number x
 ---@return number y
 function InputGetJoystickAnalogStick(joystick_index, stick_id) end
@@ -1197,7 +1197,7 @@ function GlobalsSetValue(key, value) end
 
 
 ---@param key string 
----@param default_value string ""
+---@param default_value string? ""
 function GlobalsGetValue(key, default_value) end
 
 
@@ -1244,13 +1244,13 @@ function StatsBiomeGetValue(key) end
 function StatsBiomeReset() end
 
 
----@param killed_entity_id entity_id 0
+---@param killed_entity_id entity_id? 0
 function StatsLogPlayerKill(killed_entity_id) end
 
 
 ---@param action_id string 
----@param x number 0
----@param y number 0
+---@param x number? 0
+---@param y number? 0
 ---@return entity_id entity_id
 function CreateItemActionEntity(action_id, x, y) end
 
@@ -1259,7 +1259,7 @@ function CreateItemActionEntity(action_id, x, y) end
 ---@param y number 
 ---@param max_level integer 
 ---@param type integer 
----@param i integer 0
+---@param i integer? 0
 ---@return string
 function GetRandomActionWithType(x, y, max_level, type, i) end
 
@@ -1267,7 +1267,7 @@ function GetRandomActionWithType(x, y, max_level, type, i) end
 ---@param x number 
 ---@param y number 
 ---@param max_level number 
----@param i integer 0
+---@param i integer? 0
 ---@return string
 function GetRandomAction(x, y, max_level, i) end
 
@@ -1358,8 +1358,8 @@ function BiomeMapLoadImageCropped(x, y, image_filename, image_x, image_y, image_
 function BiomeMapGetVerticalPositionInsideBiome(x, y) end
 
 
----@param x number camera_x
----@param y number camera_y
+---@param x number? camera_x
+---@param y number? camera_y
 ---@return string name
 function BiomeMapGetName(x, y) end
 
@@ -1369,14 +1369,14 @@ function BiomeMapGetName(x, y) end
 function SetRandomSeed(x, y) end
 
 --- This is kinda messy. If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns int between 0 and 'a'. If given 2 arguments returns int between 'a' and 'b'.
----@param a integer optional
----@param b integer optional
+---@param a integer? optional
+---@param b integer? optional
 ---@return number|integer
 function Random(a, b) end
 
 --- This is kinda messy. If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and 'a'. If given 2 arguments returns number between 'a' and 'b'.
----@param min number optional
----@param max number optional
+---@param min number? optional
+---@param max number? optional
 ---@return number
 function Randomf(min, max) end
 
@@ -1384,8 +1384,8 @@ function Randomf(min, max) end
 ---@param min integer 
 ---@param max integer 
 ---@param mean integer 
----@param sharpness number 1
----@param baseline number 0.005
+---@param sharpness number? 1
+---@param baseline number? 0.005
 ---@return integer
 function RandomDistribution(min, max, mean, sharpness, baseline) end
 
@@ -1393,45 +1393,45 @@ function RandomDistribution(min, max, mean, sharpness, baseline) end
 ---@param min number 
 ---@param max number 
 ---@param mean number 
----@param sharpness number 1
----@param baseline number 0.005
+---@param sharpness number? 1
+---@param baseline number? 0.005
 ---@return number
 function RandomDistributionf(min, max, mean, sharpness, baseline) end
 
 --- This is kinda messy. If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns int between 0 and 'a'. If given 4 arguments returns number between 'a' and 'b'.
 ---@param x number 
 ---@param y number 
----@param a integer|number optional
----@param b integer|number optional
+---@param a integer|number? optional
+---@param b integer|number? optional
 ---@return integer|number
 function ProceduralRandom(x, y, a, b) end
 
 --- This is kinda messy. If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns a number between 0 and 'a'. If given 4 arguments returns a number between 'a' and 'b'.
 ---@param x number 
 ---@param y number 
----@param a number optional
----@param b number optional
+---@param a number? optional
+---@param b number? optional
 ---@return number
 function ProceduralRandomf(x, y, a, b) end
 
 --- This is kinda messy. If given 2 arguments, returns 0 or 1. If given 3 arguments, returns an int between 0 and 'a'. If given 4 arguments returns an int between 'a' and 'b'.
 ---@param x number 
 ---@param y number 
----@param a integer optional
----@param b integer optional
+---@param a integer? optional
+---@param b integer? optional
 ---@return number
 function ProceduralRandomi(x, y, a, b) end
 
 --- Does not work with PhysicsBody2Component. Returns the id of the created physics body.
 ---@param entity_id entity_id 
 ---@param image_file string 
----@param material string ""
----@param offset_x number 0
----@param offset_y number 0
----@param centered boolean false
----@param is_circle boolean false
----@param material_image_file string ""
----@param use_image_as_colors boolean true
+---@param material string? ""
+---@param offset_x number? 0
+---@param offset_y number? 0
+---@param centered boolean? false
+---@param is_circle boolean? false
+---@param material_image_file string? ""
+---@param use_image_as_colors boolean? true
 ---@return physics_body_id
 function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y, centered, is_circle, material_image_file, use_image_as_colors) end
 
@@ -1442,7 +1442,7 @@ function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y
 ---@param offset_y number 
 ---@param width integer 
 ---@param height integer 
----@param centered boolean false
+---@param centered boolean? false
 ---@return integer|nil
 function PhysicsAddBodyCreateBox(entity_id, material, offset_x, offset_y, width, height, centered) end
 
@@ -1529,7 +1529,7 @@ function PhysicsComponentSetTransform(component_id, x, y, angle, vel_x, vel_y, a
 
 --- NOTE! If component_id is given, will return all the bodies linked to that component. If component_id is not given, will return all the bodies linked to the entity (with joints or through components).
 ---@param entity_id entity_id 
----@param component_id component_id 0
+---@param component_id component_id? 0
 ---@return physics_body_id[]
 function PhysicsBodyIDGetFromEntity(entity_id, component_id) end
 
@@ -1538,8 +1538,8 @@ function PhysicsBodyIDGetFromEntity(entity_id, component_id) end
 ---@param world_pos_min_y number 
 ---@param world_pos_max_x number 
 ---@param world_pos_max_y number 
----@param include_static_bodies boolean false
----@param are_these_box2d_units boolean false
+---@param include_static_bodies boolean? false
+---@param are_these_box2d_units boolean? false
 ---@return physics_body_id[]
 function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_max_x, world_pos_max_y, include_static_bodies, are_these_box2d_units) end
 
@@ -1567,8 +1567,8 @@ function PhysicsBodyIDSetTransform(physics_body_id, x, y, angle, vel_x, vel_y, a
 ---@param physics_body_id integer 
 ---@param force_x number 
 ---@param force_y number 
----@param world_pos_x number nil
----@param world_pos_y number nil
+---@param world_pos_x number? nil
+---@param world_pos_y number? nil
 function PhysicsBodyIDApplyForce(physics_body_id, force_x, force_y, world_pos_x, world_pos_y) end
 
 
@@ -1591,7 +1591,7 @@ function PhysicsBodyIDGetDamping(physics_body_id) end
 --- NOTE! if angular_damping is given will set it as well.
 ---@param physics_body_id integer 
 ---@param linear_damping number 
----@param angular_damping number nil
+---@param angular_damping number? nil
 function PhysicsBodyIDSetDamping(physics_body_id, linear_damping, angular_damping) end
 
 --- NOTE! returns nil, if body was not found. 
@@ -1615,28 +1615,28 @@ function PhysicsBody2InitFromComponents(entity_id) end
 
 
 ---@param x number 
----@param y number 0
+---@param y number? 0
 ---@return number x
 ---@return number y
 function PhysicsPosToGamePos(x, y) end
 
 
 ---@param x number 
----@param y number 0
+---@param y number? 0
 ---@return number x
 ---@return number y
 function GamePosToPhysicsPos(x, y) end
 
 
 ---@param x number 
----@param y number 0
+---@param y number? 0
 ---@return number x
 ---@return number y
 function PhysicsVecToGameVec(x, y) end
 
 
 ---@param x number 
----@param y number 0
+---@param y number? 0
 ---@return number x
 ---@return number y
 function GameVecToPhysicsVec(x, y) end
@@ -1645,7 +1645,7 @@ function GameVecToPhysicsVec(x, y) end
 ---@param world_pos_x number 
 ---@param world_pos_y number 
 ---@param image_filename string 
----@param max_durability integer 2147483647
+---@param max_durability integer? 2147483647
 function LooseChunk(world_pos_x, world_pos_y, image_filename, max_durability) end
 
 
@@ -1687,7 +1687,7 @@ function GameTriggerMusicEvent(event_path, can_be_faded, x, y) end
 function GameTriggerMusicCue(name) end
 
 
----@param relative_fade_speed number 1
+---@param relative_fade_speed number? 1
 function GameTriggerMusicFadeOutAndDequeueAll(relative_fade_speed) end
 
 
@@ -1706,7 +1706,7 @@ function GameEntityPlaySound(entity_id, event_name) end
 ---@param entity entity_id 
 ---@param component_tag string 
 ---@param intensity number 
----@param intensity2 number 0
+---@param intensity2 number? 0
 function GameEntityPlaySoundLoop(entity, component_tag, intensity, intensity2) end
 
 --- Can be used to pass custom parameters to the post_final shader, or override values set by the game code. The shader uniform called 'parameter_name' will be set to the latest given values on this and following frames.
@@ -1726,7 +1726,7 @@ function GameUnsetPostFxParameter(parameter_name) end
 ---@param texture_filename string 
 ---@param filtering_mode integer 
 ---@param wrapping_mode integer 
----@param update_texture boolean false
+---@param update_texture boolean? false
 function GameSetPostFxTextureParameter(parameter_name, texture_filename, filtering_mode, wrapping_mode, update_texture) end
 
 --- Will remove a post_final shader parameter value binding set via game GameSetPostFxTextureParameter().
@@ -1740,9 +1740,9 @@ function GameTextGetTranslatedOrNot(text_or_key) end
 
 
 ---@param key string 
----@param param0 string ""
----@param param1 string ""
----@param param2 string ""
+---@param param0 string? ""
+---@param param1 string? ""
+---@param param2 string? ""
 ---@return string
 function GameTextGet(key, param0, param1, param2) end
 
@@ -1852,12 +1852,12 @@ function GuiTextCentered(gui, x, y, text) end
 ---@param x number 
 ---@param y number 
 ---@param sprite_filename string 
----@param alpha number 1
----@param scale number 1
----@param scale_y number 0
----@param rotation number 0
----@param rect_animation_playback_type integer GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndHide
----@param rect_animation_name string ""
+---@param alpha number? 1
+---@param scale number? 1
+---@param scale_y number? 0
+---@param rotation number? 0
+---@param rect_animation_playback_type integer? GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndHide
+---@param rect_animation_name string? ""
 function GuiImage(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name) end
 
 
@@ -1867,9 +1867,9 @@ function GuiImage(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotatio
 ---@param y number 
 ---@param width number 
 ---@param height number 
----@param alpha number 1
----@param sprite_filename string "data/ui_gfx/decorations/9piece0_gray.png"
----@param sprite_highlight_filename string "data/ui_gfx/decorations/9piece0_gray.png"
+---@param alpha number? 1
+---@param sprite_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
+---@param sprite_highlight_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
 function GuiImageNinePiece(gui, id, x, y, width, height, alpha, sprite_filename, sprite_highlight_filename) end
 
 --- The old parameter order where 'id' is the last parameter is still supported. The function dynamically picks the correct order based on the type of the 4th parameter.
@@ -1917,7 +1917,7 @@ function GuiSlider(gui, id, x, y, text, value, value_min, value_max, value_defau
 ---@param text string 
 ---@param width number 
 ---@param max_length integer 
----@param allowed_characters string ""
+---@param allowed_characters string? ""
 ---@return string new_text
 function GuiTextInput(gui, id, x, y, text, width, max_length, allowed_characters) end
 
@@ -1927,13 +1927,13 @@ function GuiBeginAutoBox(gui) end
 
 
 ---@param gui gui 
----@param margin number 5
----@param size_min_x number 0
----@param size_min_y number 0
----@param mirrorize_over_x_axis boolean false
----@param x_axis number 0
----@param sprite_filename string "data/ui_gfx/decorations/9piece0_gray.png"
----@param sprite_highlight_filename string "data/ui_gfx/decorations/9piece0_gray.png"
+---@param margin number? 5
+---@param size_min_x number? 0
+---@param size_min_y number? 0
+---@param mirrorize_over_x_axis boolean? false
+---@param x_axis number? 0
+---@param sprite_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
+---@param sprite_highlight_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
 function GuiEndAutoBoxNinePiece(gui, margin, size_min_x, size_min_y, mirrorize_over_x_axis, x_axis, sprite_filename, sprite_highlight_filename) end
 
 
@@ -1949,9 +1949,9 @@ function GuiTooltip(gui, text, description) end
 ---@param y number 
 ---@param width number 
 ---@param height number 
----@param scrollbar_gamepad_focusable boolean true
----@param margin_x number 2
----@param margin_y number 2
+---@param scrollbar_gamepad_focusable boolean? true
+---@param margin_x number? 2
+---@param margin_y number? 2
 function GuiBeginScrollContainer(gui, id, x, y, width, height, scrollbar_gamepad_focusable, margin_x, margin_y) end
 
 
@@ -1962,28 +1962,28 @@ function GuiEndScrollContainer(gui) end
 ---@param gui gui 
 ---@param x number 
 ---@param y number 
----@param position_in_ui_scale boolean false
----@param margin_x number 2
----@param margin_y number 2
+---@param position_in_ui_scale boolean? false
+---@param margin_x number? 2
+---@param margin_y number? 2
 function GuiLayoutBeginHorizontal(gui, x, y, position_in_ui_scale, margin_x, margin_y) end
 
 --- If 'position_in_ui_scale' is 1, x and y will be in the same scale as other gui positions, otherwise x and y are given as a percentage (0-100) of the gui screen size.
 ---@param gui gui 
 ---@param x number 
 ---@param y number 
----@param position_in_ui_scale boolean false
----@param margin_x number 0
----@param margin_y number 0
+---@param position_in_ui_scale boolean? false
+---@param margin_x number? 0
+---@param margin_y number? 0
 function GuiLayoutBeginVertical(gui, x, y, position_in_ui_scale, margin_x, margin_y) end
 
 --- Will use the horizontal margin from current layout if amount is not set.
 ---@param gui gui 
----@param amount number optional
+---@param amount number? optional
 function GuiLayoutAddHorizontalSpacing(gui, amount) end
 
 --- Will use the vertical margin from current layout if amount is not set.
 ---@param gui gui 
----@param amount number optional
+---@param amount number? optional
 function GuiLayoutAddVerticalSpacing(gui, amount) end
 
 
@@ -2007,8 +2007,8 @@ function GuiGetScreenDimensions(gui) end
 --- Returns size of the given text in the gui coordinate system.
 ---@param gui gui 
 ---@param text string 
----@param scale number 1
----@param line_spacing number 2
+---@param scale number? 1
+---@param line_spacing number? 2
 ---@return number width
 ---@return number height
 function GuiGetTextDimensions(gui, text, scale, line_spacing) end
@@ -2016,7 +2016,7 @@ function GuiGetTextDimensions(gui, text, scale, line_spacing) end
 --- Returns size of the given image in the gui coordinate system.
 ---@param gui gui 
 ---@param image_filename string 
----@param scale number 1
+---@param scale number? 1
 ---@return number width
 ---@return number height
 function GuiGetImageDimensions(gui, image_filename, scale) end
@@ -2055,8 +2055,8 @@ function GameGetIsTrailerModeEnabled() end
 function Debug_SaveTestPlayer() end
 
 
----@param x number camera_x
----@param y number camera_y
+---@param x number? camera_x
+---@param y number? camera_y
 ---@return string
 function DebugBiomeMapGetFilename(x, y) end
 
@@ -2066,8 +2066,8 @@ function DebugBiomeMapGetFilename(x, y) end
 function EntityConvertToMaterial(entity_id, material) end
 
 
----@param material_dynamic string ""
----@param material_static string ""
+---@param material_dynamic string? ""
+---@param material_static string? ""
 function ConvertEverythingToGold(material_dynamic, material_static) end
 
 --- Converts 'material_from' to 'material_to' everwhere in the game world, replaces 'material_from_type' to 'material_to_type' in the material (CellData) global table, and marks 'material_from' as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. 'material_from' will still retain the original name id and wang color. Use CellFactory_GetType() to convert a material name to material type.
@@ -2090,10 +2090,10 @@ function ConvertMaterialOnAreaInstantly(area_x, area_y, area_w, area_h, material
 ---@param filename string 
 ---@param pos_x number 
 ---@param pos_y number 
----@param material string "meat"
----@param scale_x number 1
----@param impulse_x number 0
----@param impulse_y number 0
+---@param material string? "meat"
+---@param scale_x number? 1
+---@param impulse_x number? 0
+---@param impulse_y number? 0
 function LoadRagdoll(filename, pos_x, pos_y, material, scale_x, impulse_x, impulse_y) end
 
 
@@ -2279,7 +2279,7 @@ function ModRegisterMusicBank(filename) end
 
 --- Please supply a path starting with "mods/YOUR_MOD_HERE/" or "data/". If override_existing is true, will always generate new maps, overriding existing files. UV maps are generated when you start or continue a game with your mod enabled. Available only during mod initialization in init.lua via noita_dev.exe
 ---@param directory_path string 
----@param override_existing boolean false
+---@param override_existing boolean? false
 function ModDevGenerateSpriteUVsForDirectory(directory_path, override_existing) end
 
 

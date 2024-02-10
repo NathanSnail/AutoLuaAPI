@@ -119,7 +119,7 @@ for k, e in enumerate(table.children):
 			extra = arg_default[1]
 			arg_type = arg_default[0]
 		arg_type = type_alias(arg_type, arg_name)
-		fn_args2.append((arg_name, arg_type, extra))
+		fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
 	rets = ret.split(",")
 	rets2 = []
 	if rets[0] == "":
