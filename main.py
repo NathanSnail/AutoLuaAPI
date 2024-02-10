@@ -48,9 +48,10 @@ out = """
 ---@class entity_id 
 ---@class component_id 
 ---@class unsigned_integer 
----@class item_entity_id 
 ---@class physics_body_id 
 ---@class gui 
+
+---@alias item_entity_id entity_id 
 """
 
 overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
@@ -85,6 +86,11 @@ for k, e in enumerate(table.children):
 			ret = overload["ret"]
 		if "param" in overload.keys():
 			fn_args = overload["param"]
+	optional = False
+	if ret[-5:] == ")|nil":
+		# special case where multiple thing are nil
+		ret = ret[1:-5]
+		optional = True
 	fn_args = fn_args.replace(" ", "").split(",")
 	fn_def = ""
 	fn_args2 = []
@@ -128,8 +134,13 @@ for k, e in enumerate(table.children):
 		fn_def += comment.replace("\n", "\n-- ")
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
-	fn_def += "\nfunction " + fn_name + \
-		"(" + ",".join([x[0] for x in fn_args2]) + ") end"
+	
+	fn_sig = fn_name + "(" + ",".join([x[0] for x in fn_args2]) + ")"
+
+	if optional:
+		fn_def += "\n---@overload " + fn_sig + ": nil" 
+
+	fn_def += "\nfunction " + fn_sig + " end"
 	while fn_def.find("\n\n") != -1:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
