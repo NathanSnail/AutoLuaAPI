@@ -1322,7 +1322,8 @@ function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y
 ---@return integer|nil
 function PhysicsAddBodyCreateBox(entity_id, material, offset_x, offset_y, width, height, centered) end
 
---- Does not work with PhysicsBody2Component. Returns the id of the created joint.
+--- Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.
+-- Does not work with PhysicsBody2Component. Returns the id of the created joint.
 ---@param entity_id entity_id 
 ---@param body_id0 integer 
 ---@param body_id1 integer 
