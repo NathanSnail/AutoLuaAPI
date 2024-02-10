@@ -1723,7 +1723,9 @@ function GameSetPostFxParameter(parameter_name, x, y, z, w) end
 ---@param parameter_name string 
 function GameUnsetPostFxParameter(parameter_name) end
 
---- Can be used to pass 2D textures to the post_final shader. The shader uniform called 'parameter_name' will be set to the latest given value on this and following frames. 'texture_filename' can either point to a file, or a virtual file created using the ModImage API.If 'update_texture' is true, the texture will be re-uploaded to the GPU (could be useful with dynamic textures, but will incur a heavy performance hit with textures that are loaded from the disk).Accepted values for 'filtering_mode' and 'wrapping_mode' can be found in 'data/libs/utilities.lua'. Each call with a unique 'parameter_name' will create a separate texture while the parameter is in use, so this should be used with some care. While it's possible to change 'texture_filename' on the fly, if texture size changed, this causes destruction of the old texture and allocating a new one, which can be quite slow.
+--- Can be used to pass 2D textures to the post_final shader. The shader uniform called 'parameter_name' will be set to the latest given value on this and following frames. 'texture_filename' can either point to a file, or a virtual file created using the ModImage API.
+-- If 'update_texture' is true, the texture will be re-uploaded to the GPU (could be useful with dynamic textures, but will incur a heavy performance hit with textures that are loaded from the disk).
+-- Accepted values for 'filtering_mode' and 'wrapping_mode' can be found in 'data/libs/utilities.lua'. Each call with a unique 'parameter_name' will create a separate texture while the parameter is in use, so this should be used with some care. While it's possible to change 'texture_filename' on the fly, if texture size changed, this causes destruction of the old texture and allocating a new one, which can be quite slow.
 ---@param parameter_name string 
 ---@param texture_filename string 
 ---@param filtering_mode integer 
@@ -2223,7 +2225,14 @@ function ModTextFileSetContent(filename, new_content) end
 ---@return string
 function ModTextFileWhoSetContent(filename) end
 
---- Makes an image available for in-memory editing through ModImageGetPixel() and ModImageSetPixel(). Returns an id that can be used to access the image, and the dimensions of the image. If an image file with the name wasn't found, an in-memory image of the given size will be created, filled with empty pixels (0x0), and added to the virtual filesystem under 'filename'. If an image with the given name has been previously created through ModImageMakeEditable, the id of that image will be returned. In case memory allocation failed, or if this is called outside mod init using a filename that wasn't succesfully used with this function during the init, 0 will be returned as the id. The game will apply further processing to some images, so the final binary data might end up different. For example, R and B channels are sometimes swapped, and on some textures the colors will be extended by one pixel outside areas where A>0. If game code has already loaded the image (for example this could be the case with some UI textures), the changes will probably not be applied. The changes done using the ModImage* API will need to be done again on each game restart/new game. It's possible that some images will be cached over restarts, and changes will not be visible in the game until a full executable restart - you will have to figure out where that applies. Allows access to data files and files from enabled mods. "mods/mod/data/file.png" and "data/file.png" point to the same file. Available only in init.lua during mod init. 
+--- Makes an image available for in-memory editing through ModImageGetPixel() and ModImageSetPixel(). 
+-- Returns an id that can be used to access the image, and the dimensions of the image. 
+-- If an image file with the name wasn't found, an in-memory image of the given size will be created, filled with empty pixels (0x0), and added to the virtual filesystem under 'filename'. 
+-- If an image with the given name has been previously created through ModImageMakeEditable, the id of that image will be returned. In case memory allocation failed, or if this is called outside mod init using a filename that wasn't succesfully used with this function during the init, 0 will be returned as the id. 
+-- The game will apply further processing to some images, so the final binary data might end up different. For example, R and B channels are sometimes swapped, and on some textures the colors will be extended by one pixel outside areas where A>0. 
+-- If game code has already loaded the image (for example this could be the case with some UI textures), the changes will probably not be applied. 
+-- The changes done using the ModImage* API will need to be done again on each game restart/new game. It's possible that some images will be cached over restarts, and changes will not be visible in the game until a full executable restart - you will have to figure out where that applies. 
+-- Allows access to data files and files from enabled mods. "mods/mod/data/file.png" and "data/file.png" point to the same file. Available only in init.lua during mod init. 
 ---@param filename string 
 ---@param width integer 
 ---@param height integer 
@@ -2232,21 +2241,30 @@ function ModTextFileWhoSetContent(filename) end
 ---@return integer h
 function ModImageMakeEditable(filename, width, height) end
 
---- Returns an id that can be used with ModImageGetPixel and ModImageSetPixel, and the dimensions of the image.  If a previous successful call to ModImageMakeEditable hasn't been made with the given filename, 0 will be returned as 'id', 'w' and 'h'. Unlike most Mod* functions, this one is available everywhere.
+--- Returns an id that can be used with ModImageGetPixel and ModImageSetPixel, and the dimensions of the image. 
+--  If a previous successful call to ModImageMakeEditable hasn't been made with the given filename, 0 will be returned as 'id', 'w' and 'h'. 
+-- Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string 
 ---@return integer id
 ---@return integer w
 ---@return integer h
 function ModImageIdFromFilename(filename) end
 
---- Returns the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. Use ModImageMakeEditable to create an id that can be used with this function.  While it's possible to edit images after mod init, it's not guaranteed that game systems will see the changes, as the system might already have loaded the image at that point. The function will silently fail nad return 0 if 'id' isn't valid. Unlike most Mod* functions, this one is available everywhere.
+--- Returns the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. 
+-- Use ModImageMakeEditable to create an id that can be used with this function. 
+--  While it's possible to edit images after mod init, it's not guaranteed that game systems will see the changes, as the system might already have loaded the image at that point. 
+-- The function will silently fail nad return 0 if 'id' isn't valid. 
+-- Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer 
 ---@param x integer 
 ---@param y integer 
 ---@return unsigned_integer
 function ModImageGetPixel(id, x, y) end
 
---- Sets the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. Use ModImageMakeEditable to create an id that can be used with this function.  The function will silently fail if 'id' isn't valid. Unlike most Mod* functions, this one is available everywhere.
+--- Sets the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. 
+-- Use ModImageMakeEditable to create an id that can be used with this function. 
+--  The function will silently fail if 'id' isn't valid. 
+-- Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer 
 ---@param x integer 
 ---@param y integer 
