@@ -6,10 +6,7 @@
 ---@class unsigned_integer 
 ---@class item_entity_id 
 ---@class physics_body_id 
-
----@alias gui userdata
-
----@alias multiple_types any
+---@class gui 
 
 ---@param filename string 
 ---@param pos_x number 0
