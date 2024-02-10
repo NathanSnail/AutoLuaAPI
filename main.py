@@ -58,6 +58,7 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "BiomeMapGetName": {"ret": "name:string"},
 			 "AddFlagPersistent":{"ret":"is_new:boolean"},
              "GuiTextInput": {"ret": "new_text:string"},
+             "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
              }
 
 tree = BeautifulSoup(html, features="html.parser")
