@@ -50,10 +50,7 @@ out = """
 ---@class unsigned_integer 
 ---@class item_entity_id 
 ---@class physics_body_id 
-
----@alias gui userdata
-
----@alias multiple_types any
+---@class gui 
 """
 
 overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
