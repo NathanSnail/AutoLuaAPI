@@ -692,7 +692,7 @@ function GamePickUpInventoryItem(who_picks_up_entity_id, item_entity_id, do_pick
 
 --- Returns all the inventory items that entity_id has.
 ---@param entity_id entity_id 
----@return item_entity_id[]|nil
+---@return entity_id[]|nil
 function GameGetAllInventoryItems(entity_id) end
 
 

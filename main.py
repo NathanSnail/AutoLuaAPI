@@ -8,7 +8,7 @@ def maybe_entity(name):
 
 def do_int(src, name):
 	if "integer" not in src:
-		src = src.replace("int","integer")
+		src = src.replace("int", "integer")
 	if src.find("uinteger32") != -1:
 		return src.replace("uinteger32", "unsigned_integer")
 	if src.find("uinteger") != -1:
@@ -32,6 +32,7 @@ def type_alias(src, name):
 	src = src.replace("multipletypes", "any")
 	src = src.replace("obj", "gui")
 	src = src.replace("int_body_id", "physics_body_id")
+	src = src.replace("item_entity_id","entity_id")
 	if src.find("boolean") == -1:
 		src = src.replace("bool", "boolean")
 	if src.find("int") != -1:
@@ -80,6 +81,7 @@ for k, e in enumerate(table.children):
 	example = parts[1]
 	ret = parts[3].text.replace(" ", "")
 	comment = parts[5].text
+	print(comment)
 	example_parts = [x for x in example.children]
 	fn_name = example_parts[0].text
 	# print(fn_name)
