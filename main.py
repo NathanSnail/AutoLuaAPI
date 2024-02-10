@@ -32,7 +32,7 @@ def type_alias(src, name):
 	src = src.replace("multipletypes", "any")
 	src = src.replace("obj", "gui")
 	src = src.replace("int_body_id", "physics_body_id")
-	src = src.replace("item_entity_id","entity_id")
+	src = src.replace("item_entity_id", "entity_id")
 	if src.find("boolean") == -1:
 		src = src.replace("bool", "boolean")
 	if src.find("int") != -1:
@@ -66,10 +66,15 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "GuiTextInput": {"ret": "new_text:string"},
              "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
              "AddMaterialInventoryMaterial": {"comment": "This function actually sets the amount in the inventory rather than adding."},
-             "EntityAddComponent2": {"param": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"},
+             "EntityAddComponent2": {"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"},
              "GlobalsGetValue": {"ret": "global:any|nil"},
              "EntityGetAllComponents": {"ret": "components:{int}|nil"},
+             "LoadPixelScene": {"args": "materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = \"\", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false "},
+             "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "nil"}},
+             "dofile": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
+             "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
              }
+
 
 tree = BeautifulSoup(html, features="html.parser")
 table = tree.find("table")
@@ -89,24 +94,28 @@ for k, e in enumerate(table.children):
 	if fn_name.find("Input") != -1:
 		# hax hax hax
 		ret = ret.split("(")[0]
+	overloaded = False
+	overloaded_args = ""
+	overloaded_ret = "" 
 	if fn_name in overloads.keys():
 		overload = overloads[fn_name]
 		if "ret" in overload.keys():
 			ret = overload["ret"]
-		if "param" in overload.keys():
-			fn_args = overload["param"]
+		if "args" in overload.keys():
+			fn_args = overload["args"]
 		if "comment" in overload.keys():
 			comment = overload["comment"]
-	optional = False
-	if fn_name.find("dofile") != -1:
-		ret = "script_return_type:any"
-		optional = True
-		optional_ret = "(nil, error_string: string)"
+		if "overload" in overload.keys():
+			overloaded = True
+			extra_overload = overload["overload"]
+			overloaded_ret = extra_overload["ret"]
+			if "args" in extra_overload.keys():
+				overloaded_args = extra_overload["args"]
 	if ret[-5:] == ")|nil":
 		# special case where multiple thing are nil
 		ret = ret[1:-5]
-		optional = True
-		optional_ret = "nil"
+		overloaded = True
+		overloaded_ret = "nil"
 	fn_args = fn_args.replace("value_or_values", "...")
 	fn_args = fn_args.replace(" ", "").split(",")
 	fn_def = ""
@@ -154,10 +163,10 @@ for k, e in enumerate(table.children):
 
 	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
 	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1]
-                                    for x in fn_args2]) + ")"
+                                    for x in fn_args2]) + ")" if overloaded_args == "" else overloaded_args
 
-	if optional:
-		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + optional_ret
+	if overloaded:
+		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + overloaded_ret
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
 	while fn_def.find("\n\n") != -1:
@@ -165,4 +174,4 @@ for k, e in enumerate(table.children):
 	out += fn_def + "\n\n"
 
 with open("out.lua", "w", encoding="utf-8") as f:
-	f.write(out.replace("\n\n\n","\n\n"))
+	f.write(out.replace("\n\n\n", "\n\n"))
