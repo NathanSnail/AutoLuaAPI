@@ -142,8 +142,8 @@ for k, e in enumerate(table.children):
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
 	
-	fn_sig = "(" + ",".join([x[0] for x in fn_args2]) + ")"
-	fn_sig_overload = "(" + ",".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
+	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
+	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
 
 	if optional:
 		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + optional_ret 
