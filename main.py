@@ -1,19 +1,23 @@
 from bs4 import BeautifulSoup
 DEBUG = True
 
+
 def maybe_entity(name):
 	return name.find("entity") != -1 or name.find("item") != -1 or name.find("parent") != -1 or name.find("child") != -1
 
+
 def do_int(src, name):
-	if src.find("uint32") != -1:
-		return src.replace("uint32", "unsigned_integer")
-	if src.find("uint") != -1:
-		return src.replace("uint", "unsigned_integer")
+	if "integer" not in src:
+		src = src.replace("int","integer")
+	if src.find("uinteger32") != -1:
+		return src.replace("uinteger32", "unsigned_integer")
+	if src.find("uinteger") != -1:
+		return src.replace("uinteger", "unsigned_integer")
 	if name.find("component") != -1:
-		return src.replace("int", "component_id")
+		return src.replace("integer", "component_id")
 	if maybe_entity(name):
-		return src.replace("int", "entity_id")
-	return src.replace("int", "integer")
+		return src.replace("integer", "entity_id")
+	return src
 
 
 def type_alias(src, name):
@@ -30,9 +34,7 @@ def type_alias(src, name):
 	src = src.replace("int_body_id", "physics_body_id")
 	if src.find("boolean") == -1:
 		src = src.replace("bool", "boolean")
-	if src.find("integer") != -1 and maybe_entity(name):
-		src = src.replace("integer", "entity_id")
-	if src.find("int") != -1 and src.find("integer") == -1:
+	if src.find("int") != -1:
 		src = do_int(src, name)
 	if src[-1] in ".-":
 		src = src[:-1]
@@ -64,6 +66,8 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
              "AddMaterialInventoryMaterial": {"comment": "This function actually sets the amount in the inventory rather than adding."},
              "EntityAddComponent2": {"param": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"},
+             "GlobalsGetValue": {"ret": "global:any|nil"},
+             "EntityGetAllComponents": {"ret": "components:{int}|nil"},
              }
 
 tree = BeautifulSoup(html, features="html.parser")
@@ -102,7 +106,7 @@ for k, e in enumerate(table.children):
 		ret = ret[1:-5]
 		optional = True
 		optional_ret = "nil"
-	fn_args = fn_args.replace("value_or_values","...")
+	fn_args = fn_args.replace("value_or_values", "...")
 	fn_args = fn_args.replace(" ", "").split(",")
 	fn_def = ""
 	fn_args2 = []
