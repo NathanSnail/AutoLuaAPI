@@ -125,8 +125,8 @@ function EntityApplyTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 function EntityGetTransform(entity_id) end
 
 
----@param parent_id integer 
----@param child_id integer 
+---@param parent_id entity_id 
+---@param child_id entity_id 
 function EntityAddChild(parent_id, child_id) end
 
 --- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are returned, might return either an empty table or nil.
@@ -353,8 +353,8 @@ function ComponentGetValue2(component_id, field_name) end
 --- Sets the value of a field. Value(s) should have a type matching the field type. Reports error if the values weren't given in correct type, the field type is not supported, or the component does not exist. This is up to 20x faster than the old ComponentSetValue functions.
 ---@param component_id component_id 
 ---@param field_name string 
----@param value_or_values any 
-function ComponentSetValue2(component_id, field_name, value_or_values) end
+---@param ... any 
+function ComponentSetValue2(component_id, field_name, ...) end
 
 --- Returns one or many values matching the type or subtypes of the requested field in a component subobject. Reports error and returns nil if the field type is not supported or 'object_name' is not a metaobject.
 ---@param component_id component_id 
@@ -367,14 +367,15 @@ function ComponentObjectGetValue2(component_id, object_name, field_name) end
 ---@param component_id component_id 
 ---@param object_name string 
 ---@param field_name string 
----@param value_or_values any 
-function ComponentObjectSetValue2(component_id, object_name, field_name, value_or_values) end
+---@param ... any 
+function ComponentObjectSetValue2(component_id, object_name, field_name, ...) end
 
 
 ---@param entity_id entity_id 
+---@param component_type_name string 
 ---@param table_of_component_values {string:any}? nil
 ---@return component_id
-function EntityAddComponent2(entity_id, table_of_component_values) end
+function EntityAddComponent2(entity_id, component_type_name, table_of_component_values) end
 
 --- 'type_stored_in_vector' should be "int", "float" or "string".
 ---@param component_id component_id 
