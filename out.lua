@@ -4,9 +4,10 @@
 ---@class entity_id 
 ---@class component_id 
 ---@class unsigned_integer 
----@class item_entity_id 
 ---@class physics_body_id 
 ---@class gui 
+
+---@alias item_entity_id entity_id 
 
 ---@param filename string 
 ---@param pos_x number 0
@@ -921,8 +922,9 @@ function GameGetPotionColorUint(entity_id) end
 
 --- Returns the centroid of first enabled HitboxComponent found in entity, the position of the entity if no hitbox is found, or nil if the entity does not exist. All returned positions are in world coordinates.
 ---@param entity_id entity_id 
----@return number (x
----@return number)|nil y
+---@return number x
+---@return number y
+---@overload EntityGetFirstHitboxCenter(entity_id): nil
 function EntityGetFirstHitboxCenter(entity_id) end
 
 --- Does a raytrace that stops on any cell it hits.
@@ -2152,9 +2154,10 @@ function ModSettingGetCount() end
 
 --- 'index' should be 0-based index. Returns nil if 'index' is invalid.
 ---@param index integer 
----@return string (name
+---@return string name
 ---@return boolean|number|string|nil value
----@return boolean|number|string|nil)|nil value_next
+---@return boolean|number|string|nil value_next
+---@overload ModSettingGetAtIndex(index): nil
 function ModSettingGetAtIndex(index) end
 
 
