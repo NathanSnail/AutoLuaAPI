@@ -66,7 +66,7 @@ function EntityRemoveComponent(entity_id, component_id) end
 
 --- Returns a table of component ids.
 ---@param entity_id entity_id 
----@return integer[]
+---@return component_id[]|nil components
 function EntityGetAllComponents(entity_id) end
 
 
@@ -1199,6 +1199,7 @@ function GlobalsSetValue(key, value) end
 
 ---@param key string 
 ---@param default_value string? ""
+---@return any|nil global
 function GlobalsGetValue(key, default_value) end
 
 
