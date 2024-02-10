@@ -8,9 +8,9 @@ def do_int(src, name):
 	if src.find("uint") != -1:
 		return src.replace("uint", "unsigned_integer")
 	if name.find("component") != -1:
-		return "component_id"
-	if name.find("entity") != -1 and name.find("item") != -1:
-		return "entity_id"
+		return src.replace("int","component_id")
+	if name.find("entity") != -1 or name.find("item") != -1:
+		return src.replace("int","entity_id")
 	return src.replace("int", "integer")
 
 
@@ -28,6 +28,9 @@ def type_alias(src, name):
 	src = src.replace("int_body_id", "physics_body_id")
 	if src.find("boolean") == -1:
 		src = src.replace("bool", "boolean")
+	if src.find("integer") != -1 and (name.find("entity") != -1 or name.find("item") != -1):
+		print("yipee!")
+		src = src.replace("integer","entity_id")
 	if src.find("int") != -1 and src.find("integer") == -1:
 		src = do_int(src, name)
 	if src[-1] in ".-":
