@@ -9,19 +9,17 @@
 ---@class physics_body_id 
 ---@class gui 
 
----@alias item_entity_id entity_id 
-
 ---@param filename string 
 ---@param pos_x number 0
 ---@param pos_y number 0
----@return entity_id entity_id
+---@return integer entity_id
 function EntityLoad(filename, pos_x, pos_y) end
 
 
 ---@param filename string 
 ---@param pos_x number 0
 ---@param pos_y number 0
----@return entity_id entity_id
+---@return integer entity_id
 function EntityLoadEndGameItem(filename, pos_x, pos_y) end
 
 
@@ -32,75 +30,75 @@ function EntityLoadCameraBound(filename, pos_x, pos_y) end
 
 --- Loads components from 'filename' to 'entity'. Does not load tags and other stuff.
 ---@param filename string 
----@param entity entity_id 
+---@param entity integer 
 function EntityLoadToEntity(filename, entity) end
 
 --- Note: works only in dev builds.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param filename string 
 function EntitySave(entity_id, filename) end
 
 
 ---@param name string ""
----@return entity_id entity_id
+---@return integer entity_id
 function EntityCreateNew(name) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function EntityKill(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return boolean
 function EntityGetIsAlive(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_type_name string 
 ---@param table_of_component_values string[] nil
 ---@return component_id component_id
 function EntityAddComponent(entity_id, component_type_name, table_of_component_values) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 
 function EntityRemoveComponent(entity_id, component_id) end
 
 --- Returns a table of component ids.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return integer[]
 function EntityGetAllComponents(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_type_name string 
 ---@param tag string ""
 ---@return component_id[]|nil
 function EntityGetComponent(entity_id, component_type_name, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_type_name string 
 ---@param tag string ""
 ---@return component_id|nil
 function EntityGetFirstComponent(entity_id, component_type_name, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_type_name string 
 ---@param tag string ""
 ---@return component_id[]|nil
 function EntityGetComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_type_name string 
 ---@param tag string ""
 ---@return component_id|nil
 function EntityGetFirstComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param x number 
 ---@param y number 0
 ---@param rotation number 0
@@ -109,7 +107,7 @@ function EntityGetFirstComponentIncludingDisabled(entity_id, component_type_name
 function EntitySetTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 
 --- Sets the transform and tries to immediately refresh components that calculate values based on an entity's transform.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param x number 
 ---@param y number 0
 ---@param rotation number 0
@@ -118,7 +116,7 @@ function EntitySetTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 function EntityApplyTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return number x
 ---@return number y
 ---@return number rotation
@@ -132,62 +130,62 @@ function EntityGetTransform(entity_id) end
 function EntityAddChild(parent_id, child_id) end
 
 --- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are returned, might return either an empty table or nil.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param tag string ""
----@return entity_id {entity_id
+---@return integer}|nil {entity_id
 function EntityGetAllChildren(entity_id, tag) end
 
 
----@param entity_id entity_id 
----@return entity_id entity_id
+---@param entity_id integer 
+---@return integer entity_id
 function EntityGetParent(entity_id) end
 
 --- Returns the given entity if it has no parent, otherwise walks up the parent hierarchy to the topmost parent and returns it.
----@param entity_id entity_id 
----@return entity_id entity_id
+---@param entity_id integer 
+---@return integer entity_id
 function EntityGetRootEntity(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function EntityRemoveFromParent(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param tag string 
 ---@param enabled boolean 
 function EntitySetComponentsWithTagEnabled(entity_id, tag, enabled) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 
 ---@param is_enabled boolean 
 function EntitySetComponentIsEnabled(entity_id, component_id, is_enabled) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return string name
 function EntityGetName(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param name string 
 function EntitySetName(entity_id, name) end
 
 --- Returns a string where the tags are comma-separated, or nil if 'entity_id' doesn't point to a valid entity.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return string|nil
 function EntityGetTags(entity_id) end
 
 --- Returns all entities with 'tag'.
 ---@param tag string 
----@return entity_id {entity_id
+---@return integer} {entity_id
 function EntityGetWithTag(tag) end
 
 --- Returns all entities in 'radius' distance from 'x','y'.
 ---@param pos_x number 
 ---@param pos_y number 
 ---@param radius number 
----@return entity_id {entity_id
+---@return integer} {entity_id
 function EntityGetInRadius(pos_x, pos_y, radius) end
 
 --- Returns all entities in 'radius' distance from 'x','y'.
@@ -195,45 +193,45 @@ function EntityGetInRadius(pos_x, pos_y, radius) end
 ---@param pos_y number 
 ---@param radius number 
 ---@param entity_tag string 
----@return entity_id {entity_id
+---@return integer} {entity_id
 function EntityGetInRadiusWithTag(pos_x, pos_y, radius, entity_tag) end
 
 
 ---@param pos_x number 
 ---@param pos_y number 
----@return entity_id entity_id
+---@return integer entity_id
 function EntityGetClosest(pos_x, pos_y) end
 
 
 ---@param pos_x number 
 ---@param pos_y number 
 ---@param tag string 
----@return entity_id entity_id
+---@return integer entity_id
 function EntityGetClosestWithTag(pos_x, pos_y, tag) end
 
 
 ---@param name string 
----@return entity_id entity_id
+---@return integer entity_id
 function EntityGetWithName(name) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param tag string 
 function EntityAddTag(entity_id, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param tag string 
 function EntityRemoveTag(entity_id, tag) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param tag string 
 ---@return boolean
 function EntityHasTag(entity_id, tag) end
 
 --- Return value example: 'data/entities/items/flute.xml'. Incorrect value is returned if the entity has passed through the world streaming system.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return string full_path
 function EntityGetFilename(entity_id) end
 
@@ -373,7 +371,7 @@ function ComponentObjectGetValue2(component_id, object_name, field_name) end
 function ComponentObjectSetValue2(component_id, object_name, field_name, value_or_values) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param table_of_component_values {string:any} nil
 ---@return component_id
 function EntityAddComponent2(entity_id, table_of_component_values) end
@@ -407,7 +405,7 @@ function ComponentGetIsEnabled(component_id) end
 
 --- Returns the id of the entity that owns a component, or 0.
 ---@param component_id component_id 
----@return entity_id entity_id
+---@return integer entity_id
 function ComponentGetEntity(component_id) end
 
 --- Returns a string-indexed table of string.
@@ -427,7 +425,7 @@ function ComponentObjectGetMembers(component_id, object_name) end
 function ComponentGetTypeName(component_id) end
 
 
----@return entity_id entity_id
+---@return integer entity_id
 function GetUpdatedEntityID() end
 
 
@@ -456,7 +454,7 @@ function SpawnActionItem(x, y, level) end
 ---@param y number 
 ---@param level integer 
 ---@param action_count integer 
----@return entity_id entity_id
+---@return integer entity_id
 function SpawnStash(x, y, level, action_count) end
 
 
@@ -464,22 +462,22 @@ function SpawnStash(x, y, level, action_count) end
 ---@param y number 
 ---@param level integer 
 ---@return integer spawn_state_id
----@return entity_id entity_id
+---@return integer entity_id
 function SpawnApparition(x, y, level) end
 
 
 ---@param entity_file string 
----@param stash_entity_id entity_id 
+---@param stash_entity_id integer 
 function LoadEntityToStash(entity_file, stash_entity_id) end
 
-
----@param entity_id entity_id 
+--- This function actually sets the amount in the inventory rather than adding.
+---@param entity_id integer 
 ---@param material_name string 
 ---@param count integer 
 function AddMaterialInventoryMaterial(entity_id, material_name, count) end
 
 --- Returns the id of the material taking the largest part of the first MaterialInventoryComponent in 'entity_id', or 0 if nothing is found.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param ignore_box2d_materials boolean true
 ---@return integer material_type
 function GetMaterialInventoryMainMaterial(entity_id, ignore_box2d_materials) end
@@ -565,11 +563,11 @@ function GameIsIntroPlaying() end
 function GameGetIsGamepadConnected() end
 
 
----@return entity_id entity_id
+---@return integer entity_id
 function GameGetWorldStateEntity() end
 
 
----@return entity_id entity_id
+---@return integer entity_id
 function GameGetPlayerStatsEntity() end
 
 
@@ -669,43 +667,43 @@ function GameSetCameraFree(is_free) end
 function GameGetCameraBounds() end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameRegenItemAction(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameRegenItemActionsInContainer(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameRegenItemActionsInPlayer(entity_id) end
 
 
----@param inventory_owner_entity_id entity_id 
+---@param inventory_owner_entity_id integer 
 ---@param item_entity_id entity_id 
 function GameKillInventoryItem(inventory_owner_entity_id, item_entity_id) end
 
 
----@param who_picks_up_entity_id entity_id 
+---@param who_picks_up_entity_id integer 
 ---@param item_entity_id entity_id 
 ---@param do_pick_up_effects boolean true
 function GamePickUpInventoryItem(who_picks_up_entity_id, item_entity_id, do_pick_up_effects) end
 
 --- Returns all the inventory items that entity_id has.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return item_entity_id[]|nil
 function GameGetAllInventoryItems(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameDropAllItems(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameDropPlayerInventoryItems(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function GameDestroyInventoryItems(entity_id) end
 
 
@@ -792,65 +790,65 @@ function GameCreateParticle(material_name, x, y, how_many, xvel, yvel, just_visu
 function GameCreateSpriteForXFrames(filename, x, y, centered, sprite_offset_x, sprite_offset_y, frames, emissive) end
 
 --- 'shooter_entity' can be 0. Warning: If 'projectile_entity' has PhysicsBodyComponent and ItemComponent, components without the "enabled_in_world" tag will be disabled, as if the entity was thrown by player.
----@param shooter_entity entity_id 
+---@param shooter_entity integer 
 ---@param x number 
 ---@param y number 
 ---@param target_x number 
 ---@param target_y number 
----@param projectile_entity entity_id 
+---@param projectile_entity integer 
 ---@param send_message boolean true
----@param verlet_parent_entity entity_id 0
+---@param verlet_parent_entity integer 0
 function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectile_entity, send_message, verlet_parent_entity) end
 
 
----@param entity entity_id 
+---@param entity integer 
 ---@param amount number 
 ---@param damage_type string 
 ---@param description string 
 ---@param ragdoll_fx string 
 ---@param impulse_x number 
 ---@param impulse_y number 
----@param entity_who_is_responsible entity_id 0
+---@param entity_who_is_responsible integer 0
 ---@param world_pos_x number entity_x
 ---@param world_pos_y number entity_y
 ---@param knockback_force number 0
 function EntityInflictDamage(entity, amount, damage_type, description, ragdoll_fx, impulse_x, impulse_y, entity_who_is_responsible, world_pos_x, world_pos_y, knockback_force) end
 
 --- Has the same effects that would occur if 'entity' eats 'amount' number of cells of 'material_type' from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use CellFactory_GetType() to convert a material name to material type.
----@param entity entity_id 
+---@param entity integer 
 ---@param material_type number 
 ---@param amount number 
 function EntityIngestMaterial(entity, material_type, amount) end
 
 
----@param entity entity_id 
+---@param entity integer 
 ---@param status_type_id string 
 function EntityRemoveIngestionStatusEffect(entity, status_type_id) end
 
 --- Adds random visible stains of 'material_type' to entity. 'amount' controls the number of stain cells added. Does nothing if 'entity' doesn't have a SpriteStainsComponent. Use CellFactory_GetType() to convert a material name to material type.
----@param entity entity_id 
+---@param entity integer 
 ---@param material_type number 
 ---@param amount number 
 function EntityAddRandomStains(entity, material_type, amount) end
 
 --- Modifies DamageModelComponents materials_that_damage and materials_how_much_damage variables (and their parsed out data structures)
----@param entity entity_id 
+---@param entity integer 
 ---@param material_name string 
 ---@param damage number 
 function EntitySetDamageFromMaterial(entity, material_name, damage) end
 
 --- Immediately refreshes the given SpriteComponent. Might be useful with text sprites if you want them to update more often than once a second.
----@param entity entity_id 
+---@param entity integer 
 ---@param sprite_component component_id 
 function EntityRefreshSprite(entity, sprite_component) end
 
 --- Returns the capacity of a wand entity, or 0 if 'entity' doesnt exist.
----@param entity entity_id 
+---@param entity integer 
 ---@return integer
 function EntityGetWandCapacity(entity) end
 
 --- Plays animation. Follow up animation ('followup_name') is applied only if 'followup_priority' is given.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param name string 
 ---@param priority integer 
 ---@param followup_name string ""
@@ -858,35 +856,35 @@ function EntityGetWandCapacity(entity) end
 function GamePlayAnimation(entity_id, name, priority, followup_name, followup_priority) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return number x
 ---@return number y
 function GameGetVelocityCompVelocity(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param game_effect_name string 
 ---@return component_id component_id
 function GameGetGameEffect(entity_id, game_effect_name) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param game_effect_name string 
 ---@return integer
 function GameGetGameEffectCount(entity_id, game_effect_name) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param game_effect_entity_file string 
----@return entity_id effect_entity_id
+---@return integer effect_entity_id
 function LoadGameEffectEntityTo(entity_id, game_effect_entity_file) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param game_effect_name string 
 ---@param always_load_new boolean 
 ---@return component_id effect_component_id
----@return entity_id effect_entity_id
+---@return integer effect_entity_id
 function GetGameEffectLoadTo(entity_id, game_effect_name, always_load_new) end
 
 --- Adds the entity to the polymorph random table
@@ -918,15 +916,15 @@ function SetPlayerSpawnLocation(x, y) end
 function UnlockItem(action_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return unsigned_integer
 function GameGetPotionColorUint(entity_id) end
 
 --- Returns the centroid of first enabled HitboxComponent found in entity, the position of the entity if no hitbox is found, or nil if the entity does not exist. All returned positions are in world coordinates.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return number x
 ---@return number y
----@overload fun(entity_id: entity_id): nil
+---@overload fun(entity_id: integer): nil
 function EntityGetFirstHitboxCenter(entity_id) end
 
 --- Does a raytrace that stops on any cell it hits.
@@ -1040,26 +1038,26 @@ function HerdIdToString(herd_id) end
 function GetHerdRelation(herd_id_a, herd_id_b) end
 
 
----@param entity_a entity_id 
----@param entity_b entity_id 
+---@param entity_a integer 
+---@param entity_b integer 
 ---@return number
 function EntityGetHerdRelation(entity_a, entity_b) end
 
 --- does not spam errors, but returns 0 if anything fails
----@param entity_a entity_id 
----@param entity_b entity_id 
+---@param entity_a integer 
+---@param entity_b integer 
 ---@return number
 function EntityGetHerdRelationSafe(entity_a, entity_b) end
 
 --- Deprecated, use GenomeStringToHerdID() and ComponentSetValue2() instead.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param new_herd_id string 
 function GenomeSetHerdId(entity_id, new_herd_id) end
 
 --- NOTE: entity_id might be NULL, but pos_x and pos_y could still be valid.
 ---@param pos_x number 
 ---@param pos_y number 
----@return entity_id entity_id
+---@return integer entity_id
 ---@return number pos_x
 ---@return number pos_y
 function EntityGetClosestWormAttractor(pos_x, pos_y) end
@@ -1067,7 +1065,7 @@ function EntityGetClosestWormAttractor(pos_x, pos_y) end
 --- NOTE: entity_id might be NULL, but pos_x and pos_y could still be valid
 ---@param pos_x number 
 ---@param pos_y number 
----@return entity_id entity_id
+---@return integer entity_id
 ---@return number pos_x
 ---@return number pos_y
 ---@return number radius
@@ -1171,12 +1169,12 @@ function InputIsJoystickConnected(joystick_index) end
 function InputGetJoystickAnalogStick(joystick_index, stick_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return boolean
 function IsPlayer(entity_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@return boolean
 function IsInvisible(entity_id) end
 
@@ -1246,14 +1244,14 @@ function StatsBiomeGetValue(key) end
 function StatsBiomeReset() end
 
 
----@param killed_entity_id entity_id 0
+---@param killed_entity_id integer 0
 function StatsLogPlayerKill(killed_entity_id) end
 
 
 ---@param action_id string 
 ---@param x number 0
 ---@param y number 0
----@return entity_id entity_id
+---@return integer entity_id
 function CreateItemActionEntity(action_id, x, y) end
 
 
@@ -1425,7 +1423,7 @@ function ProceduralRandomf(x, y, a, b) end
 function ProceduralRandomi(x, y, a, b) end
 
 --- Does not work with PhysicsBody2Component. Returns the id of the created physics body.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param image_file string 
 ---@param material string ""
 ---@param offset_x number 0
@@ -1438,7 +1436,7 @@ function ProceduralRandomi(x, y, a, b) end
 function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y, centered, is_circle, material_image_file, use_image_as_colors) end
 
 --- Does not work with PhysicsBody2Component. Returns the id of the created physics body.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param material string 
 ---@param offset_x number 
 ---@param offset_y number 
@@ -1449,7 +1447,7 @@ function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y
 function PhysicsAddBodyCreateBox(entity_id, material, offset_x, offset_y, width, height, centered) end
 
 --- Does not work with PhysicsBody2Component. Returns the id of the created joint.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param body_id0 integer 
 ---@param body_id1 integer 
 ---@param offset_x number 
@@ -1459,25 +1457,25 @@ function PhysicsAddBodyCreateBox(entity_id, material, offset_x, offset_y, width,
 function PhysicsAddJoint(entity_id, body_id0, body_id1, offset_x, offset_y, joint_type) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param force_x number 
 ---@param force_y number 
 function PhysicsApplyForce(entity_id, force_x, force_y) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param torque number 
 function PhysicsApplyTorque(entity_id, torque) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 
 ---@param torque number 
 function PhysicsApplyTorqueToComponent(entity_id, component_id, torque) end
 
 
 ---@param calculate_force_for_body_fn function 
----@param ignore_this_entity entity_id 
+---@param ignore_this_entity integer 
 ---@param area_min_x number 
 ---@param area_min_y number 
 ---@param area_max_x number 
@@ -1492,19 +1490,19 @@ function PhysicsApplyForceOnArea(calculate_force_for_body_fn, ignore_this_entity
 function PhysicsRemoveJoints(world_pos_min_x, world_pos_min_y, world_pos_max_x, world_pos_max_y) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param is_static boolean 
 function PhysicsSetStatic(entity_id, is_static) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 
 ---@return number vel_x
 ---@return number vel_y
 function PhysicsGetComponentVelocity(entity_id, component_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 
 ---@return number vel
 function PhysicsGetComponentAngularVelocity(entity_id, component_id) end
@@ -1530,7 +1528,7 @@ function PhysicsComponentGetTransform(component_id) end
 function PhysicsComponentSetTransform(component_id, x, y, angle, vel_x, vel_y, angular_vel) end
 
 --- NOTE! If component_id is given, will return all the bodies linked to that component. If component_id is not given, will return all the bodies linked to the entity (with joints or through components).
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param component_id component_id 0
 ---@return physics_body_id[]
 function PhysicsBodyIDGetFromEntity(entity_id, component_id) end
@@ -1612,7 +1610,7 @@ function PhysicsBodyIDSetGravityScale(physics_body_id, gravity_scale) end
 function PhysicsBodyIDGetBodyAABB(physics_body_id) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 function PhysicsBody2InitFromComponents(entity_id) end
 
 
@@ -1700,12 +1698,12 @@ function GameTriggerMusicFadeOutAndDequeueAll(relative_fade_speed) end
 function GamePlaySound(bank_filename, event_path, x, y) end
 
 --- Plays a sound through all AudioComponents with matching sound in 'entity_id'.
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param event_name string 
 function GameEntityPlaySound(entity_id, event_name) end
 
 --- Plays a sound loop through an AudioLoopComponent tagged with 'component_tag' in 'entity'. 'intensity' & 'intensity2' affect the intensity parameters passed to the audio event. Must be called every frame when the sound should play.
----@param entity entity_id 
+---@param entity integer 
 ---@param component_tag string 
 ---@param intensity number 
 ---@param intensity2 number 0
@@ -2063,7 +2061,7 @@ function Debug_SaveTestPlayer() end
 function DebugBiomeMapGetFilename(x, y) end
 
 
----@param entity_id entity_id 
+---@param entity_id integer 
 ---@param material string 
 function EntityConvertToMaterial(entity_id, material) end
 
@@ -2322,13 +2320,13 @@ function SetProjectileConfigs() end
 function StartReload(reload_time) end
 
 
----@param inventoryitem_id item_entity_id 
+---@param inventoryitem_id integer 
 ---@param uses_remaining integer 
 ---@return boolean uses_remaining_reduced
 function ActionUsesRemainingChanged(inventoryitem_id, uses_remaining) end
 
 
----@param inventoryitem_id item_entity_id 
+---@param inventoryitem_id integer 
 function ActionUsed(inventoryitem_id) end
 
 

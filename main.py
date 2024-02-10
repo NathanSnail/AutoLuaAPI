@@ -9,10 +9,8 @@ def do_int(src, name):
 		return src.replace("uint", "unsigned_integer")
 	if name.find("component") != -1:
 		return "component_id"
-	if name.find("entity") != -1:
+	if name.find("entity") != -1 and name.find("item") != -1:
 		return "entity_id"
-	if name.find("item") != -1:
-		return src.replace("int", "item_entity_id")
 	return src.replace("int", "integer")
 
 
@@ -52,16 +50,15 @@ out = """
 ---@class unsigned_integer 
 ---@class physics_body_id 
 ---@class gui 
-
----@alias item_entity_id entity_id 
 """
 
 overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
              "BiomeMapGetName": {"ret": "name:string"},
-			 "AddFlagPersistent":{"ret":"is_new:boolean"},
+             "AddFlagPersistent": {"ret": "is_new:boolean"},
              "GuiTextInput": {"ret": "new_text:string"},
              "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
+             "AddMaterialInventoryMaterial": {"comment": "This function actually sets the amount in the inventory rather than adding."},
              }
 
 tree = BeautifulSoup(html, features="html.parser")
@@ -88,6 +85,8 @@ for k, e in enumerate(table.children):
 			ret = overload["ret"]
 		if "param" in overload.keys():
 			fn_args = overload["param"]
+		if "comment" in overload.keys():
+			comment = overload["comment"]
 	optional = False
 	if fn_name.find("dofile") != -1:
 		ret = "script_return_type:any"
@@ -141,12 +140,13 @@ for k, e in enumerate(table.children):
 		fn_def += comment.replace("\n", "\n-- ")
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
-	
+
 	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
-	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
+	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1]
+                                    for x in fn_args2]) + ")"
 
 	if optional:
-		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + optional_ret 
+		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + optional_ret
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
 	while fn_def.find("\n\n") != -1:
