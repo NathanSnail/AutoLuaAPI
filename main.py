@@ -45,11 +45,11 @@ with open(docpath, "r", encoding="utf-8") as f:
 out = """
 ---@diagnostic disable: missing-return
 
----@alias entity_id integer
----@alias component_id integer
----@alias unsigned_integer integer
----@alias item_entity_id integer
----@alias physics_body_id integer
+---@class entity_id 
+---@class component_id 
+---@class unsigned_integer 
+---@class item_entity_id 
+---@class physics_body_id 
 
 ---@alias gui userdata
 
