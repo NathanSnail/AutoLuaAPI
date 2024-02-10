@@ -10,7 +10,7 @@
 
 ---@alias multiple_types any
 
----@type entity_id 
+---@class entity_id
 
 ---@param filename string 
 ---@param pos_x number 0
