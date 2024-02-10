@@ -81,7 +81,6 @@ for k, e in enumerate(table.children):
 	example = parts[1]
 	ret = parts[3].text.replace(" ", "")
 	comment = "\n".join(parts[5].strings)
-	print(comment)
 	example_parts = [x for x in example.children]
 	fn_name = example_parts[0].text
 	# print(fn_name)
@@ -166,4 +165,4 @@ for k, e in enumerate(table.children):
 	out += fn_def + "\n\n"
 
 with open("out.lua", "w", encoding="utf-8") as f:
-	f.write(out)
+	f.write(out.replace("\n\n\n","\n\n"))
