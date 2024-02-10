@@ -217,37 +217,43 @@ function EntitiesGetMaxID() end
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return string|nil
+---@deprecated
 function ComponentGetValue(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return boolean|nil
+---@deprecated
 function ComponentGetValueBool(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return integer|nil
+---@deprecated
 function ComponentGetValueInt(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return number|nil
+---@deprecated
 function ComponentGetValueFloat(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return number x
----@return number|nil y
+---@return number  y
+---@deprecated
 function ComponentGetValueVector2(component_id, variable_name) end
 
 --- Deprecated, use ComponentSetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@param value string 
+---@deprecated
 function ComponentSetValue(component_id, variable_name, value) end
 
 --- Deprecated, use ComponentSetValue2() instead.
@@ -255,6 +261,7 @@ function ComponentSetValue(component_id, variable_name, value) end
 ---@param variable_name string 
 ---@param x number 
 ---@param y number 
+---@deprecated
 function ComponentSetValueVector2(component_id, variable_name, x, y) end
 
 --- Deprecated, use ComponentSetValue2() instead.
@@ -262,6 +269,7 @@ function ComponentSetValueVector2(component_id, variable_name, x, y) end
 ---@param variable_name string 
 ---@param min number 
 ---@param max number 
+---@deprecated
 function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 
 --- Deprecated, use ComponentSetValue2() instead.
@@ -269,18 +277,21 @@ function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 ---@param variable_name string 
 ---@param min number 
 ---@param max number 
+---@deprecated
 function ComponentSetValueValueRangeInt(component_id, variable_name, min, max) end
 
 --- Deprecated, use ComponentSetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@param value string 
+---@deprecated
 function ComponentSetMetaCustom(component_id, variable_name, value) end
 
 --- Deprecated, use ComponentGetValue2() instead.
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return string|nil
+---@deprecated
 function ComponentGetMetaCustom(component_id, variable_name) end
 
 --- Deprecated, use ComponentObjectGetValue2() instead.
@@ -288,6 +299,7 @@ function ComponentGetMetaCustom(component_id, variable_name) end
 ---@param object_name string 
 ---@param variable_name string 
 ---@return string|nil
+---@deprecated
 function ComponentObjectGetValue(component_id, object_name, variable_name) end
 
 --- Deprecated, use ComponentObjectSetValue2() instead.
@@ -295,6 +307,7 @@ function ComponentObjectGetValue(component_id, object_name, variable_name) end
 ---@param object_name string 
 ---@param variable_name string 
 ---@param value string 
+---@deprecated
 function ComponentObjectSetValue(component_id, object_name, variable_name, value) end
 
 ---@param component_id component_id 
@@ -469,6 +482,7 @@ function BiomeMapLoad_KeepPlayer(filename, pixel_scenes) end
 
 --- Deprecated. Might trigger various bugs. Use BiomeMapLoad_KeepPlayer() instead.
 ---@param filename string 
+---@deprecated
 function BiomeMapLoad(filename) end
 
 --- Can be used to edit biome configs during initialization. See the nightmare mod for an usage example.
@@ -959,6 +973,7 @@ function EntityGetHerdRelationSafe(entity_a, entity_b) end
 --- Deprecated, use GenomeStringToHerdID() and ComponentSetValue2() instead.
 ---@param entity_id entity_id 
 ---@param new_herd_id string 
+---@deprecated
 function GenomeSetHerdId(entity_id, new_herd_id) end
 
 --- NOTE: entity_id might be NULL, but pos_x and pos_y could still be valid.
@@ -1670,6 +1685,7 @@ function GuiText(gui, x, y, text) end
 ---@param x number 
 ---@param y number 
 ---@param text string 
+---@deprecated
 function GuiTextCentered(gui, x, y, text) end
 
 --- 'scale' will be used for 'scale_y' if 'scale_y' equals 0.

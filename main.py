@@ -73,6 +73,7 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "nil"}},
              "dofile": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
              "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
+             "ComponentGetValueVector2": {"ret": "x:number, y:number"},
              }
 
 
@@ -95,6 +96,7 @@ for k, e in enumerate(table.children):
 		# hax hax hax
 		ret = ret.split("(")[0]
 	overloaded = False
+	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
 	overloaded_ret = "" 
 	if fn_name in overloads.keys():
@@ -105,6 +107,8 @@ for k, e in enumerate(table.children):
 			fn_args = overload["args"]
 		if "comment" in overload.keys():
 			comment = overload["comment"]
+		if "deprecated" in overload.keys():
+			deprecated = overload[deprecated]
 		if "overload" in overload.keys():
 			overloaded = True
 			extra_overload = overload["overload"]
@@ -160,6 +164,7 @@ for k, e in enumerate(table.children):
 		fn_def += comment.replace("\n", "\n-- ")
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
+	fn_def += "\n---@deprecated" if deprecated else ""
 
 	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
 	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1]
