@@ -1,5 +1,6 @@
 
 ---@diagnostic disable: missing-return
+---@diagnostic disable: unused-local 
 
 ---@class entity_id 
 ---@class component_id 
@@ -2157,7 +2158,7 @@ function ModSettingGetCount() end
 ---@return string name
 ---@return boolean|number|string|nil value
 ---@return boolean|number|string|nil value_next
----@overload ModSettingGetAtIndex(index): nil
+---@overload fun(index): nil
 function ModSettingGetAtIndex(index) end
 
 

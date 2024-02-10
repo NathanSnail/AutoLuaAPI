@@ -44,6 +44,7 @@ with open(docpath, "r", encoding="utf-8") as f:
 
 out = """
 ---@diagnostic disable: missing-return
+---@diagnostic disable: unused-local 
 
 ---@class entity_id 
 ---@class component_id 
