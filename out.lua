@@ -1,6 +1,7 @@
 
 ---@diagnostic disable: missing-return
 ---@diagnostic disable: unused-local 
+---@diagnostic disable: lowercase-global
 
 ---@class entity_id 
 ---@class component_id 
