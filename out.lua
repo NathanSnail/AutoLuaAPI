@@ -394,7 +394,7 @@ function ComponentGetVectorValue(component_id,array_name,type_stored_in_vector,i
 ---@param component_id component_id 
 ---@param array_name string 
 ---@param type_stored_in_vector string 
----@return integer|number|string[]|nil
+---@return integer[]|number[]|string[]|nil
 function ComponentGetVector(component_id,array_name,type_stored_in_vector) end
 
 --- Returns true if the given component exists and is enabled, else false.
