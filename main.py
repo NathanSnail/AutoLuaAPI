@@ -80,7 +80,7 @@ for k, e in enumerate(table.children):
 	# print(parts)
 	example = parts[1]
 	ret = parts[3].text.replace(" ", "")
-	comment = parts[5].text
+	comment = "\n".join(parts[5].strings)
 	print(comment)
 	example_parts = [x for x in example.children]
 	fn_name = example_parts[0].text
