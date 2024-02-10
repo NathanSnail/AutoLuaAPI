@@ -925,7 +925,7 @@ function GameGetPotionColorUint(entity_id) end
 ---@param entity_id entity_id 
 ---@return number x
 ---@return number y
----@overload fun(entity_id): nil
+---@overload fun(entity_id: entity_id): nil
 function EntityGetFirstHitboxCenter(entity_id) end
 
 --- Does a raytrace that stops on any cell it hits.
@@ -2158,7 +2158,7 @@ function ModSettingGetCount() end
 ---@return string name
 ---@return boolean|number|string|nil value
 ---@return boolean|number|string|nil value_next
----@overload fun(index): nil
+---@overload fun(index: integer): nil
 function ModSettingGetAtIndex(index) end
 
 
@@ -2380,13 +2380,13 @@ function GetValueBool(key,default_value) end
 
 --- Returns the script's return value, if any. Returns nil,error_string if the script had errors.
 ---@param filename string 
----@return (nil|script_return_type)|(nil
----@return error_string)
+---@return any script_return_type
+---@overload fun(filename: string): (nil, error_string: string)
 function dofile(filename) end
 
 --- Runs the script only once per lua context, returns the script's return value, if any. Returns nil,error_string if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile behaviour is required.
 ---@param filename string 
----@return (nil|script_return_type)|(nil
----@return error_string)
+---@return any script_return_type
+---@overload fun(filename: string): (nil, error_string: string)
 function dofile_once(filename) end
 
