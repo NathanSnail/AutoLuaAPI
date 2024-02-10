@@ -925,7 +925,7 @@ function GameGetPotionColorUint(entity_id) end
 ---@param entity_id entity_id 
 ---@return number x
 ---@return number y
----@overload EntityGetFirstHitboxCenter(entity_id): nil
+---@overload fun(entity_id): nil
 function EntityGetFirstHitboxCenter(entity_id) end
 
 --- Does a raytrace that stops on any cell it hits.

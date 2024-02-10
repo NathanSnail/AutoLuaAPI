@@ -136,12 +136,12 @@ for k, e in enumerate(table.children):
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
 	
-	fn_sig = fn_name + "(" + ",".join([x[0] for x in fn_args2]) + ")"
+	fn_sig = "(" + ",".join([x[0] for x in fn_args2]) + ")"
 
 	if optional:
-		fn_def += "\n---@overload " + fn_sig + ": nil" 
+		fn_def += "\n---@overload fun" + fn_sig + ": nil" 
 
-	fn_def += "\nfunction " + fn_sig + " end"
+	fn_def += "\nfunction " + fn_name + fn_sig + " end"
 	while fn_def.find("\n\n") != -1:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
