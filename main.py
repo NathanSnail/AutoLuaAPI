@@ -88,10 +88,15 @@ for k, e in enumerate(table.children):
 		if "param" in overload.keys():
 			fn_args = overload["param"]
 	optional = False
+	if fn_name.find("dofile") != -1:
+		ret = "script_return_type:any"
+		optional = True
+		optional_ret = "(nil, error_string: string)"
 	if ret[-5:] == ")|nil":
 		# special case where multiple thing are nil
 		ret = ret[1:-5]
 		optional = True
+		optional_ret = "nil"
 	fn_args = fn_args.replace(" ", "").split(",")
 	fn_def = ""
 	fn_args2 = []
@@ -137,9 +142,10 @@ for k, e in enumerate(table.children):
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
 	
 	fn_sig = "(" + ",".join([x[0] for x in fn_args2]) + ")"
+	fn_sig_overload = "(" + ",".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
 
 	if optional:
-		fn_def += "\n---@overload fun" + fn_sig + ": nil" 
+		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + optional_ret 
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
 	while fn_def.find("\n\n") != -1:
