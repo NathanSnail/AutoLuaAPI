@@ -75,6 +75,7 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
              "ComponentGetValueVector2": {"ret": "x:number, y:number"},
              "PhysicsAddJoint": {"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."},
+             "GuiCreate": {"nodiscard": True},
              }
 
 
@@ -100,7 +101,8 @@ for k, e in enumerate(table.children):
 	custom_data = ""
 	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
-	overloaded_ret = "" 
+	overloaded_ret = ""
+	nodiscard = "Get" in fn_name
 	if fn_name in overloads.keys():
 		overload = overloads[fn_name]
 		if "ret" in overload.keys():
@@ -117,9 +119,10 @@ for k, e in enumerate(table.children):
 			overloaded_ret = extra_overload["ret"]
 			if "args" in extra_overload.keys():
 				overloaded_args = extra_overload["args"]
-			if "custom" in extra_overload.keys():
-				overloaded = False
-				custom_data += ("\n" if custom_data != "" else "") + extra_overload["custom"] 
+		if "custom" in overload.keys():
+			custom_data += ("\n" if custom_data != "" else "") + overload["custom"]
+		if "nodiscard" in overload.keys():
+			nodiscard = overload["nodiscard"]
 	if ret[-5:] == ")|nil":
 		# special case where multiple thing are nil
 		ret = ret[1:-5]
@@ -177,6 +180,8 @@ for k, e in enumerate(table.children):
 
 	if overloaded:
 		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + overloaded_ret
+	if nodiscard:
+		fn_def += "\n---@nodiscard"
 
 	fn_def += custom_data
 
