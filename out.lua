@@ -45,6 +45,7 @@ function EntityKill(entity_id) end
 
 ---@param entity_id entity_id 
 ---@return boolean
+---@nodiscard
 function EntityGetIsAlive(entity_id) end
 
 ---@param entity_id entity_id 
@@ -60,30 +61,35 @@ function EntityRemoveComponent(entity_id, component_id) end
 --- Returns a table of component ids.
 ---@param entity_id entity_id 
 ---@return component_id[]|nil components
+---@nodiscard
 function EntityGetAllComponents(entity_id) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
 ---@param tag string? ""
 ---@return component_id[]|nil
+---@nodiscard
 function EntityGetComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
 ---@param tag string? ""
 ---@return component_id|nil
+---@nodiscard
 function EntityGetFirstComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
 ---@param tag string? ""
 ---@return component_id[]|nil
+---@nodiscard
 function EntityGetComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name string 
 ---@param tag string? ""
 ---@return component_id|nil
+---@nodiscard
 function EntityGetFirstComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
@@ -109,6 +115,7 @@ function EntityApplyTransform(entity_id, x, y, rotation, scale_x, scale_y) end
 ---@return number rotation
 ---@return number scale_x
 ---@return number scale_y
+---@nodiscard
 function EntityGetTransform(entity_id) end
 
 ---@param parent_id entity_id 
@@ -119,15 +126,18 @@ function EntityAddChild(parent_id, child_id) end
 ---@param entity_id entity_id 
 ---@param tag string? ""
 ---@return entity_id}|nil {entity_id
+---@nodiscard
 function EntityGetAllChildren(entity_id, tag) end
 
 ---@param entity_id entity_id 
 ---@return entity_id entity_id
+---@nodiscard
 function EntityGetParent(entity_id) end
 
 --- Returns the given entity if it has no parent, otherwise walks up the parent hierarchy to the topmost parent and returns it.
 ---@param entity_id entity_id 
 ---@return entity_id entity_id
+---@nodiscard
 function EntityGetRootEntity(entity_id) end
 
 ---@param entity_id entity_id 
@@ -145,6 +155,7 @@ function EntitySetComponentIsEnabled(entity_id, component_id, is_enabled) end
 
 ---@param entity_id entity_id 
 ---@return string name
+---@nodiscard
 function EntityGetName(entity_id) end
 
 ---@param entity_id entity_id 
@@ -154,11 +165,13 @@ function EntitySetName(entity_id, name) end
 --- Returns a string where the tags are comma-separated, or nil if 'entity_id' doesn't point to a valid entity.
 ---@param entity_id entity_id 
 ---@return string|nil
+---@nodiscard
 function EntityGetTags(entity_id) end
 
 --- Returns all entities with 'tag'.
 ---@param tag string 
 ---@return entity_id} {entity_id
+---@nodiscard
 function EntityGetWithTag(tag) end
 
 --- Returns all entities in 'radius' distance from 'x','y'.
@@ -166,6 +179,7 @@ function EntityGetWithTag(tag) end
 ---@param pos_y number 
 ---@param radius number 
 ---@return entity_id} {entity_id
+---@nodiscard
 function EntityGetInRadius(pos_x, pos_y, radius) end
 
 --- Returns all entities in 'radius' distance from 'x','y'.
@@ -174,21 +188,25 @@ function EntityGetInRadius(pos_x, pos_y, radius) end
 ---@param radius number 
 ---@param entity_tag string 
 ---@return entity_id} {entity_id
+---@nodiscard
 function EntityGetInRadiusWithTag(pos_x, pos_y, radius, entity_tag) end
 
 ---@param pos_x number 
 ---@param pos_y number 
 ---@return entity_id entity_id
+---@nodiscard
 function EntityGetClosest(pos_x, pos_y) end
 
 ---@param pos_x number 
 ---@param pos_y number 
 ---@param tag string 
 ---@return entity_id entity_id
+---@nodiscard
 function EntityGetClosestWithTag(pos_x, pos_y, tag) end
 
 ---@param name string 
 ---@return entity_id entity_id
+---@nodiscard
 function EntityGetWithName(name) end
 
 ---@param entity_id entity_id 
@@ -207,10 +225,12 @@ function EntityHasTag(entity_id, tag) end
 --- Return value example: 'data/entities/items/flute.xml'. Incorrect value is returned if the entity has passed through the world streaming system.
 ---@param entity_id entity_id 
 ---@return string full_path
+---@nodiscard
 function EntityGetFilename(entity_id) end
 
 --- Returns the max entity ID currently in use. Entity IDs are increased linearly. 
 ---@return number entity_max_id
+---@nodiscard
 function EntitiesGetMaxID() end
 
 --- Deprecated, use ComponentGetValue2() instead.
@@ -218,6 +238,7 @@ function EntitiesGetMaxID() end
 ---@param variable_name string 
 ---@return string|nil
 ---@deprecated
+---@nodiscard
 function ComponentGetValue(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
@@ -225,6 +246,7 @@ function ComponentGetValue(component_id, variable_name) end
 ---@param variable_name string 
 ---@return boolean|nil
 ---@deprecated
+---@nodiscard
 function ComponentGetValueBool(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
@@ -232,6 +254,7 @@ function ComponentGetValueBool(component_id, variable_name) end
 ---@param variable_name string 
 ---@return integer|nil
 ---@deprecated
+---@nodiscard
 function ComponentGetValueInt(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
@@ -239,6 +262,7 @@ function ComponentGetValueInt(component_id, variable_name) end
 ---@param variable_name string 
 ---@return number|nil
 ---@deprecated
+---@nodiscard
 function ComponentGetValueFloat(component_id, variable_name) end
 
 --- Deprecated, use ComponentGetValue2() instead.
@@ -247,6 +271,7 @@ function ComponentGetValueFloat(component_id, variable_name) end
 ---@return number x
 ---@return number  y
 ---@deprecated
+---@nodiscard
 function ComponentGetValueVector2(component_id, variable_name) end
 
 --- Deprecated, use ComponentSetValue2() instead.
@@ -292,6 +317,7 @@ function ComponentSetMetaCustom(component_id, variable_name, value) end
 ---@param variable_name string 
 ---@return string|nil
 ---@deprecated
+---@nodiscard
 function ComponentGetMetaCustom(component_id, variable_name) end
 
 --- Deprecated, use ComponentObjectGetValue2() instead.
@@ -300,6 +326,7 @@ function ComponentGetMetaCustom(component_id, variable_name) end
 ---@param variable_name string 
 ---@return string|nil
 ---@deprecated
+---@nodiscard
 function ComponentObjectGetValue(component_id, object_name, variable_name) end
 
 --- Deprecated, use ComponentObjectSetValue2() instead.
@@ -321,6 +348,7 @@ function ComponentRemoveTag(component_id, tag) end
 --- Returns a string where the tags are comma-separated, or nil if can't find 'component_id' component.
 ---@param component_id component_id 
 ---@return string|nil
+---@nodiscard
 function ComponentGetTags(component_id) end
 
 ---@param component_id component_id 
@@ -332,6 +360,7 @@ function ComponentHasTag(component_id, tag) end
 ---@param component_id component_id 
 ---@param field_name string 
 ---@return any|nil
+---@nodiscard
 function ComponentGetValue2(component_id, field_name) end
 
 --- Sets the value of a field. Value(s) should have a type matching the field type. Reports error if the values weren't given in correct type, the field type is not supported, or the component does not exist. This is up to 20x faster than the old ComponentSetValue functions.
@@ -345,6 +374,7 @@ function ComponentSetValue2(component_id, field_name, ...) end
 ---@param object_name string 
 ---@param field_name string 
 ---@return any|nil
+---@nodiscard
 function ComponentObjectGetValue2(component_id, object_name, field_name) end
 
 --- Sets the value of a field in a component subobject. Value(s) should have a type matching the field type. Reports error if the values weren't given in correct type, the field type is not supported or 'object_name' is not a metaobject.
@@ -365,6 +395,7 @@ function EntityAddComponent2(entity_id, component_type_name, table_of_component_
 ---@param array_member_name string 
 ---@param type_stored_in_vector string 
 ---@return integer
+---@nodiscard
 function ComponentGetVectorSize(component_id, array_member_name, type_stored_in_vector) end
 
 --- 'type_stored_in_vector' should be "int", "float" or "string".
@@ -373,6 +404,7 @@ function ComponentGetVectorSize(component_id, array_member_name, type_stored_in_
 ---@param type_stored_in_vector string 
 ---@param index integer 
 ---@return integer|number|string|nil
+---@nodiscard
 function ComponentGetVectorValue(component_id, array_name, type_stored_in_vector, index) end
 
 --- 'type_stored_in_vector' should be "int", "float" or "string".
@@ -380,37 +412,45 @@ function ComponentGetVectorValue(component_id, array_name, type_stored_in_vector
 ---@param array_name string 
 ---@param type_stored_in_vector string 
 ---@return integer[]|number[]|string[]|nil
+---@nodiscard
 function ComponentGetVector(component_id, array_name, type_stored_in_vector) end
 
 --- Returns true if the given component exists and is enabled, else false.
 ---@param component_id component_id 
 ---@return boolean
+---@nodiscard
 function ComponentGetIsEnabled(component_id) end
 
 --- Returns the id of the entity that owns a component, or 0.
 ---@param component_id component_id 
 ---@return entity_id entity_id
+---@nodiscard
 function ComponentGetEntity(component_id) end
 
 --- Returns a string-indexed table of string.
 ---@param component_id component_id 
 ---@return {string:string}|nil
+---@nodiscard
 function ComponentGetMembers(component_id) end
 
 --- Returns a string-indexed table of string or nil.
 ---@param component_id component_id 
 ---@param object_name string 
 ---@return {string:string}|nil
+---@nodiscard
 function ComponentObjectGetMembers(component_id, object_name) end
 
 ---@param component_id component_id 
 ---@return string
+---@nodiscard
 function ComponentGetTypeName(component_id) end
 
 ---@return entity_id entity_id
+---@nodiscard
 function GetUpdatedEntityID() end
 
 ---@return component_id component_id
+---@nodiscard
 function GetUpdatedComponentID() end
 
 ---@param time_to_execute number 
@@ -455,6 +495,7 @@ function AddMaterialInventoryMaterial(entity_id, material_name, count) end
 ---@param entity_id entity_id 
 ---@param ignore_box2d_materials boolean? true
 ---@return integer material_type
+---@nodiscard
 function GetMaterialInventoryMainMaterial(entity_id, ignore_box2d_materials) end
 
 ---@param strength number 
@@ -474,6 +515,7 @@ function GameDoEnding2() end
 ---@param world_pos_y number 
 ---@return number x
 ---@return number y
+---@nodiscard
 function GetParallelWorldPosition(world_pos_x, world_pos_y) end
 
 ---@param filename string 
@@ -495,6 +537,7 @@ function BiomeSetValue(filename, field_name, value) end
 ---@param filename string 
 ---@param field_name string 
 ---@return any|nil
+---@nodiscard
 function BiomeGetValue(filename, field_name) end
 
 --- Can be used to edit biome configs during initialization. See biome_modifiers.lua for an usage example.
@@ -523,86 +566,105 @@ function BiomeMaterialSetValue(filename, material_name, field_name, value) end
 ---@param material_name string 
 ---@param field_name string 
 ---@return any|nil
+---@nodiscard
 function BiomeMaterialGetValue(filename, material_name, field_name) end
 
 ---@return boolean
 function GameIsIntroPlaying() end
 
 ---@return boolean
+---@nodiscard
 function GameGetIsGamepadConnected() end
 
 ---@return entity_id entity_id
+---@nodiscard
 function GameGetWorldStateEntity() end
 
 ---@return entity_id entity_id
+---@nodiscard
 function GameGetPlayerStatsEntity() end
 
 ---@return integer
+---@nodiscard
 function GameGetOrbCountAllTime() end
 
 ---@return integer
+---@nodiscard
 function GameGetOrbCountThisRun() end
 
 ---@param orb_id_zero_based integer 
 ---@return boolean
+---@nodiscard
 function GameGetOrbCollectedThisRun(orb_id_zero_based) end
 
 ---@param orb_id_zero_based integer 
 ---@return boolean
+---@nodiscard
 function GameGetOrbCollectedAllTime(orb_id_zero_based) end
 
 function GameClearOrbsFoundThisRun() end
 
 --- Returns the number of orbs, picked or not.
 ---@return integer
+---@nodiscard
 function GameGetOrbCountTotal() end
 
 --- Converts a numeric material id to the material's strings id.
 ---@param material_id integer 
 ---@return string
+---@nodiscard
 function CellFactory_GetName(material_id) end
 
 --- Returns the id of a material.
 ---@param material_name string 
 ---@return integer
+---@nodiscard
 function CellFactory_GetType(material_name) end
 
 --- Returns the displayed name of a material, or an empty string if 'material_id' is not valid. Might return a text key.
 ---@param material_id integer 
 ---@return string
+---@nodiscard
 function CellFactory_GetUIName(material_id) end
 
 ---@param include_statics boolean? true
 ---@param include_particle_fx_materials boolean? false
 ---@return string[]
+---@nodiscard
 function CellFactory_GetAllLiquids(include_statics, include_particle_fx_materials) end
 
 ---@param include_statics boolean? true
 ---@param include_particle_fx_materials boolean? false
 ---@return string[]
+---@nodiscard
 function CellFactory_GetAllSands(include_statics, include_particle_fx_materials) end
 
 ---@param include_statics boolean? true
 ---@param include_particle_fx_materials boolean? false
 ---@return string[]
+---@nodiscard
 function CellFactory_GetAllGases(include_statics, include_particle_fx_materials) end
 
 ---@param include_statics boolean? true
 ---@param include_particle_fx_materials boolean? false
 ---@return string[]
+---@nodiscard
 function CellFactory_GetAllFires(include_statics, include_particle_fx_materials) end
 
 ---@param include_statics boolean? true
 ---@param include_particle_fx_materials boolean? false
 ---@return string[]
+---@nodiscard
 function CellFactory_GetAllSolids(include_statics, include_particle_fx_materials) end
 
 ---@param material_id integer 
 ---@return string[]
+---@nodiscard
 function CellFactory_GetTags(material_id) end
 
 ---@return number x
 ---@return number y
+---@nodiscard
 function GameGetCameraPos() end
 
 ---@param x number 
@@ -617,6 +679,7 @@ function GameSetCameraFree(is_free) end
 ---@return number y
 ---@return number w
 ---@return number h
+---@nodiscard
 function GameGetCameraBounds() end
 
 ---@param entity_id entity_id 
@@ -640,6 +703,7 @@ function GamePickUpInventoryItem(who_picks_up_entity_id, item_entity_id, do_pick
 --- Returns all the inventory items that entity_id has.
 ---@param entity_id entity_id 
 ---@return entity_id[]|nil
+---@nodiscard
 function GameGetAllInventoryItems(entity_id) end
 
 ---@param entity_id entity_id 
@@ -781,6 +845,7 @@ function EntityRefreshSprite(entity, sprite_component) end
 --- Returns the capacity of a wand entity, or 0 if 'entity' doesnt exist.
 ---@param entity entity_id 
 ---@return integer
+---@nodiscard
 function EntityGetWandCapacity(entity) end
 
 --- Plays animation. Follow up animation ('followup_name') is applied only if 'followup_priority' is given.
@@ -794,16 +859,19 @@ function GamePlayAnimation(entity_id, name, priority, followup_name, followup_pr
 ---@param entity_id entity_id 
 ---@return number x
 ---@return number y
+---@nodiscard
 function GameGetVelocityCompVelocity(entity_id) end
 
 ---@param entity_id entity_id 
 ---@param game_effect_name string 
 ---@return component_id component_id
+---@nodiscard
 function GameGetGameEffect(entity_id, game_effect_name) end
 
 ---@param entity_id entity_id 
 ---@param game_effect_name string 
 ---@return integer
+---@nodiscard
 function GameGetGameEffectCount(entity_id, game_effect_name) end
 
 ---@param entity_id entity_id 
@@ -816,6 +884,7 @@ function LoadGameEffectEntityTo(entity_id, game_effect_entity_file) end
 ---@param always_load_new boolean 
 ---@return component_id effect_component_id
 ---@return entity_id effect_entity_id
+---@nodiscard
 function GetGameEffectLoadTo(entity_id, game_effect_name, always_load_new) end
 
 --- Adds the entity to the polymorph random table
@@ -832,6 +901,7 @@ function PolymorphTableRemoveEntity(entity_xml, from_common_table, from_rare_tab
 
 --- Returns a list of all the entities in the polymorph random table
 ---@return string[]
+---@nodiscard
 function PolymorphTableGet() end
 
 --- Set a list of all entities sas the polymorph random table
@@ -846,6 +916,7 @@ function UnlockItem(action_id) end
 
 ---@param entity_id entity_id 
 ---@return unsigned_integer
+---@nodiscard
 function GameGetPotionColorUint(entity_id) end
 
 --- Returns the centroid of first enabled HitboxComponent found in entity, the position of the entity if no hitbox is found, or nil if the entity does not exist. All returned positions are in world coordinates.
@@ -853,6 +924,7 @@ function GameGetPotionColorUint(entity_id) end
 ---@return number x
 ---@return number y
 ---@overload fun(entity_id: entity_id): nil
+---@nodiscard
 function EntityGetFirstHitboxCenter(entity_id) end
 
 --- Does a raytrace that stops on any cell it hits.
@@ -912,24 +984,28 @@ function FindFreePositionForBody(ideal_pos_x, idea_pos_y, velocity_x, velocity_y
 ---@return number normal_x
 ---@return number normal_y
 ---@return number approximate_distance_from_surface
+---@nodiscard
 function GetSurfaceNormal(pos_x, pos_y, ray_length, ray_count) end
 
 --- Returns the approximate sky visibility (sky ambient level) at a point as a number between 0 and 1. The value is not affected by weather or time of day. This value is used by the post fx shader after some temporal and spatial smoothing.
 ---@param pos_x number 
 ---@param pos_y number 
 ---@return number sky
+---@nodiscard
 function GameGetSkyVisibility(pos_x, pos_y) end
 
 --- Returns an integer between 0 and 255. Larger value means more coverage. Returns -1 if query is outside the bounds of the fog of war grid. For performance reasons consider using the components that manipulate fog of war.
 ---@param pos_x number 
 ---@param pos_y number 
 ---@return integer fog_of_war
+---@nodiscard
 function GameGetFogOfWar(pos_x, pos_y) end
 
 --- Returns an integer between 0 and 255. Larger value means more coverage. Returns -1 if query is outside the bounds of the fog of war grid. The value is bilinearly filtered using four samples around 'pos'. For performance reasons consider using the components that manipulate fog of war.
 ---@param pos_x number 
 ---@param pos_y number 
 ---@return integer fog_of_war
+---@nodiscard
 function GameGetFogOfWarBilinear(pos_x, pos_y) end
 
 --- 'fog_of_war' should be between 0 and 255 (but will be clamped to the correct range with a int32->uint8 cast). Larger value means more coverage. Returns a boolean indicating whether or not the position was inside the bounds of the fog of war grid. For performance reasons consider using the components that manipulate fog of war.
@@ -957,17 +1033,20 @@ function HerdIdToString(herd_id) end
 ---@param herd_id_a integer 
 ---@param herd_id_b integer 
 ---@return number
+---@nodiscard
 function GetHerdRelation(herd_id_a, herd_id_b) end
 
 ---@param entity_a entity_id 
 ---@param entity_b entity_id 
 ---@return number
+---@nodiscard
 function EntityGetHerdRelation(entity_a, entity_b) end
 
 --- does not spam errors, but returns 0 if anything fails
 ---@param entity_a entity_id 
 ---@param entity_b entity_id 
 ---@return number
+---@nodiscard
 function EntityGetHerdRelationSafe(entity_a, entity_b) end
 
 --- Deprecated, use GenomeStringToHerdID() and ComponentSetValue2() instead.
@@ -982,6 +1061,7 @@ function GenomeSetHerdId(entity_id, new_herd_id) end
 ---@return entity_id entity_id
 ---@return number pos_x
 ---@return number pos_y
+---@nodiscard
 function EntityGetClosestWormAttractor(pos_x, pos_y) end
 
 --- NOTE: entity_id might be NULL, but pos_x and pos_y could still be valid
@@ -991,6 +1071,7 @@ function EntityGetClosestWormAttractor(pos_x, pos_y) end
 ---@return number pos_x
 ---@return number pos_y
 ---@return number radius
+---@nodiscard
 function EntityGetClosestWormDetractor(pos_x, pos_y) end
 
 ---@param log_line string 
@@ -1003,6 +1084,7 @@ function GamePrintImportant(title, description, ui_custom_decoration_file) end
 
 ---@return number x
 ---@return number y
+---@nodiscard
 function DEBUG_GetMouseWorld() end
 
 ---@param x number 
@@ -1014,9 +1096,11 @@ function DEBUG_GetMouseWorld() end
 function DEBUG_MARK(x, y, message, color_r, color_g, color_b) end
 
 ---@return integer
+---@nodiscard
 function GameGetFrameNum() end
 
 ---@return number
+---@nodiscard
 function GameGetRealWorldTimeSinceStarted() end
 
 ---@param key_code integer 
@@ -1033,6 +1117,7 @@ function InputIsKeyJustUp(key_code) end
 
 ---@return number x
 ---@return number y
+---@nodiscard
 function InputGetMousePosOnScreen() end
 
 ---@param mouse_button integer 
@@ -1060,6 +1145,7 @@ function InputIsJoystickButtonJustDown(joystick_index, joystick_button) end
 ---@param joystick_index integer 
 ---@param analog_button_index integer 
 ---@return number
+---@nodiscard
 function InputGetJoystickAnalogButton(joystick_index, analog_button_index) end
 
 ---@param joystick_index integer 
@@ -1070,6 +1156,7 @@ function InputIsJoystickConnected(joystick_index) end
 ---@param stick_id integer? 0
 ---@return number x
 ---@return number y
+---@nodiscard
 function InputGetJoystickAnalogStick(joystick_index, stick_id) end
 
 ---@param entity_id entity_id 
@@ -1096,10 +1183,12 @@ function GlobalsSetValue(key, value) end
 ---@param key string 
 ---@param default_value string? ""
 ---@return any|nil global
+---@nodiscard
 function GlobalsGetValue(key, default_value) end
 
 ---@param key string 
 ---@return string
+---@nodiscard
 function MagicNumbersGetValue(key) end
 
 ---@param new_seed integer 
@@ -1107,6 +1196,7 @@ function SetWorldSeed(new_seed) end
 
 ---@param key string 
 ---@return string
+---@nodiscard
 function SessionNumbersGetValue(key) end
 
 ---@param key string 
@@ -1119,14 +1209,17 @@ function AutosaveDisable() end
 
 ---@param key string 
 ---@return string|nil
+---@nodiscard
 function StatsGetValue(key) end
 
 ---@param key string 
 ---@return string
+---@nodiscard
 function StatsGlobalGetValue(key) end
 
 ---@param key string 
 ---@return string
+---@nodiscard
 function StatsBiomeGetValue(key) end
 
 function StatsBiomeReset() end
@@ -1146,6 +1239,7 @@ function CreateItemActionEntity(action_id, x, y) end
 ---@param type integer 
 ---@param i integer? 0
 ---@return string
+---@nodiscard
 function GetRandomActionWithType(x, y, max_level, type, i) end
 
 ---@param x number 
@@ -1153,6 +1247,7 @@ function GetRandomActionWithType(x, y, max_level, type, i) end
 ---@param max_level number 
 ---@param i integer? 0
 ---@return string
+---@nodiscard
 function GetRandomAction(x, y, max_level, i) end
 
 ---@return integer year
@@ -1161,6 +1256,7 @@ function GetRandomAction(x, y, max_level, i) end
 ---@return integer hour
 ---@return integer minute
 ---@return integer second
+---@nodiscard
 function GameGetDateAndTimeUTC() end
 
 ---@return integer ear
@@ -1169,6 +1265,7 @@ function GameGetDateAndTimeUTC() end
 ---@return integer hour
 ---@return integer minute
 ---@return integer second
+---@nodiscard
 function GameGetDateAndTimeLocal() end
 
 ---@param num_particles integer 
@@ -1197,6 +1294,7 @@ function BiomeMapSetSize(width, height) end
 --- if BIOME_MAP in magic_numbers.xml points to a lua file returns that context, if not will return the biome_map size
 ---@return integer width
 ---@return integer height
+---@nodiscard
 function BiomeMapGetSize() end
 
 --- This is available if BIOME_MAP in magic_numbers.xml points to a lua file, in the context of that file.
@@ -1209,6 +1307,7 @@ function BiomeMapSetPixel(x, y, color_int) end
 ---@param x integer 
 ---@param y integer 
 ---@return integer color
+---@nodiscard
 function BiomeMapGetPixel(x, y) end
 
 --- Swaps red and blue channels of 'color'. This can be used make sense of the BiomeMapGetPixel() return values. E.g. if( BiomeMapGetPixel( x, y ) == BiomeMapConvertPixelFromUintToInt( 0xFF36D517 ) ) then print('hills') end 
@@ -1235,11 +1334,13 @@ function BiomeMapLoadImageCropped(x, y, image_filename, image_x, image_y, image_
 ---@param x number 
 ---@param y number 
 ---@return number
+---@nodiscard
 function BiomeMapGetVerticalPositionInsideBiome(x, y) end
 
 ---@param x number? camera_x
 ---@param y number? camera_y
 ---@return string name
+---@nodiscard
 function BiomeMapGetName(x, y) end
 
 ---@param x number 
@@ -1369,11 +1470,13 @@ function PhysicsSetStatic(entity_id, is_static) end
 ---@param component_id component_id 
 ---@return number vel_x
 ---@return number vel_y
+---@nodiscard
 function PhysicsGetComponentVelocity(entity_id, component_id) end
 
 ---@param entity_id entity_id 
 ---@param component_id component_id 
 ---@return number vel
+---@nodiscard
 function PhysicsGetComponentAngularVelocity(entity_id, component_id) end
 
 --- NOTE! results are Box2D units. Velocities need to converted with PhysicsVecToGameVec.
@@ -1384,6 +1487,7 @@ function PhysicsGetComponentAngularVelocity(entity_id, component_id) end
 ---@return number vel_x
 ---@return number vel_y
 ---@return number angular_vel
+---@nodiscard
 function PhysicsComponentGetTransform(component_id) end
 
 ---@param component_id component_id 
@@ -1399,6 +1503,7 @@ function PhysicsComponentSetTransform(component_id, x, y, angle, vel_x, vel_y, a
 ---@param entity_id entity_id 
 ---@param component_id component_id? 0
 ---@return physics_body_id[]
+---@nodiscard
 function PhysicsBodyIDGetFromEntity(entity_id, component_id) end
 
 --- NOTE! returns an array of physics_body_id(s) of all the box2d bodies in the given area. The default coordinates are in game world space. If passing a sixth argument with true, we will assume the coordinates are in box2d units. 
@@ -1419,6 +1524,7 @@ function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_ma
 ---@return number vel_x
 ---@return number vel_y
 ---@return number angular_vel
+---@nodiscard
 function PhysicsBodyIDGetTransform(physics_body_id) end
 
 ---@param physics_body_id integer 
@@ -1446,12 +1552,14 @@ function PhysicsBodyIDApplyTorque(physics_body_id, torque) end
 ---@param physics_body_id integer 
 ---@return number x
 ---@return number y
+---@nodiscard
 function PhysicsBodyIDGetWorldCenter(physics_body_id) end
 
 --- NOTE! returns nil, if body was not found. Results are 0-1. 
 ---@param physics_body_id integer 
 ---@return number linear_damping
 ---@return number angular_damping
+---@nodiscard
 function PhysicsBodyIDGetDamping(physics_body_id) end
 
 --- NOTE! if angular_damping is given will set it as well.
@@ -1463,6 +1571,7 @@ function PhysicsBodyIDSetDamping(physics_body_id, linear_damping, angular_dampin
 --- NOTE! returns nil, if body was not found. 
 ---@param physics_body_id integer 
 ---@return number gravity_scale
+---@nodiscard
 function PhysicsBodyIDGetGravityScale(physics_body_id) end
 
 ---@param physics_body_id integer 
@@ -1471,6 +1580,7 @@ function PhysicsBodyIDSetGravityScale(physics_body_id, gravity_scale) end
 
 ---@param physics_body_id integer 
 ---@return nil
+---@nodiscard
 function PhysicsBodyIDGetBodyAABB(physics_body_id) end
 
 ---@param entity_id entity_id 
@@ -1585,6 +1695,7 @@ function GameUnsetPostFxTextureParameter(name) end
 
 ---@param text_or_key string 
 ---@return string
+---@nodiscard
 function GameTextGetTranslatedOrNot(text_or_key) end
 
 ---@param key string 
@@ -1592,9 +1703,11 @@ function GameTextGetTranslatedOrNot(text_or_key) end
 ---@param param1 string? ""
 ---@param param2 string? ""
 ---@return string
+---@nodiscard
 function GameTextGet(key, param0, param1, param2) end
 
 ---@return gui gui
+---@nodiscard
 function GuiCreate() end
 
 ---@param gui gui 
@@ -1838,6 +1951,7 @@ function GuiLayoutEndLayer(gui) end
 ---@param gui gui 
 ---@return number width
 ---@return number height
+---@nodiscard
 function GuiGetScreenDimensions(gui) end
 
 --- Returns size of the given text in the gui coordinate system.
@@ -1847,6 +1961,7 @@ function GuiGetScreenDimensions(gui) end
 ---@param line_spacing number? 2
 ---@return number width
 ---@return number height
+---@nodiscard
 function GuiGetTextDimensions(gui, text, scale, line_spacing) end
 
 --- Returns size of the given image in the gui coordinate system.
@@ -1855,6 +1970,7 @@ function GuiGetTextDimensions(gui, text, scale, line_spacing) end
 ---@param scale number? 1
 ---@return number width
 ---@return number height
+---@nodiscard
 function GuiGetImageDimensions(gui, image_filename, scale) end
 
 --- Returns the final position, size etc calculated for a widget. Some values aren't supported by all widgets.
@@ -1870,17 +1986,20 @@ function GuiGetImageDimensions(gui, image_filename, scale) end
 ---@return number draw_y
 ---@return number draw_width
 ---@return number draw_height
+---@nodiscard
 function GuiGetPreviousWidgetInfo(gui) end
 
 ---@return boolean
 function GameIsBetaBuild() end
 
 ---@return boolean
+---@nodiscard
 function DebugGetIsDevBuild() end
 
 function DebugEnableTrailerMode() end
 
 ---@return boolean
+---@nodiscard
 function GameGetIsTrailerModeEnabled() end
 
 --- This doesn't do anything at the moment.
@@ -1889,6 +2008,7 @@ function Debug_SaveTestPlayer() end
 ---@param x number? camera_x
 ---@param y number? camera_y
 ---@return string
+---@nodiscard
 function DebugBiomeMapGetFilename(x, y) end
 
 ---@param entity_id entity_id 
@@ -1926,6 +2046,7 @@ function ConvertMaterialOnAreaInstantly(area_x, area_y, area_w, area_h, material
 function LoadRagdoll(filename, pos_x, pos_y, material, scale_x, impulse_x, impulse_y) end
 
 ---@return integer
+---@nodiscard
 function GetDailyPracticeRunSeed() end
 
 --- Returns true if a mod with the id 'mod_id' is currently active. For example mod_id = "nightmare". 
@@ -1935,9 +2056,11 @@ function ModIsEnabled(mod_id) end
 
 --- Returns a table filled with the IDs of currently active mods.
 ---@return string[]
+---@nodiscard
 function ModGetActiveModIDs() end
 
 ---@return integer
+---@nodiscard
 function ModGetAPIVersion() end
 
 --- Returns true if the file exists.
@@ -1947,11 +2070,13 @@ function ModDoesFileExist(filename) end
 
 --- Returns a list of filenames from which materials were loaded.
 ---@return string[]
+---@nodiscard
 function ModMaterialFilesGet() end
 
 --- Returns the value of a mod setting. 'id' should normally be in the format 'mod_name.setting_id'. Cache the returned value in your lua context if possible.
 ---@param id string 
 ---@return boolean|number|string|nil
+---@nodiscard
 function ModSettingGet(id) end
 
 ---@param id string 
@@ -1961,6 +2086,7 @@ function ModSettingSet(id, value) end
 --- Returns the latest value set by the user, which might not be equal to the value that is used in the game (depending on the 'scope' value selected for the setting).
 ---@param id string 
 ---@return boolean|number|string|nil
+---@nodiscard
 function ModSettingGetNextValue(id) end
 
 --- Sets the latest value set by the user, which might not be equal to the value that is displayed to the game (depending on the 'scope' value selected for the setting).
@@ -1975,6 +2101,7 @@ function ModSettingRemove(id) end
 
 --- Returns the number of mod settings defined. Use ModSettingGetAtIndex to enumerate the settings.
 ---@return integer
+---@nodiscard
 function ModSettingGetCount() end
 
 --- 'index' should be 0-based index. Returns nil if 'index' is invalid.
@@ -1983,21 +2110,27 @@ function ModSettingGetCount() end
 ---@return boolean|number|string|nil value
 ---@return boolean|number|string|nil value_next
 ---@overload fun(index: integer): nil
+---@nodiscard
 function ModSettingGetAtIndex(index) end
 
 ---@return boolean
+---@nodiscard
 function StreamingGetIsConnected() end
 
 ---@return string
+---@nodiscard
 function StreamingGetConnectedChannelName() end
 
 ---@return integer
+---@nodiscard
 function StreamingGetVotingCycleDurationFrames() end
 
 ---@return string
+---@nodiscard
 function StreamingGetRandomViewerName() end
 
 ---@return boolean
+---@nodiscard
 function StreamingGetSettingsGhostsNamedAfterViewers() end
 
 --- Sets the duration of the next wait and voting phases. Use -1 for default duration.
@@ -2020,6 +2153,7 @@ function ModLuaFileAppend(to_filename, from_filename) end
 --- Returns the paths of files that have been appended to 'filename' using ModLuaFileAppend(). Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string 
 ---@return string[]
+---@nodiscard
 function ModLuaFileGetAppends(filename) end
 
 --- Replaces the appends list (see ModLuaFileAppend) of a file with the given table. Available only in init.lua. Should not be called after OnMostPostInit(should be avoided after that because changes might not propagate, or could work in non-deterministic manner).
@@ -2029,6 +2163,7 @@ function ModLuaFileSetAppends(filename) end
 --- Returns the current (modded or not) content of the data file 'filename'. Allows access only to data files and files from enabled mods. "mods/mod/data/file.xml" and "data/file.xml" point to the same file. Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string 
 ---@return string
+---@nodiscard
 function ModTextFileGetContent(filename) end
 
 --- Sets the content the game sees for the file 'filename'. Allows access only to mod and data files. "mods/mod/data/file.xml" and "data/file.xml" point to the same file. Available only in init.lua. Should not be called after OnMostPostInit (should be avoided after that because changes might not propagate, or could work in non-deterministic manner). ModTextFileWhoSetContent might also return incorrect values if this is used after OnMostPostInit.
@@ -2075,6 +2210,7 @@ function ModImageIdFromFilename(filename) end
 ---@param x integer 
 ---@param y integer 
 ---@return unsigned_integer
+---@nodiscard
 function ModImageGetPixel(id, x, y) end
 
 --- Sets the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. 
@@ -2170,6 +2306,7 @@ function SetValueNumber(key, value) end
 ---@param key string 
 ---@param default_value number 
 ---@return number
+---@nodiscard
 function GetValueNumber(key, default_value) end
 
 ---@param key string 
@@ -2179,6 +2316,7 @@ function SetValueInteger(key, value) end
 ---@param key string 
 ---@param default_value integer 
 ---@return integer
+---@nodiscard
 function GetValueInteger(key, default_value) end
 
 ---@param key string 
@@ -2188,6 +2326,7 @@ function SetValueBool(key, value) end
 ---@param key string 
 ---@param default_value number 
 ---@return boolean
+---@nodiscard
 function GetValueBool(key, default_value) end
 
 --- Returns the script's return value, if any. Returns nil,error_string if the script had errors.
