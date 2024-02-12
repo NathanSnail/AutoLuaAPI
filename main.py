@@ -55,9 +55,7 @@ with open(docpath, "r", encoding="utf-8") as f:
 	html = f.read()
 
 out = """
----@diagnostic disable: missing-return
----@diagnostic disable: unused-local 
----@diagnostic disable: lowercase-global
+---@meta
 
 ---@class entity_id 
 ---@class component_id 
