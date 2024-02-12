@@ -223,6 +223,7 @@ for k, e in enumerate(table.children):
 	fn_def += custom_data
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
+	fn_def = fn_def.replace("  "," ")
 	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"

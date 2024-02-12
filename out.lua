@@ -172,7 +172,7 @@ function EntityGetTags(entity_id) end
 
 --- Returns all entities with 'tag'.
 ---@param tag string 
----@return  entity_id[] entity_id
+---@return entity_id[] entity_id
 ---@nodiscard
 function EntityGetWithTag(tag) end
 
@@ -180,7 +180,7 @@ function EntityGetWithTag(tag) end
 ---@param pos_x number 
 ---@param pos_y number 
 ---@param radius number 
----@return  entity_id[] entity_id
+---@return entity_id[] entity_id
 ---@nodiscard
 function EntityGetInRadius(pos_x, pos_y, radius) end
 
@@ -189,7 +189,7 @@ function EntityGetInRadius(pos_x, pos_y, radius) end
 ---@param pos_y number 
 ---@param radius number 
 ---@param entity_tag string 
----@return  entity_id[] entity_id
+---@return entity_id[] entity_id
 ---@nodiscard
 function EntityGetInRadiusWithTag(pos_x, pos_y, radius, entity_tag) end
 
@@ -272,7 +272,7 @@ function ComponentGetValueFloat(component_id, variable_name) end
 ---@param component_id component_id 
 ---@param variable_name string 
 ---@return number x
----@return number  y
+---@return number y
 ---@deprecated
 ---@nodiscard
 function ComponentGetValueVector2(component_id, variable_name) end
@@ -2219,7 +2219,7 @@ function ModTextFileWhoSetContent(filename) end
 function ModImageMakeEditable(filename, width, height) end
 
 --- Returns an id that can be used with ModImageGetPixel and ModImageSetPixel, and the dimensions of the image. 
---  If a previous successful call to ModImageMakeEditable hasn't been made with the given filename, 0 will be returned as 'id', 'w' and 'h'. 
+-- If a previous successful call to ModImageMakeEditable hasn't been made with the given filename, 0 will be returned as 'id', 'w' and 'h'. 
 -- Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string 
 ---@return integer id
@@ -2229,7 +2229,7 @@ function ModImageIdFromFilename(filename) end
 
 --- Returns the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. 
 -- Use ModImageMakeEditable to create an id that can be used with this function. 
---  While it's possible to edit images after mod init, it's not guaranteed that game systems will see the changes, as the system might already have loaded the image at that point. 
+-- While it's possible to edit images after mod init, it's not guaranteed that game systems will see the changes, as the system might already have loaded the image at that point. 
 -- The function will silently fail nad return 0 if 'id' isn't valid. 
 -- Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer 
@@ -2241,7 +2241,7 @@ function ModImageGetPixel(id, x, y) end
 
 --- Sets the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based. 
 -- Use ModImageMakeEditable to create an id that can be used with this function. 
---  The function will silently fail if 'id' isn't valid. 
+-- The function will silently fail if 'id' isn't valid. 
 -- Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer 
 ---@param x integer 
