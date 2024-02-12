@@ -170,7 +170,7 @@ function EntityGetTags(entity_id) end
 
 --- Returns all entities with 'tag'.
 ---@param tag string 
----@return entity_id} {entity_id
+---@return  entity_id[] entity_id
 ---@nodiscard
 function EntityGetWithTag(tag) end
 
@@ -178,7 +178,7 @@ function EntityGetWithTag(tag) end
 ---@param pos_x number 
 ---@param pos_y number 
 ---@param radius number 
----@return entity_id} {entity_id
+---@return  entity_id[] entity_id
 ---@nodiscard
 function EntityGetInRadius(pos_x, pos_y, radius) end
 
@@ -187,7 +187,7 @@ function EntityGetInRadius(pos_x, pos_y, radius) end
 ---@param pos_y number 
 ---@param radius number 
 ---@param entity_tag string 
----@return entity_id} {entity_id
+---@return  entity_id[] entity_id
 ---@nodiscard
 function EntityGetInRadiusWithTag(pos_x, pos_y, radius, entity_tag) end
 
