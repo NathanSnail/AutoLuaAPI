@@ -3,17 +3,17 @@ DEBUG = True
 
 
 def maybe_entity(name):
-	return name.find("entity") != -1 or name.find("item") != -1 or name.find("parent") != -1 or name.find("child") != -1
+	return "entity" in name or "item" in name or "parent" in name or "child" in name
 
 
 def do_int(src, name):
 	if "integer" not in src:
 		src = src.replace("int", "integer")
-	if src.find("uinteger32") != -1:
+	if "uinteger32" in src:
 		return src.replace("uinteger32", "unsigned_integer")
-	if src.find("uinteger") != -1:
+	if "uinteger" in src:
 		return src.replace("uinteger", "unsigned_integer")
-	if name.find("component") != -1:
+	if "component" in name:
 		return src.replace("integer", "component_id")
 	if maybe_entity(name):
 		return src.replace("integer", "entity_id")
@@ -21,17 +21,10 @@ def do_int(src, name):
 
 
 def type_alias(src, name):
-	if src.find("{") != -1:
-		if src.find("-") != -1:
+	if "{" in src:
+		if "-" in src:
 			src = src.replace("-", ":")
 		else:
-			# start = src.find("{")
-			# end = src.find("}")
-			# print(src[start:end])
-			# if ":" in src[start:end]:
-			# 	print("ah")
-			# 	src = src[:start] + src[start:end].split(":")[0] + src[end:]
-			# this doesnt work because we split : for type def earlier
 			src = src.replace("{", "")
 			src = src.replace("}", "[]")
 	src = src.replace("float", "number")
@@ -104,7 +97,7 @@ for k, e in enumerate(table.children):
 	# print(fn_name)
 	# print(comment)
 	fn_args = example_parts[2].text
-	if fn_name.find("Input") != -1:
+	if "Input" in fn_name:
 		# hax hax hax
 		ret = ret.split("(")[0]
 	overloaded = False
@@ -196,7 +189,7 @@ for k, e in enumerate(table.children):
 	fn_def += custom_data
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
-	while fn_def.find("\n\n") != -1:
+	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
 
