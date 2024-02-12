@@ -25,6 +25,13 @@ def type_alias(src, name):
 		if src.find("-") != -1:
 			src = src.replace("-", ":")
 		else:
+			# start = src.find("{")
+			# end = src.find("}")
+			# print(src[start:end])
+			# if ":" in src[start:end]:
+			# 	print("ah")
+			# 	src = src[:start] + src[start:end].split(":")[0] + src[end:]
+			# this doesnt work because we split : for type def earlier
 			src = src.replace("{", "")
 			src = src.replace("}", "[]")
 	src = src.replace("float", "number")
@@ -76,6 +83,9 @@ overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "ComponentGetValueVector2": {"ret": "x:number, y:number"},
              "PhysicsAddJoint": {"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."},
              "GuiCreate": {"nodiscard": True},
+             "EntityGetWithTag": {"ret": "entity_id: {int}"},
+             "EntityGetInRadius": {"ret": "entity_id: {int}"},
+             "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
              }
 
 
