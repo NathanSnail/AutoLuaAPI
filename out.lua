@@ -7,6 +7,8 @@
 ---@class physics_body_id 
 ---@class gui 
 
+---@alias component_type "AIAttackComponent" | "AIComponent" | "AbilityComponent" | "AdvancedFishAIComponent" | "AltarComponent" | "AnimalAIComponent" | "ArcComponent" | "AreaDamageComponent" | "AttachToEntityComponent" | "AudioComponent" | "AudioListenerComponent" | "AudioLoopComponent" | "BiomeTrackerComponent" | "BlackHoleComponent" | "BookComponent" | "BossDragonComponent" | "CameraBoundComponent" | "CardinalMovementComponent" | "CellEaterComponent" | "CharacterCollisionComponent" | "CharacterDataComponent" | "CharacterPlatformingComponent" | "CharacterStatsComponent" | "CollisionTriggerComponent" | "ConsumableTeleportComponent" | "ControllerGoombaAIComponent" | "ControlsComponent" | "CrawlerAnimalComponent" | "CutThroughWorldDoneHereComponent" | "DamageModelComponent" | "DamageNearbyEntitiesComponent" | "DebugFollowMouseComponent" | "DebugLogMessagesComponent" | "DebugSpatialVisualizerComponent" | "DieIfSpeedBelowComponent" | "DroneLauncherComponent" | "DrugEffectComponent" | "DrugEffectModifierComponent" | "ElectricChargeComponent" | "ElectricityComponent" | "ElectricityReceiverComponent" | "ElectricitySourceComponent" | "EndingMcGuffinComponent" | "EnergyShieldComponent" | "ExplodeOnDamageComponent" | "ExplosionComponent" | "FishAIComponent" | "FlyingComponent" | "FogOfWarRadiusComponent" | "FogOfWarRemoverComponent" | "GameAreaEffectComponent" | "GameEffectComponent" | "GameLogComponent" | "GameStatsComponent" | "GasBubbleComponent" | "GenomeDataComponent" | "GhostComponent" | "GodInfoComponent" | "GunComponent" | "HealthBarComponent" | "HitEffectComponent" | "HitboxComponent" | "HomingComponent" | "HotspotComponent" | "IKLimbAttackerComponent" | "IKLimbComponent" | "IKLimbWalkerComponent" | "IKLimbsAnimatorComponent" | "IngestionComponent" | "InheritTransformComponent" | "InteractableComponent" | "Inventory2Component" | "InventoryComponent" | "InventoryGuiComponent" | "ItemAIKnowledgeComponent" | "ItemActionComponent" | "ItemAlchemyComponent" | "ItemChestComponent" | "ItemComponent" | "ItemCostComponent" | "ItemPickUpperComponent" | "ItemRechargeNearGroundComponent" | "ItemStashComponent" | "KickComponent" | "LaserEmitterComponent" | "LevitationComponent" | "LifetimeComponent" | "LightComponent" | "LightningComponent" | "LimbBossComponent" | "LiquidDisplacerComponent" | "LoadEntitiesComponent" | "LocationMarkerComponent" | "LooseGroundComponent" | "LuaComponent" | "MagicConvertMaterialComponent" | "MagicXRayComponent" | "ManaReloaderComponent" | "MaterialAreaCheckerComponent" | "MaterialInventoryComponent" | "MaterialSeaSpawnerComponent" | "MaterialSuckerComponent" | "MoveToSurfaceOnCreateComponent" | "MusicEnergyAffectorComponent" | "NinjaRopeComponent" | "NullDamageComponent" | "OrbComponent" | "ParticleEmitterComponent" | "PathFindingComponent" | "PathFindingGridMarkerComponent" | "PhysicsAIComponent" | "PhysicsBody2Component" | "PhysicsBodyCollisionDamageComponent" | "PhysicsBodyComponent" | "PhysicsImageShapeComponent" | "PhysicsJoint2Component" | "PhysicsJoint2MutatorComponent" | "PhysicsJointComponent" | "PhysicsKeepInWorldComponent" | "PhysicsPickUpComponent" | "PhysicsRagdollComponent" | "PhysicsShapeComponent" | "PhysicsThrowableComponent" | "PixelSceneComponent" | "PixelSpriteComponent" | "PlatformShooterPlayerComponent" | "PlayerCollisionComponent" | "PlayerStatsComponent" | "PositionSeedComponent" | "PotionComponent" | "PressurePlateComponent" | "ProjectileComponent" | "RotateTowardsComponent" | "SetLightAlphaFromVelocityComponent" | "SetStartVelocityComponent" | "ShotEffectComponent" | "SimplePhysicsComponent" | "SineWaveComponent" | "SpriteAnimatorComponent" | "SpriteComponent" | "SpriteOffsetAnimatorComponent" | "SpriteParticleEmitterComponent" | "SpriteStainsComponent" | "StatusEffectDataComponent" | "StreamingKeepAliveComponent" | "TelekinesisComponent" | "TeleportComponent" | "TeleportProjectileComponent" | "TextLogComponent" | "TorchComponent" | "UIIconComponent" | "UIInfoComponent" | "VariableStorageComponent" | "VelocityComponent" | "VerletPhysicsComponent" | "VerletWeaponComponent" | "VerletWorldJointComponent" | "WalletComponent" | "WalletValuableComponent" | "WorldStateComponent" | "WormAIComponent" | "WormAttractorComponent" | "WormComponent" | "WormPlayerComponent"
+
 ---@param filename string 
 ---@param pos_x number? 0
 ---@param pos_y number? 0
@@ -47,7 +49,7 @@ function EntityKill(entity_id) end
 function EntityGetIsAlive(entity_id) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param table_of_component_values string[]? nil
 ---@return component_id component_id
 function EntityAddComponent(entity_id, component_type_name, table_of_component_values) end
@@ -63,28 +65,28 @@ function EntityRemoveComponent(entity_id, component_id) end
 function EntityGetAllComponents(entity_id) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param tag string? ""
 ---@return component_id[]|nil
 ---@nodiscard
 function EntityGetComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param tag string? ""
 ---@return component_id|nil
 ---@nodiscard
 function EntityGetFirstComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param tag string? ""
 ---@return component_id[]|nil
 ---@nodiscard
 function EntityGetComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param tag string? ""
 ---@return component_id|nil
 ---@nodiscard
@@ -383,7 +385,7 @@ function ComponentObjectGetValue2(component_id, object_name, field_name) end
 function ComponentObjectSetValue2(component_id, object_name, field_name, ...) end
 
 ---@param entity_id entity_id 
----@param component_type_name string 
+---@param component_type_name component_type 
 ---@param table_of_component_values {string:any}? nil
 ---@return component_id
 function EntityAddComponent2(entity_id, component_type_name, table_of_component_values) end

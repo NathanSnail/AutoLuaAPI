@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
-DEBUG = True
-
+TESTING = True
 
 def maybe_entity(name):
 	return "entity" in name or "item" in name or "parent" in name or "child" in name
@@ -33,6 +32,8 @@ def type_alias(src, name):
 	src = src.replace("obj", "gui")
 	src = src.replace("int_body_id", "physics_body_id")
 	src = src.replace("item_entity_id", "entity_id")
+	if "component_type" in name:
+		src = src.replace("string","component_type")
 	if "material_type" in name:
 		src = src.replace("number", "integer")
 	if "boolean" not in src:
@@ -43,13 +44,26 @@ def type_alias(src, name):
 		src = src[:-1]
 	return src
 
-
-docpath = "D:/Steam/steamapps/common/Noita/lua_api_documentation.html" if DEBUG else input(
-	"docpath: ")
-with open(docpath, "r", encoding="utf-8") as f:
+base_path = "D:/Steam/steamapps/common/Noita/" if TESTING else input("modding api folder path: ") + "/"
+doc_path = base_path + "lua_api_documentation.html" 
+comp_path = base_path + "component_documentation.txt"
+with open(doc_path, "r", encoding="utf-8") as f:
 	html = f.read()
 
-out = """
+with open(comp_path, "r", encoding="utf-8") as f:
+	comp_data = f.read()
+
+components = []
+for line in comp_data.split("\n"):
+	if not len(line):
+		continue
+	if line[0] in " \t":
+		continue
+	components.append(line)
+
+component_type = "---@alias component_type " + " | ".join([f'"{x}"' for x in components])
+
+out = f"""
 ---@meta
 
 ---@class entity_id 
@@ -57,9 +71,11 @@ out = """
 ---@class unsigned_integer 
 ---@class physics_body_id 
 ---@class gui 
+
+{component_type}
 """
 
-overloads = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
+overrides = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
              "BiomeMapGetName": {"ret": "name:string"},
              "AddFlagPersistent": {"ret": "is_new:boolean"},
@@ -106,26 +122,26 @@ for k, e in enumerate(table.children):
 	overloaded_args = ""
 	overloaded_ret = ""
 	nodiscard = "Get" in fn_name
-	if fn_name in overloads.keys():
-		overload = overloads[fn_name]
-		if "ret" in overload.keys():
-			ret = overload["ret"]
-		if "args" in overload.keys():
-			fn_args = overload["args"]
-		if "comment" in overload.keys():
-			comment = overload["comment"]
-		if "deprecated" in overload.keys():
-			deprecated = overload[deprecated]
-		if "overload" in overload.keys():
+	if fn_name in overrides.keys():
+		override = overrides[fn_name]
+		if "ret" in override.keys():
+			ret = override["ret"]
+		if "args" in override.keys():
+			fn_args = override["args"]
+		if "comment" in override.keys():
+			comment = override["comment"]
+		if "deprecated" in override.keys():
+			deprecated = override[deprecated]
+		if "overload" in override.keys():
 			overloaded = True
-			extra_overload = overload["overload"]
-			overloaded_ret = extra_overload["ret"]
-			if "args" in extra_overload.keys():
-				overloaded_args = extra_overload["args"]
-		if "custom" in overload.keys():
-			custom_data += ("\n" if custom_data != "" else "") + overload["custom"]
-		if "nodiscard" in overload.keys():
-			nodiscard = overload["nodiscard"]
+			overload = override["overload"]
+			overloaded_ret = overload["ret"]
+			if "args" in overload.keys():
+				overloaded_args = overload["args"]
+		if "custom" in override.keys():
+			custom_data += ("\n" if custom_data != "" else "") + override["custom"]
+		if "nodiscard" in override.keys():
+			nodiscard = override["nodiscard"]
 	if ret[-5:] == ")|nil":
 		# special case where multiple thing are nil
 		ret = ret[1:-5]
