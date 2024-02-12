@@ -106,7 +106,13 @@ overrides = {
     "EntityGetWithTag": {"ret": "entity_id: {int}"},
     "EntityGetInRadius": {"ret": "entity_id: {int}"},
     "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
-    "GetGameEffectLoadTo": {"nodiscard": False}
+    "GetGameEffectLoadTo": {"nodiscard": False},
+   	"StringToHerdId": {"nodiscard": True},
+   	"HerdIdToString": {"nodiscard": True},
+   	"PhysicsPosToGamePos": {"nodiscard": True},
+   	"GamePosToPhysicsPos": {"nodiscard": True},
+   	"PhysicsVecToGameVec": {"nodiscard": True},
+   	"GameVecToPhysicsVec": {"nodiscard": True},
 }
 
 
@@ -133,7 +139,7 @@ for k, e in enumerate(table.children):
 	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
 	overloaded_ret = ""
-	nodiscard = "Get" in fn_name or "Find" in fn_name or "Raytrace" in fn_name
+	nodiscard = "Get" in fn_name or "Find" in fn_name or "Raytrace" in fn_name or "Input" in fn_name or "Has" in fn_name
 	if fn_name in overrides.keys():
 		override = overrides[fn_name]
 		if "ret" in override.keys():

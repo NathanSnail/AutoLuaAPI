@@ -222,6 +222,7 @@ function EntityRemoveTag(entity_id, tag) end
 ---@param entity_id entity_id 
 ---@param tag string 
 ---@return boolean
+---@nodiscard
 function EntityHasTag(entity_id, tag) end
 
 --- Return value example: 'data/entities/items/flute.xml'. Incorrect value is returned if the entity has passed through the world streaming system.
@@ -356,6 +357,7 @@ function ComponentGetTags(component_id) end
 ---@param component_id component_id 
 ---@param tag string 
 ---@return boolean
+---@nodiscard
 function ComponentHasTag(component_id, tag) end
 
 --- Returns one or many values matching the type or subtypes of the requested field. Reports error and returns nil if the field type is not supported or field was not found. This is up to 7.5x faster than the old ComponentSetValue functions.
@@ -1030,10 +1032,12 @@ function DoesWorldExistAt(min_x, min_y, max_x, max_y) end
 
 ---@param herd_name string 
 ---@return integer
+---@nodiscard
 function StringToHerdId(herd_name) end
 
 ---@param herd_id integer 
 ---@return string
+---@nodiscard
 function HerdIdToString(herd_id) end
 
 ---@param herd_id_a integer 
@@ -1111,14 +1115,17 @@ function GameGetRealWorldTimeSinceStarted() end
 
 ---@param key_code integer 
 ---@return boolean
+---@nodiscard
 function InputIsKeyDown(key_code) end
 
 ---@param key_code integer 
 ---@return boolean
+---@nodiscard
 function InputIsKeyJustDown(key_code) end
 
 ---@param key_code integer 
 ---@return boolean
+---@nodiscard
 function InputIsKeyJustUp(key_code) end
 
 ---@return number x
@@ -1128,24 +1135,29 @@ function InputGetMousePosOnScreen() end
 
 ---@param mouse_button integer 
 ---@return boolean
+---@nodiscard
 function InputIsMouseButtonDown(mouse_button) end
 
 ---@param mouse_button integer 
 ---@return boolean
+---@nodiscard
 function InputIsMouseButtonJustDown(mouse_button) end
 
 ---@param mouse_button integer 
 ---@return boolean
+---@nodiscard
 function InputIsMouseButtonJustUp(mouse_button) end
 
 ---@param joystick_index integer 
 ---@param joystick_button integer 
 ---@return boolean
+---@nodiscard
 function InputIsJoystickButtonDown(joystick_index, joystick_button) end
 
 ---@param joystick_index integer 
 ---@param joystick_button integer 
 ---@return boolean
+---@nodiscard
 function InputIsJoystickButtonJustDown(joystick_index, joystick_button) end
 
 ---@param joystick_index integer 
@@ -1156,6 +1168,7 @@ function InputGetJoystickAnalogButton(joystick_index, analog_button_index) end
 
 ---@param joystick_index integer 
 ---@return boolean
+---@nodiscard
 function InputIsJoystickConnected(joystick_index) end
 
 ---@param joystick_index integer 
@@ -1596,24 +1609,28 @@ function PhysicsBody2InitFromComponents(entity_id) end
 ---@param y number? 0
 ---@return number x
 ---@return number y
+---@nodiscard
 function PhysicsPosToGamePos(x, y) end
 
 ---@param x number 
 ---@param y number? 0
 ---@return number x
 ---@return number y
+---@nodiscard
 function GamePosToPhysicsPos(x, y) end
 
 ---@param x number 
 ---@param y number? 0
 ---@return number x
 ---@return number y
+---@nodiscard
 function PhysicsVecToGameVec(x, y) end
 
 ---@param x number 
 ---@param y number? 0
 ---@return number x
 ---@return number y
+---@nodiscard
 function GameVecToPhysicsVec(x, y) end
 
 ---@param world_pos_x number 
@@ -1631,6 +1648,7 @@ function RemoveFlagPersistent(key) end
 
 ---@param key string 
 ---@return boolean
+---@nodiscard
 function HasFlagPersistent(key) end
 
 ---@param flag string 
@@ -1641,6 +1659,7 @@ function GameRemoveFlagRun(flag) end
 
 ---@param flag string 
 ---@return boolean
+---@nodiscard
 function GameHasFlagRun(flag) end
 
 ---@param event_path string 
@@ -1880,6 +1899,7 @@ function GuiSlider(gui, id, x, y, text, value, value_min, value_max, value_defau
 ---@param max_length integer 
 ---@param allowed_characters string? ""
 ---@return string new_text
+---@nodiscard
 function GuiTextInput(gui, id, x, y, text, width, max_length, allowed_characters) end
 
 ---@param gui gui 
