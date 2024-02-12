@@ -40,9 +40,11 @@ def type_alias(src, name):
 	src = src.replace("obj", "gui")
 	src = src.replace("int_body_id", "physics_body_id")
 	src = src.replace("item_entity_id", "entity_id")
-	if src.find("boolean") == -1:
+	if "material_type" in name:
+		src = src.replace("number", "integer")
+	if "boolean" not in src:
 		src = src.replace("bool", "boolean")
-	if src.find("int") != -1:
+	if "int" in src:
 		src = do_int(src, name)
 	if src[-1] in ".-":
 		src = src[:-1]
