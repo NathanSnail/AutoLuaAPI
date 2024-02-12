@@ -105,6 +105,7 @@ overrides = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
              "EntityGetWithTag": {"ret": "entity_id: {int}"},
              "EntityGetInRadius": {"ret": "entity_id: {int}"},
              "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
+             "GetGameEffectLoadTo": {"nodiscard": False}
              }
 
 
