@@ -886,7 +886,6 @@ function LoadGameEffectEntityTo(entity_id, game_effect_entity_file) end
 ---@param always_load_new boolean 
 ---@return component_id effect_component_id
 ---@return entity_id effect_entity_id
----@nodiscard
 function GetGameEffectLoadTo(entity_id, game_effect_name, always_load_new) end
 
 --- Adds the entity to the polymorph random table
