@@ -815,7 +815,7 @@ function EntityInflictDamage(entity, amount, damage_type, description, ragdoll_f
 
 --- Has the same effects that would occur if 'entity' eats 'amount' number of cells of 'material_type' from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use CellFactory_GetType() to convert a material name to material type.
 ---@param entity entity_id 
----@param material_type number 
+---@param material_type integer 
 ---@param amount number 
 function EntityIngestMaterial(entity, material_type, amount) end
 
@@ -825,7 +825,7 @@ function EntityRemoveIngestionStatusEffect(entity, status_type_id) end
 
 --- Adds random visible stains of 'material_type' to entity. 'amount' controls the number of stain cells added. Does nothing if 'entity' doesn't have a SpriteStainsComponent. Use CellFactory_GetType() to convert a material name to material type.
 ---@param entity entity_id 
----@param material_type number 
+---@param material_type integer 
 ---@param amount number 
 function EntityAddRandomStains(entity, material_type, amount) end
 
