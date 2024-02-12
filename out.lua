@@ -936,6 +936,7 @@ function EntityGetFirstHitboxCenter(entity_id) end
 ---@return boolean did_hit
 ---@return number hit_x
 ---@return number hit_y
+---@nodiscard
 function Raytrace(x1, y1, x2, y2) end
 
 --- Does a raytrace that stops on any cell that is not fluid, gas (yes, technically gas is a fluid), or fire.
@@ -946,6 +947,7 @@ function Raytrace(x1, y1, x2, y2) end
 ---@return boolean did_hit
 ---@return number hit_x
 ---@return number hit_y
+---@nodiscard
 function RaytraceSurfaces(x1, y1, x2, y2) end
 
 --- Does a raytrace that stops on any cell that is not gas or fire.
@@ -956,6 +958,7 @@ function RaytraceSurfaces(x1, y1, x2, y2) end
 ---@return boolean did_hit
 ---@return number hit_x
 ---@return number hit_y
+---@nodiscard
 function RaytraceSurfacesAndLiquiform(x1, y1, x2, y2) end
 
 --- Does a raytrace that stops on any cell a character can stand on.
@@ -966,6 +969,7 @@ function RaytraceSurfacesAndLiquiform(x1, y1, x2, y2) end
 ---@return boolean did_hit
 ---@return number hit_x
 ---@return number hit_y
+---@nodiscard
 function RaytracePlatforms(x1, y1, x2, y2) end
 
 ---@param ideal_pos_x number 
@@ -975,6 +979,7 @@ function RaytracePlatforms(x1, y1, x2, y2) end
 ---@param body_radius number 
 ---@return number x
 ---@return number y
+---@nodiscard
 function FindFreePositionForBody(ideal_pos_x, idea_pos_y, velocity_x, velocity_y, body_radius) end
 
 ---@param pos_x number 
