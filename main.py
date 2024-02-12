@@ -133,7 +133,7 @@ for k, e in enumerate(table.children):
 	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
 	overloaded_ret = ""
-	nodiscard = "Get" in fn_name
+	nodiscard = "Get" in fn_name or "Find" in fn_name or "Raytrace" in fn_name
 	if fn_name in overrides.keys():
 		override = overrides[fn_name]
 		if "ret" in override.keys():
