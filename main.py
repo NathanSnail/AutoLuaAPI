@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 TESTING = True
 
+
 def maybe_entity(name):
 	return "entity" in name or "item" in name or "parent" in name or "child" in name
 
@@ -33,7 +34,9 @@ def type_alias(src, name):
 	src = src.replace("int_body_id", "physics_body_id")
 	src = src.replace("item_entity_id", "entity_id")
 	if "component_type" in name:
-		src = src.replace("string","component_type")
+		src = src.replace("string", "component_type")
+	if "damage_type" in name:
+		src = src.replace("string", "damage_type")
 	if "material_type" in name:
 		src = src.replace("number", "integer")
 	if "boolean" not in src:
@@ -44,8 +47,10 @@ def type_alias(src, name):
 		src = src[:-1]
 	return src
 
-base_path = "D:/Steam/steamapps/common/Noita/" if TESTING else input("modding api folder path: ") + "/"
-doc_path = base_path + "lua_api_documentation.html" 
+
+base_path = "D:/Steam/steamapps/common/Noita/" if TESTING else input(
+	"modding api folder path: ") + "/"
+doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
 with open(doc_path, "r", encoding="utf-8") as f:
 	html = f.read()
@@ -61,7 +66,8 @@ for line in comp_data.split("\n"):
 		continue
 	components.append(line)
 
-component_type = "---@alias component_type " + " | ".join([f'"{x}"' for x in components])
+component_type = "---@alias component_type " + \
+	" | ".join([f'"{x}"' for x in components])
 
 out = f"""
 ---@meta
@@ -73,6 +79,7 @@ out = f"""
 ---@class gui 
 
 {component_type}
+---@alias damage_type "NONE" | "DAMAGE_MELEE" | "DAMAGE_PROJECTILE" | "DAMAGE_EXPLOSION" | "DAMAGE_BITE" | "DAMAGE_FIRE" | "DAMAGE_MATERIAL" | "DAMAGE_FALL" | "DAMAGE_ELECTRICITY" | "DAMAGE_DROWNING" | "DAMAGE_PHYSICS_BODY_DAMAGED" | "DAMAGE_DRILL" | "DAMAGE_SLICE" | "DAMAGE_ICE" | "DAMAGE_HEALING" | "DAMAGE_PHYSICS_HIT" | "DAMAGE_RADIOACTIVE" | "DAMAGE_POISON" | "DAMAGE_MATERIAL_WITH_FLASH" | "DAMAGE_OVEREATING" | "DAMAGE_CURSE" | "DAMAGE_HOLY"
 """
 
 overrides = {"GetParallelWorldPosition": {"ret": "x:number,y:number"},
