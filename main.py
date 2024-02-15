@@ -113,6 +113,8 @@ overrides = {
    	"GamePosToPhysicsPos": {"nodiscard": True},
    	"PhysicsVecToGameVec": {"nodiscard": True},
    	"GameVecToPhysicsVec": {"nodiscard": True},
+	"EntityLoad": {"args":"filename:string, pos_x:integer = 0, pos_y:integer = 0"},
+	"GameGetGameEffect": {"comment": "returns 0 on failure"},
 }
 
 
