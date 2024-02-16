@@ -2347,11 +2347,11 @@ function SetValueInteger(key, value) end
 function GetValueInteger(key, default_value) end
 
 ---@param key string 
----@param value number 
+---@param value boolean 
 function SetValueBool(key, value) end
 
 ---@param key string 
----@param default_value number 
+---@param default_value boolean 
 ---@return boolean
 ---@nodiscard
 function GetValueBool(key, default_value) end
