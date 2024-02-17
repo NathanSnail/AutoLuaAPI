@@ -128,16 +128,19 @@ for k, e in enumerate(table.children):
 	parts = [x for x in e.children]
 	# print(parts)
 	example = parts[1]
-	ret = parts[3].text.replace(" ", "")
+	ret = parts[3].text
 	comment = "\n".join(parts[5].strings)
 	example_parts = [x for x in example.children]
 	fn_name = example_parts[0].text
+	if "Input" in fn_name and fn_name != "GuiTextInput":
+		# hax hax hax
+		d = ret.split("(")
+		ret = d[0]
+		comment = "".join("".join(d[1:]).split(")")[:-1])
+	ret = ret.replace(" ","")
 	# print(fn_name)
 	# print(comment)
 	fn_args = example_parts[2].text
-	if "Input" in fn_name:
-		# hax hax hax
-		ret = ret.split("(")[0]
 	overloaded = False
 	custom_data = ""
 	deprecated = "deprecated" in comment.lower()
