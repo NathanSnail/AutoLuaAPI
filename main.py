@@ -97,7 +97,7 @@ overrides = {
     "GlobalsGetValue": {"ret": "global:any|nil"},
     "EntityGetAllComponents": {"ret": "components:{int}|nil"},
     "LoadPixelScene": {"args": "materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = \"\", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false "},
-    "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "nil"}},
+    "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "clicked: boolean, right_clicked: boolean"}},
     "dofile": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
     "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
     "ComponentGetValueVector2": {"ret": "x:number, y:number"},
