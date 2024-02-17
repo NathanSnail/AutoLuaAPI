@@ -124,7 +124,7 @@ function EntityGetTransform(entity_id) end
 ---@param child_id entity_id 
 function EntityAddChild(parent_id, child_id) end
 
---- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are returned, might return either an empty table or nil.
+--- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned.
 ---@param entity_id entity_id 
 ---@param tag string? ""
 ---@return entity_id[]|nil
