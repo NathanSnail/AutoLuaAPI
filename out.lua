@@ -1873,7 +1873,7 @@ function GuiImageNinePiece(gui, id, x, y, width, height, alpha, sprite_filename,
 ---@param text string 
 ---@return boolean clicked
 ---@return boolean right_clicked
----@overload fun(gui: gui, x: number, y: number, text: string, id: integer): nil
+---@overload fun(gui: gui, x: number, y: number, text: string, id: integer): clicked: boolean, right_clicked: boolean
 function GuiButton(gui, id, x, y, text) end
 
 ---@param gui gui 
