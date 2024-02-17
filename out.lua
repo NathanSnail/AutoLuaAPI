@@ -1024,6 +1024,7 @@ function GameGetFogOfWarBilinear(pos_x, pos_y) end
 ---@return boolean pos_valid
 function GameSetFogOfWar(pos_x, pos_y, fog_of_war) end
 
+--- Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded).
 ---@param min_x integer 
 ---@param min_y integer 
 ---@param max_x integer 
