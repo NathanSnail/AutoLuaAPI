@@ -118,6 +118,7 @@ overrides = {
 	"GetValueBool": {"args":"key: string, default_value: bool"},
 	"SetValueBool": {"args":"key: string, value: bool"},
 	"EntityGetAllChildren": {"ret": "{entity_id}|nil", "comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned."},
+	"DoesWorldExistAt": {"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."},
 }
 
 
