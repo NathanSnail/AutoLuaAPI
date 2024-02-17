@@ -1114,64 +1114,76 @@ function GameGetFrameNum() end
 ---@nodiscard
 function GameGetRealWorldTimeSinceStarted() end
 
+--- Debugish function - returns if a key is down, does not depend on state. E.g. player could be in menus or inputting text. See data/scripts/debug/keycodes.lua for the constants
 ---@param key_code integer 
 ---@return boolean
 ---@nodiscard
 function InputIsKeyDown(key_code) end
 
+--- Debugish function - returns if a key is down this frame, does not depend on state. E.g. player could be in menus or inputting text. See data/scripts/debug/keycodes.lua for the constants
 ---@param key_code integer 
 ---@return boolean
 ---@nodiscard
 function InputIsKeyJustDown(key_code) end
 
+--- Debugish function - returns if a key is up this frame, does not depend on state. E.g. player could be in menus or inputting text. See data/scripts/debug/keycodes.lua for the constants
 ---@param key_code integer 
 ---@return boolean
 ---@nodiscard
 function InputIsKeyJustUp(key_code) end
 
+--- Debugish function - returns raw x, y coordinates of the mouse on screen
 ---@return number x
 ---@return number y
 ---@nodiscard
 function InputGetMousePosOnScreen() end
 
+--- Debugish function - returns if mouse button is down. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param mouse_button integer 
 ---@return boolean
 ---@nodiscard
 function InputIsMouseButtonDown(mouse_button) end
 
+--- Debugish function - returns if mouse button is down. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param mouse_button integer 
 ---@return boolean
 ---@nodiscard
 function InputIsMouseButtonJustDown(mouse_button) end
 
+--- Debugish function - returns if mouse button is down. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param mouse_button integer 
 ---@return boolean
 ---@nodiscard
 function InputIsMouseButtonJustUp(mouse_button) end
 
+--- Debugish function - returns if 'joystick' button is down. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param joystick_index integer 
 ---@param joystick_button integer 
 ---@return boolean
 ---@nodiscard
 function InputIsJoystickButtonDown(joystick_index, joystick_button) end
 
+--- Debugish function - returns if 'joystick' button is just down. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param joystick_index integer 
 ---@param joystick_button integer 
 ---@return boolean
 ---@nodiscard
 function InputIsJoystickButtonJustDown(joystick_index, joystick_button) end
 
+--- Debugish function - returns analog 'joystick' button value 0-1. analog_button_index 0 = left trigger, 1 = right trigger Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param joystick_index integer 
 ---@param analog_button_index integer 
 ---@return number
 ---@nodiscard
 function InputGetJoystickAnalogButton(joystick_index, analog_button_index) end
 
+--- Debugish function - returns true if 'joystick' at that index is connected. Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param joystick_index integer 
 ---@return boolean
 ---@nodiscard
 function InputIsJoystickConnected(joystick_index) end
 
+--- Debugish function - returns analog stick positions -1, +1. stick_id 0 = left, 1 = right, Does not depend on state. E.g. player could be in menus. See data/scripts/debug/keycodes.lua for the constants
 ---@param joystick_index integer 
 ---@param stick_id integer? 0
 ---@return number x
