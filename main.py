@@ -102,7 +102,7 @@ overrides = {
     "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
     "ComponentGetValueVector2": {"ret": "x:number, y:number"},
     "PhysicsAddJoint": {"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."},
-    "GuiCreate": {"nodiscard": True},
+    # "GuiCreate": {"nodiscard": True},
     "EntityGetWithTag": {"ret": "entity_id: {int}"},
     "EntityGetInRadius": {"ret": "entity_id: {int}"},
     "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
@@ -119,6 +119,7 @@ overrides = {
 	"SetValueBool": {"args":"key: string, value: bool"},
 	"EntityGetAllChildren": {"ret": "{entity_id}|nil", "comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned."},
 	"DoesWorldExistAt": {"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."},
+	"GuiImage": {"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."},
 }
 
 
