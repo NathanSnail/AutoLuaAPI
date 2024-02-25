@@ -95,7 +95,7 @@ overrides = {
     "AddMaterialInventoryMaterial": {"comment": "This function actually sets the amount in the inventory rather than adding."},
     "EntityAddComponent2": {"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"},
     "GlobalsGetValue": {"ret": "global:any|nil"},
-    "EntityGetAllComponents": {"ret": "components:{int}|nil"},
+    "EntityGetAllComponents": {"ret": "components:{int}"},
     "LoadPixelScene": {"args": "materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = \"\", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false "},
     "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "clicked: boolean, right_clicked: boolean"}},
     "dofile": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},

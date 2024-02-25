@@ -62,7 +62,7 @@ function EntityRemoveComponent(entity_id, component_id) end
 
 --- Returns a table of component ids.
 ---@param entity_id entity_id 
----@return component_id[]|nil components
+---@return component_id[] components
 ---@nodiscard
 function EntityGetAllComponents(entity_id) end
 
