@@ -1746,7 +1746,6 @@ function GameTextGetTranslatedOrNot(text_or_key) end
 function GameTextGet(key, param0, param1, param2) end
 
 ---@return gui gui
----@nodiscard
 function GuiCreate() end
 
 ---@param gui gui 
@@ -1841,7 +1840,7 @@ function GuiText(gui, x, y, text) end
 ---@deprecated
 function GuiTextCentered(gui, x, y, text) end
 
---- 'scale' will be used for 'scale_y' if 'scale_y' equals 0.
+--- 'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters.
 ---@param gui gui 
 ---@param id integer 
 ---@param x number 
