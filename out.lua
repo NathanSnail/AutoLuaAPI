@@ -481,9 +481,10 @@ function SpawnStash(x, y, level, action_count) end
 ---@param x number 
 ---@param y number 
 ---@param level integer 
+---@param spawn_now boolean? false
 ---@return integer spawn_state_id
 ---@return entity_id entity_id
-function SpawnApparition(x, y, level) end
+function SpawnApparition(x, y, level, spawn_now) end
 
 ---@param entity_file string 
 ---@param stash_entity_id entity_id 
@@ -494,6 +495,11 @@ function LoadEntityToStash(entity_file, stash_entity_id) end
 ---@param material_name string 
 ---@param count integer 
 function AddMaterialInventoryMaterial(entity_id, material_name, count) end
+
+--- If material_name is empty, all materials will be removed.
+---@param entity_id entity_id 
+---@param material_name string? ""
+function RemoveMaterialInventoryMaterial(entity_id, material_name) end
 
 --- Returns the id of the material taking the largest part of the first MaterialInventoryComponent in 'entity_id', or 0 if nothing is found.
 ---@param entity_id entity_id 
@@ -829,6 +835,11 @@ function EntityIngestMaterial(entity, material_type, amount) end
 ---@param status_type_id string 
 function EntityRemoveIngestionStatusEffect(entity, status_type_id) end
 
+---@param entity entity_id 
+---@param status_type_id string 
+---@param status_cooldown integer? 0
+function EntityRemoveStainStatusEffect(entity, status_type_id, status_cooldown) end
+
 --- Adds random visible stains of 'material_type' to entity. 'amount' controls the number of stain cells added. Does nothing if 'entity' doesn't have a SpriteStainsComponent. Use CellFactory_GetType() to convert a material name to material type.
 ---@param entity entity_id 
 ---@param material_type integer 
@@ -851,6 +862,16 @@ function EntityRefreshSprite(entity, sprite_component) end
 ---@return integer
 ---@nodiscard
 function EntityGetWandCapacity(entity) end
+
+--- Returns the position of a hot spot defined by a HotspotComponent. If 'transformed' is true, will return the position in world coordinates, transformed using the entity's transform.
+---@param entity entity_id 
+---@param hotspot_tag string 
+---@param transformed boolean 
+---@param include_disabled_components boolean? false
+---@return number x
+---@return number y
+---@nodiscard
+function EntityGetHotspot(entity, hotspot_tag, transformed, include_disabled_components) end
 
 --- Plays animation. Follow up animation ('followup_name') is applied only if 'followup_priority' is given.
 ---@param entity_id entity_id 
@@ -1560,6 +1581,7 @@ function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_ma
 ---@nodiscard
 function PhysicsBodyIDGetTransform(physics_body_id) end
 
+--- Requires min 3 first parameters.
 ---@param physics_body_id integer 
 ---@param x number 
 ---@param y number 
@@ -1576,6 +1598,14 @@ function PhysicsBodyIDSetTransform(physics_body_id, x, y, angle, vel_x, vel_y, a
 ---@param world_pos_x number? nil
 ---@param world_pos_y number? nil
 function PhysicsBodyIDApplyForce(physics_body_id, force_x, force_y, world_pos_x, world_pos_y) end
+
+--- NOTE! impulse is in box2d units. world_pos_ is game world coordinates. If world_pos is not given will use the objects center as the position of where the force will be applied.
+---@param physics_body_id integer 
+---@param force_x number 
+---@param force_y number 
+---@param world_pos_x number? nil
+---@param world_pos_y number? nil
+function PhysicsBodyIDApplyLinearImpulse(physics_body_id, force_x, force_y, world_pos_x, world_pos_y) end
 
 ---@param physics_body_id integer 
 ---@param torque number 
@@ -1652,6 +1682,19 @@ function GameVecToPhysicsVec(x, y) end
 ---@param image_filename string 
 ---@param max_durability integer? 2147483647
 function LooseChunk(world_pos_x, world_pos_y, image_filename, max_durability) end
+
+---@param world_pos_x number 
+---@param world_pos_y number 
+---@param radius number 
+---@param force number 
+function VerletApplyCircularForce(world_pos_x, world_pos_y, radius, force) end
+
+---@param world_pos_x number 
+---@param world_pos_y number 
+---@param radius number 
+---@param force_x number 
+---@param force_y number 
+function VerletApplyDirectionalForce(world_pos_x, world_pos_y, radius, force_x, force_y) end
 
 ---@param key string 
 ---@return boolean is_new
@@ -2052,7 +2095,8 @@ function DebugBiomeMapGetFilename(x, y) end
 
 ---@param entity_id entity_id 
 ---@param material string 
-function EntityConvertToMaterial(entity_id, material) end
+---@param use_material_colors boolean? true
+function EntityConvertToMaterial(entity_id, material, use_material_colors) end
 
 ---@param material_dynamic string? ""
 ---@param material_static string? ""
