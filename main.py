@@ -50,7 +50,7 @@ def type_alias(src, name):
 	return src
 
 
-base_path = "D:/Steam/steamapps/common/Noita/" if TESTING else input(
+base_path = "/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/" if TESTING else input(
 	"modding api folder path: ") + "/"
 doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
