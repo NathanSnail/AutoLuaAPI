@@ -925,9 +925,10 @@ function PolymorphTableAddEntity(entity_xml, is_rare, add_only_one_copy) end
 function PolymorphTableRemoveEntity(entity_xml, from_common_table, from_rare_table) end
 
 --- Returns a list of all the entities in the polymorph random table
+---@param rare_table boolean? false
 ---@return string[]
 ---@nodiscard
-function PolymorphTableGet() end
+function PolymorphTableGet(rare_table) end
 
 --- Set a list of all entities sas the polymorph random table
 function PolymorphTableSet() end
