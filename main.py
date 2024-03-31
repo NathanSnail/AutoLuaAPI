@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+
 TESTING = True
 
 
@@ -50,8 +51,11 @@ def type_alias(src, name):
 	return src
 
 
-base_path = "/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/" if TESTING else input(
-	"modding api folder path: ") + "/"
+base_path = (
+	"/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/"
+	if TESTING
+	else input("modding api folder path: ") + "/"
+)
 doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
 with open(doc_path, "r", encoding="utf-8") as f:
@@ -68,8 +72,9 @@ for line in comp_data.split("\n"):
 		continue
 	components.append(line)
 
-component_type = "---@alias component_type " + \
-	" | ".join([f'"{x}"' for x in components])
+component_type = "---@alias component_type " + " | ".join(
+	[f'"{x}"' for x in components]
+)
 
 out = f"""
 ---@meta
@@ -86,40 +91,67 @@ out = f"""
 """
 
 overrides = {
-    "GetParallelWorldPosition": {"ret": "x:number,y:number"},
-    "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
-    "BiomeMapGetName": {"ret": "name:string"},
-    "AddFlagPersistent": {"ret": "is_new:boolean"},
-    "GuiTextInput": {"ret": "new_text:string"},
-    "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
-    "AddMaterialInventoryMaterial": {"comment": "This function actually sets the amount in the inventory rather than adding."},
-    "EntityAddComponent2": {"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"},
-    "GlobalsGetValue": {"ret": "global:any|nil"},
-    "EntityGetAllComponents": {"ret": "components:{int}"},
-    "LoadPixelScene": {"args": "materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = \"\", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false "},
-    "GuiButton": {"overload": {"args": "(gui: gui, x: number, y: number, text: string, id: integer)", "ret": "clicked: boolean, right_clicked: boolean"}},
-    "dofile": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
-    "dofile_once": {"ret": "script_return_type:any", "overload": {"ret": "(nil, error_string: string)"}},
-    "ComponentGetValueVector2": {"ret": "x:number, y:number"},
-    "PhysicsAddJoint": {"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."},
-    # "GuiCreate": {"nodiscard": True},
-    "EntityGetWithTag": {"ret": "entity_id: {int}"},
-    "EntityGetInRadius": {"ret": "entity_id: {int}"},
-    "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
-    "GetGameEffectLoadTo": {"nodiscard": False},
-   	"StringToHerdId": {"nodiscard": True},
-   	"HerdIdToString": {"nodiscard": True},
-   	"PhysicsPosToGamePos": {"nodiscard": True},
-   	"GamePosToPhysicsPos": {"nodiscard": True},
-   	"PhysicsVecToGameVec": {"nodiscard": True},
-   	"GameVecToPhysicsVec": {"nodiscard": True},
-	"EntityLoad": {"args":"filename:string, pos_x:integer = 0, pos_y:integer = 0"},
+	"GetParallelWorldPosition": {"ret": "x:number,y:number"},
+	"InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
+	"BiomeMapGetName": {"ret": "name:string"},
+	"AddFlagPersistent": {"ret": "is_new:boolean"},
+	"GuiTextInput": {"ret": "new_text:string"},
+	"ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
+	"AddMaterialInventoryMaterial": {
+		"comment": "This function actually sets the amount in the inventory rather than adding."
+	},
+	"EntityAddComponent2": {
+		"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"
+	},
+	"GlobalsGetValue": {"ret": "global:any|nil"},
+	"EntityGetAllComponents": {"ret": "components:{int}"},
+	"LoadPixelScene": {
+		"args": 'materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = "", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false '
+	},
+	"GuiButton": {
+		"overload": {
+			"args": "(gui: gui, x: number, y: number, text: string, id: integer)",
+			"ret": "clicked: boolean, right_clicked: boolean",
+		}
+	},
+	"dofile": {
+		"ret": "script_return_type:any",
+		"overload": {"ret": "(nil, error_string: string)"},
+	},
+	"dofile_once": {
+		"ret": "script_return_type:any",
+		"overload": {"ret": "(nil, error_string: string)"},
+	},
+	"ComponentGetValueVector2": {"ret": "x:number, y:number"},
+	"PhysicsAddJoint": {
+		"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."
+	},
+	# "GuiCreate": {"nodiscard": True},
+	"EntityGetWithTag": {"ret": "entity_id: {int}"},
+	"EntityGetInRadius": {"ret": "entity_id: {int}"},
+	"EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
+	"GetGameEffectLoadTo": {"nodiscard": False},
+	"StringToHerdId": {"nodiscard": True},
+	"HerdIdToString": {"nodiscard": True},
+	"PhysicsPosToGamePos": {"nodiscard": True},
+	"GamePosToPhysicsPos": {"nodiscard": True},
+	"PhysicsVecToGameVec": {"nodiscard": True},
+	"GameVecToPhysicsVec": {"nodiscard": True},
+	"EntityLoad": {"args": "filename:string, pos_x:integer = 0, pos_y:integer = 0"},
 	"GameGetGameEffect": {"comment": "returns 0 on failure"},
-	"GetValueBool": {"args":"key: string, default_value: bool"},
-	"SetValueBool": {"args":"key: string, value: bool"},
-	"EntityGetAllChildren": {"ret": "{entity_id}|nil", "comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned."},
-	"DoesWorldExistAt": {"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."},
-	"GuiImage": {"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."},
+	"GetValueBool": {"args": "key: string, default_value: bool"},
+	"SetValueBool": {"args": "key: string, value: bool"},
+	"EntityGetAllChildren": {
+		"ret": "{entity_id}|nil",
+		"comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned.",
+	},
+	"DoesWorldExistAt": {
+		"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."
+	},
+	"GuiImage": {
+		"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
+	},
+	"PolymorphTableGet": {"args": "rare_table: bool = false "},
 }
 
 
@@ -140,7 +172,7 @@ for k, e in enumerate(table.children):
 		d = ret.split("(")
 		ret = d[0]
 		comment = "".join("".join(d[1:]).split(")")[:-1])
-	ret = ret.replace(" ","")
+	ret = ret.replace(" ", "")
 	# print(fn_name)
 	# print(comment)
 	fn_args = example_parts[2].text
@@ -149,7 +181,13 @@ for k, e in enumerate(table.children):
 	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
 	overloaded_ret = ""
-	nodiscard = "Get" in fn_name or "Find" in fn_name or "Raytrace" in fn_name or "Input" in fn_name or "Has" in fn_name
+	nodiscard = (
+		"Get" in fn_name
+		or "Find" in fn_name
+		or "Raytrace" in fn_name
+		or "Input" in fn_name
+		or "Has" in fn_name
+	)
 	if fn_name in overrides.keys():
 		override = overrides[fn_name]
 		if "ret" in override.keys():
@@ -222,8 +260,11 @@ for k, e in enumerate(table.children):
 	fn_def += "\n---@deprecated" if deprecated else ""
 
 	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
-	fn_sig_overload = "(" + ", ".join([x[0] + ": " + x[1]
-                                    for x in fn_args2]) + ")" if overloaded_args == "" else overloaded_args
+	fn_sig_overload = (
+		"(" + ", ".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
+		if overloaded_args == ""
+		else overloaded_args
+	)
 
 	if overloaded:
 		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + overloaded_ret
@@ -233,7 +274,7 @@ for k, e in enumerate(table.children):
 	fn_def += custom_data
 
 	fn_def += "\nfunction " + fn_name + fn_sig + " end"
-	fn_def = fn_def.replace("  "," ")
+	fn_def = fn_def.replace("  ", " ")
 	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
