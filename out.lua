@@ -1876,7 +1876,10 @@ function GuiAnimateScaleIn(gui, id, acceleration, reset) end
 ---@param x number 
 ---@param y number 
 ---@param text string 
-function GuiText(gui, x, y, text) end
+---@param scale number? 1
+---@param font string? ""
+---@param font_is_pixel_font boolean? true
+function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 
 --- Deprecated. Use GuiOptionsAdd() or GuiOptionsAddForNextWidget() with GUI_OPTION.Align_HorizontalCenter and GuiText() instead.
 ---@param gui gui 
@@ -1917,10 +1920,13 @@ function GuiImageNinePiece(gui, id, x, y, width, height, alpha, sprite_filename,
 ---@param x number 
 ---@param y number 
 ---@param text string 
+---@param scale number? 1
+---@param font string? ""
+---@param font_is_pixel_font boolean? true
 ---@return boolean clicked
 ---@return boolean right_clicked
 ---@overload fun(gui: gui, x: number, y: number, text: string, id: integer): clicked: boolean, right_clicked: boolean
-function GuiButton(gui, id, x, y, text) end
+function GuiButton(gui, id, x, y, text, scale, font, font_is_pixel_font) end
 
 ---@param gui gui 
 ---@param id integer 
@@ -2044,10 +2050,12 @@ function GuiGetScreenDimensions(gui) end
 ---@param text string 
 ---@param scale number? 1
 ---@param line_spacing number? 2
+---@param font string? ""
+---@param font_is_pixel_font boolean? true
 ---@return number width
 ---@return number height
 ---@nodiscard
-function GuiGetTextDimensions(gui, text, scale, line_spacing) end
+function GuiGetTextDimensions(gui, text, scale, line_spacing, font, font_is_pixel_font) end
 
 --- Returns size of the given image in the gui coordinate system.
 ---@param gui gui 
