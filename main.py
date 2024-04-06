@@ -152,6 +152,10 @@ overrides = {
 		"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
 	},
 	"PolymorphTableGet": {"args": "rare_table: bool = false "},
+	"EntityAddComponent": {
+		"comment": "Deprectated, use EntityAddComponent2 instead.",
+		"deprecated": True,
+	},
 }
 
 
@@ -178,9 +182,9 @@ for k, e in enumerate(table.children):
 	fn_args = example_parts[2].text
 	overloaded = False
 	custom_data = ""
-	deprecated = "deprecated" in comment.lower()
 	overloaded_args = ""
 	overloaded_ret = ""
+	deprecated = "deprecated" in comment.lower()
 	nodiscard = (
 		"Get" in fn_name
 		or "Find" in fn_name
@@ -197,7 +201,7 @@ for k, e in enumerate(table.children):
 		if "comment" in override.keys():
 			comment = override["comment"]
 		if "deprecated" in override.keys():
-			deprecated = override[deprecated]
+			deprecated = override["deprecated"]
 		if "overload" in override.keys():
 			overloaded = True
 			overload = override["overload"]
