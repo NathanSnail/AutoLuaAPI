@@ -50,10 +50,12 @@ function EntityKill(entity_id) end
 ---@nodiscard
 function EntityGetIsAlive(entity_id) end
 
+--- Deprectated, use EntityAddComponent2 instead.
 ---@param entity_id entity_id 
 ---@param component_type_name component_type 
 ---@param table_of_component_values string[]? nil
 ---@return component_id component_id
+---@deprecated
 function EntityAddComponent(entity_id, component_type_name, table_of_component_values) end
 
 ---@param entity_id entity_id 
