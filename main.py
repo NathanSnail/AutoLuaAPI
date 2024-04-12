@@ -16,6 +16,8 @@ def do_int(src, name):
 		return src.replace("uinteger", "unsigned_integer")
 	if "component" in name:
 		return src.replace("integer", "component_id")
+	if "physics_body_id" in name:
+		return src.replace("integer", "physics_body_id")
 	if maybe_entity(name):
 		return src.replace("integer", "entity_id")
 	return src

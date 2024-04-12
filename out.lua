@@ -1574,7 +1574,7 @@ function PhysicsBodyIDGetFromEntity(entity_id, component_id) end
 function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_max_x, world_pos_max_y, include_static_bodies, are_these_box2d_units) end
 
 --- NOTE! returns nil, if body was not found. Results are Box2D units. Velocities need to converted with PhysicsVecToGameVec.
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@return number nil|x
 ---@return number y
 ---@return number angle
@@ -1585,7 +1585,7 @@ function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_ma
 function PhysicsBodyIDGetTransform(physics_body_id) end
 
 --- Requires min 3 first parameters.
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param x number 
 ---@param y number 
 ---@param angle number 
@@ -1595,7 +1595,7 @@ function PhysicsBodyIDGetTransform(physics_body_id) end
 function PhysicsBodyIDSetTransform(physics_body_id, x, y, angle, vel_x, vel_y, angular_vel) end
 
 --- NOTE! force is in box2d units. world_pos_ is game world coordinates. If world_pos is not given will use the objects center as the position of where the force will be applied.
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param force_x number 
 ---@param force_y number 
 ---@param world_pos_x number? nil
@@ -1603,48 +1603,48 @@ function PhysicsBodyIDSetTransform(physics_body_id, x, y, angle, vel_x, vel_y, a
 function PhysicsBodyIDApplyForce(physics_body_id, force_x, force_y, world_pos_x, world_pos_y) end
 
 --- NOTE! impulse is in box2d units. world_pos_ is game world coordinates. If world_pos is not given will use the objects center as the position of where the force will be applied.
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param force_x number 
 ---@param force_y number 
 ---@param world_pos_x number? nil
 ---@param world_pos_y number? nil
 function PhysicsBodyIDApplyLinearImpulse(physics_body_id, force_x, force_y, world_pos_x, world_pos_y) end
 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param torque number 
 function PhysicsBodyIDApplyTorque(physics_body_id, torque) end
 
 --- NOTE! returns nil, if body was not found. Results are Box2D units. 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@return number x
 ---@return number y
 ---@nodiscard
 function PhysicsBodyIDGetWorldCenter(physics_body_id) end
 
 --- NOTE! returns nil, if body was not found. Results are 0-1. 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@return number linear_damping
 ---@return number angular_damping
 ---@nodiscard
 function PhysicsBodyIDGetDamping(physics_body_id) end
 
 --- NOTE! if angular_damping is given will set it as well.
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param linear_damping number 
 ---@param angular_damping number? nil
 function PhysicsBodyIDSetDamping(physics_body_id, linear_damping, angular_damping) end
 
 --- NOTE! returns nil, if body was not found. 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@return number gravity_scale
 ---@nodiscard
 function PhysicsBodyIDGetGravityScale(physics_body_id) end
 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@param gravity_scale number 
 function PhysicsBodyIDSetGravityScale(physics_body_id, gravity_scale) end
 
----@param physics_body_id integer 
+---@param physics_body_id physics_body_id 
 ---@return nil
 ---@nodiscard
 function PhysicsBodyIDGetBodyAABB(physics_body_id) end
