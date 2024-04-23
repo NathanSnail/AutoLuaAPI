@@ -2359,12 +2359,12 @@ function RegisterProjectile(entity_filename) end
 ---@param action_type number 
 ---@param action_spawn_level string 
 ---@param action_spawn_probability string 
----@param action_spawn_requires_flag nil 
+---@param action_spawn_requires_flag string 
 ---@param action_spawn_manual_unlock boolean 
 ---@param action_max_uses number 
 ---@param custom_xml_file string 
 ---@param action_mana_drain number 
----@param action_is_dangerous_blast nil 
+---@param action_is_dangerous_blast boolean 
 ---@param action_draw_many_count number 
 ---@param action_ai_never_uses boolean 
 ---@param action_never_unlimited boolean 
@@ -2414,7 +2414,7 @@ function RegisterProjectile(entity_filename) end
 ---@param sprite string 
 ---@param extra_entities string 
 ---@param game_effect_entities string 
----@param sound_loop_tag nil 
+---@param sound_loop_tag string 
 ---@param projectile_file string 
 function RegisterGunAction(action_id, action_name, action_description, action_sprite_filename, action_unidentified_sprite_filename, action_type, action_spawn_level, action_spawn_probability, action_spawn_requires_flag, action_spawn_manual_unlock, action_max_uses, custom_xml_file, action_mana_drain, action_is_dangerous_blast, action_draw_many_count, action_ai_never_uses, action_never_unlimited, state_shuffled, state_cards_drawn, state_discarded_action, state_destroyed_action, fire_rate_wait, speed_multiplier, child_speed_multiplier, dampening, explosion_radius, spread_degrees, pattern_degrees, screenshake, recoil, damage_melee_add, damage_projectile_add, damage_electricity_add, damage_fire_add, damage_explosion_add, damage_ice_add, damage_slice_add, damage_healing_add, damage_curse_add, damage_drill_add, damage_null_all, damage_critical_chance, damage_critical_multiplier, explosion_damage_to_materials, knockback_force, reload_time, lightning_count, material, material_amount, trail_material, trail_material_amount, bounces, gravity, light, blood_count_multiplier, gore_particles, ragdoll_fx, friendly_fire, physics_impulse_coeff, lifetime_add, sprite, extra_entities, game_effect_entities, sound_loop_tag, projectile_file) end
 
