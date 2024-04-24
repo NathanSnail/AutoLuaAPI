@@ -21,6 +21,45 @@ function print_error(...) end
 ---@param ... printable_string
 function print(...) end
 
+---Only available in data/scripts/gun/gun.lua
+---@param path string
+function Reflection_RegisterProjectile(path) end
+
+---Only available in data/scripts/perks/perk_reflect.lua
+---@param id string
+---@param ui_name string
+---@param ui_description string
+---@param ui_icon string
+---@param perk_icon string
+function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon)
+
+---Only available in data/scripts/status_effects/status_reflect.lua
+---@param ui_name string
+---@param ui_description string
+---@param ui_icon string
+---@param protects_from_fire boolean false
+---@param remove_cells_that_cause_when_activated boolean false
+---@param effect_entity string ""
+---@param min_threshold_normalized number 0.0
+---@param extra_status_00 string ""
+---@param effect_permanent boolean false
+---@param is_harmful boolean false
+---@param ui_timer_offset_normalized number 0.0
+function GameRegisterStatusEffect(ui_name, ui_description, ui_icon, protects_from_fire, remove_cells_that_cause_when_activated, effect_entity, min_threshold_normalized, extra_status_00, effect_permanent, is_harmful, ui_timer_offset_normalized)
+
+---This doesn't seem to be used anymore in vanilla, use with caution.
+---@deprecated
+---@param id string
+---@param ui_name string
+---@param ui_description string
+---@param ui_icon_path string
+---@param kind integer
+---@param weight number
+function RegisterStreamingEvent(id, ui_name, ui_description, ui_icon_path, kind, weight) end
+
+---Note: works only in dev builds.
+function DEBUG_GameReset() end
+
 ---@param filename string 
 ---@param pos_x integer? 0
 ---@param pos_y integer? 0
@@ -683,6 +722,12 @@ function CellFactory_GetAllSolids(include_statics, include_particle_fx_materials
 ---@return string[]
 ---@nodiscard
 function CellFactory_GetTags(material_id) end
+
+---@param material_id integer 
+---@param tag string 
+---@return boolean[]
+---@nodiscard
+function CellFactory_HasTag(material_id, tag) end
 
 ---@return number x
 ---@return number y
