@@ -2222,7 +2222,7 @@ function ModGetAPIVersion() end
 ---@return boolean
 function ModDoesFileExist(filename) end
 
---- Returns a list of filenames from which materials were loaded.
+--- Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later
 ---@return string[]
 ---@nodiscard
 function ModMaterialFilesGet() end
