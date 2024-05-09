@@ -7,3 +7,7 @@ Alternatively for a standalone install you can just add this to your mod and inc
 --dofile("mods/MODID/api_def.lua")  
 ```
 otherwise you should add it to your Lua library path.
+
+# Why is entity_id not integer?
+I think that seperating these types makes sure that code is more correct, as most integer operations on them do not make sense.
+If you would prefer for them to behave like integers edit the definition file to uncomment the integer definitions, and comment the class definitions.
