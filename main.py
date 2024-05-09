@@ -92,7 +92,7 @@ out = f"""
 ---@alias game_effect "NONE" | "ELECTROCUTION" | "FROZEN" | "ON_FIRE" | "POISON" | "BERSERK" | "CHARM" | "POLYMORPH" | "POLYMORPH_RANDOM" | "BLINDNESS" | "TELEPATHY" | "TELEPORTATION" | "REGENERATION" | "LEVITATION" | "MOVEMENT_SLOWER" | "FARTS" | "DRUNK" | "BREATH_UNDERWATER" | "RADIOACTIVE" | "WET" | "OILED" | "BLOODY" | "SLIMY" | "CRITICAL_HIT_BOOST" | "CONFUSION" | "MELEE_COUNTER" | "WORM_ATTRACTOR" | "WORM_DETRACTOR" | "FOOD_POISONING" | "FRIEND_THUNDERMAGE" | "FRIEND_FIREMAGE" | "INTERNAL_FIRE" | "INTERNAL_ICE" | "JARATE" | "KNOCKBACK" | "KNOCKBACK_IMMUNITY" | "MOVEMENT_SLOWER_2X" | "MOVEMENT_FASTER" | "STAINS_DROP_FASTER" | "SAVING_GRACE" | "DAMAGE_MULTIPLIER" | "HEALING_BLOOD" | "RESPAWN" | "PROTECTION_FIRE" | "PROTECTION_RADIOACTIVITY" | "PROTECTION_EXPLOSION" | "PROTECTION_MELEE" | "PROTECTION_ELECTRICITY" | "TELEPORTITIS" | "STAINLESS_ARMOUR" | "GLOBAL_GORE" | "EDIT_WANDS_EVERYWHERE" | "EXPLODING_CORPSE_SHOTS" | "EXPLODING_CORPSE" | "EXTRA_MONEY" | "EXTRA_MONEY_TRICK_KILL" | "HOVER_BOOST" | "PROJECTILE_HOMING" | "ABILITY_ACTIONS_MATERIALIZED" | "NO_DAMAGE_FLASH" | "NO_SLIME_SLOWDOWN" | "MOVEMENT_FASTER_2X" | "NO_WAND_EDITING" | "LOW_HP_DAMAGE_BOOST" | "FASTER_LEVITATION" | "STUN_PROTECTION_ELECTRICITY" | "STUN_PROTECTION_FREEZE" | "IRON_STOMACH" | "PROTECTION_ALL" | "INVISIBILITY" | "REMOVE_FOG_OF_WAR" | "MANA_REGENERATION" | "PROTECTION_DURING_TELEPORT" | "PROTECTION_POLYMORPH" | "PROTECTION_FREEZE" | "FROZEN_SPEED_UP" | "UNSTABLE_TELEPORTATION" | "POLYMORPH_UNSTABLE" | "CUSTOM" | "ALLERGY_RADIOACTIVE" | "RAINBOW_FARTS" 
 ---@alias printable_string string | number
 
----Represents cached dofile results
+---Represents cached dofile results.
 ---@type {{string: fun(): any}}
 __loaded = {{}}
 
@@ -124,9 +124,9 @@ function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon) end
 ---@param ui_icon string
 ---@param protects_from_fire boolean false
 ---@param remove_cells_that_cause_when_activated boolean false
----@param effect_entity string ""
+---@param effect_entity string '""'
 ---@param min_threshold_normalized number 0.0
----@param extra_status_00 string ""
+---@param extra_status_00 string '""'
 ---@param effect_permanent boolean false
 ---@param is_harmful boolean false
 ---@param ui_timer_offset_normalized number 0.0
@@ -145,9 +145,77 @@ function RegisterStreamingEvent(id, ui_name, ui_description, ui_icon_path, kind,
 ---Note: works only in dev builds.
 function DEBUG_GameReset() end
 
----Executes the code in all of the appends to a given file
+---Executes the code in all of the appends to a given file.
 ---@param filename string
 function do_mod_appends(filename) end
+
+---Does something with these values, not used in vanilla.
+---@param action_id string '""'
+---@param action_name string '""'
+---@param action_description string '""'
+---@param action_sprite_filename string '""'
+---@param action_unidentified_sprite_filename string "data/ui_gfx/gun_actions/unidentified.png"
+---@param action_type integer 0
+---@param action_spawn_level string '""'
+---@param action_spawn_probability string '""'
+---@param action_spawn_requires_flag string '""'
+---@param action_spawn_manual_unlock boolean false
+---@param action_max_uses integer -1
+---@param custom_xml_file string '""'
+---@param action_mana_drain integer 10
+---@param action_is_dangerous_blast boolean false
+---@param action_draw_many_count integer 0
+---@param action_ai_never_uses boolean false
+---@param action_never_unlimited boolean false
+---@param state_shuffled boolean false
+---@param state_cards_drawn integer 0
+---@param state_discarded_action boolean false
+---@param state_destroyed_action boolean false
+---@param fire_rate_wait integer 0
+---@param speed_multiplier number 1.0
+---@param child_speed_multiplier number 1.0
+---@param dampening number 1.0
+---@param explosion_radius number 0.0
+---@param spread_degrees number 0.0
+---@param pattern_degrees number 0.0
+---@param screenshake number 0.0
+---@param recoil number 0.0
+---@param damage_melee_add number 0.0
+---@param damage_projectile_add number 0.0
+---@param damage_electricity_add number 0.0
+---@param damage_fire_add number 0.0
+---@param damage_explosion_add number 0.0
+---@param damage_ice_add number 0.0
+---@param damage_slice_add number 0.0
+---@param damage_healing_add number 0.0
+---@param damage_curse_add number 0.0
+---@param damage_drill_add number 0.0
+---@param damage_null_all number 0.0
+---@param damage_critical_chance integer 0
+---@param damage_critical_multiplier number 0.0
+---@param explosion_damage_to_materials number 0.0
+---@param knockback_force number 0.0
+---@param reload_time integer 0
+---@param lightning_count integer 0
+---@param material string '""'
+---@param material_amount integer 0
+---@param trail_material string '""'
+---@param trail_material_amount integer 0
+---@param bounces integer 0
+---@param gravity number 0.0
+---@param light number 0.0
+---@param blood_count_multiplier number 1.0
+---@param gore_particles integer 0
+---@param ragdoll_fx integer 0
+---@param friendly_fire boolean false
+---@param physics_impulse_coeff number 0.0
+---@param lifetime_add integer 0
+---@param sprite string '""'
+---@param extra_entities string '""'
+---@param game_effect_entities string '""'
+---@param sound_loop_tag string '""'
+---@param projectile_file string '""'
+function _ConfigGunActionInfo_ReadToGame(action_id, action_name, action_description, action_sprite_filename, action_unidentified_sprite_filename, action_type, action_spawn_level, action_spawn_probability, action_spawn_requires_flag, action_spawn_manual_unlock, action_max_uses, custom_xml_file, action_mana_drain, action_is_dangerous_blast, action_draw_many_count, action_ai_never_uses, action_never_unlimited, state_shuffled, state_cards_drawn, state_discarded_action, state_destroyed_action, fire_rate_wait, speed_multiplier, child_speed_multiplier, dampening, explosion_radius, spread_degrees, pattern_degrees, screenshake, recoil, damage_melee_add, damage_projectile_add, damage_electricity_add, damage_fire_add, damage_explosion_add, damage_ice_add, damage_slice_add, damage_healing_add, damage_curse_add, damage_drill_add, damage_null_all, damage_critical_chance, damage_critical_multiplier, explosion_damage_to_materials, knockback_force, reload_time, lightning_count, material, material_amount, trail_material, trail_material_amount, bounces, gravity, light, blood_count_multiplier, gore_particles, ragdoll_fx, friendly_fire, physics_impulse_coeff, lifetime_add, sprite, extra_entities, game_effect_entities, sound_loop_tag, projectile_file) end
 """
 
 overrides = {
@@ -291,7 +359,7 @@ for k, e in enumerate(table.children):
 	if fn_args[0] == "":
 		fn_args = []
 	for arg in fn_args:
-		print(arg)
+		# print(arg)
 		typed = arg.split(":")
 		if len(typed) != 2:
 			# print(fn_args)
@@ -304,6 +372,8 @@ for k, e in enumerate(table.children):
 		if len(arg_default) == 2:
 			extra = arg_default[1]
 			arg_type = arg_default[0]
+		if extra != "" and extra[0] == '"':
+			extra = "'" + extra + "'"
 		arg_type = type_alias(arg_type, arg_name)
 		fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
 	rets = ret.split(",")
@@ -350,7 +420,7 @@ for k, e in enumerate(table.children):
 	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
-	print(fn_name, fn_sig)
+	# print(fn_name, fn_sig)
 
 with open("out.lua", "w", encoding="utf-8") as f:
 	f.write(out.replace("\n\n\n", "\n\n"))
