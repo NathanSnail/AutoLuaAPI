@@ -12,7 +12,7 @@
 ---@alias game_effect "NONE" | "ELECTROCUTION" | "FROZEN" | "ON_FIRE" | "POISON" | "BERSERK" | "CHARM" | "POLYMORPH" | "POLYMORPH_RANDOM" | "BLINDNESS" | "TELEPATHY" | "TELEPORTATION" | "REGENERATION" | "LEVITATION" | "MOVEMENT_SLOWER" | "FARTS" | "DRUNK" | "BREATH_UNDERWATER" | "RADIOACTIVE" | "WET" | "OILED" | "BLOODY" | "SLIMY" | "CRITICAL_HIT_BOOST" | "CONFUSION" | "MELEE_COUNTER" | "WORM_ATTRACTOR" | "WORM_DETRACTOR" | "FOOD_POISONING" | "FRIEND_THUNDERMAGE" | "FRIEND_FIREMAGE" | "INTERNAL_FIRE" | "INTERNAL_ICE" | "JARATE" | "KNOCKBACK" | "KNOCKBACK_IMMUNITY" | "MOVEMENT_SLOWER_2X" | "MOVEMENT_FASTER" | "STAINS_DROP_FASTER" | "SAVING_GRACE" | "DAMAGE_MULTIPLIER" | "HEALING_BLOOD" | "RESPAWN" | "PROTECTION_FIRE" | "PROTECTION_RADIOACTIVITY" | "PROTECTION_EXPLOSION" | "PROTECTION_MELEE" | "PROTECTION_ELECTRICITY" | "TELEPORTITIS" | "STAINLESS_ARMOUR" | "GLOBAL_GORE" | "EDIT_WANDS_EVERYWHERE" | "EXPLODING_CORPSE_SHOTS" | "EXPLODING_CORPSE" | "EXTRA_MONEY" | "EXTRA_MONEY_TRICK_KILL" | "HOVER_BOOST" | "PROJECTILE_HOMING" | "ABILITY_ACTIONS_MATERIALIZED" | "NO_DAMAGE_FLASH" | "NO_SLIME_SLOWDOWN" | "MOVEMENT_FASTER_2X" | "NO_WAND_EDITING" | "LOW_HP_DAMAGE_BOOST" | "FASTER_LEVITATION" | "STUN_PROTECTION_ELECTRICITY" | "STUN_PROTECTION_FREEZE" | "IRON_STOMACH" | "PROTECTION_ALL" | "INVISIBILITY" | "REMOVE_FOG_OF_WAR" | "MANA_REGENERATION" | "PROTECTION_DURING_TELEPORT" | "PROTECTION_POLYMORPH" | "PROTECTION_FREEZE" | "FROZEN_SPEED_UP" | "UNSTABLE_TELEPORTATION" | "POLYMORPH_UNSTABLE" | "CUSTOM" | "ALLERGY_RADIOACTIVE" | "RAINBOW_FARTS" 
 ---@alias printable_string string | number
 
----Represents cached dofile results
+---Represents cached dofile results.
 ---@type {string: fun(): any}
 __loaded = {}
 
@@ -44,9 +44,9 @@ function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon) end
 ---@param ui_icon string
 ---@param protects_from_fire boolean false
 ---@param remove_cells_that_cause_when_activated boolean false
----@param effect_entity string ""
+---@param effect_entity string '""'
 ---@param min_threshold_normalized number 0.0
----@param extra_status_00 string ""
+---@param extra_status_00 string '""'
 ---@param effect_permanent boolean false
 ---@param is_harmful boolean false
 ---@param ui_timer_offset_normalized number 0.0
@@ -65,9 +65,77 @@ function RegisterStreamingEvent(id, ui_name, ui_description, ui_icon_path, kind,
 ---Note: works only in dev builds.
 function DEBUG_GameReset() end
 
----Executes the code in all of the appends to a given file
+---Executes the code in all of the appends to a given file.
 ---@param filename string
 function do_mod_appends(filename) end
+
+---Does something with these values, not used in vanilla.
+---@param action_id string '""'
+---@param action_name string '""'
+---@param action_description string '""'
+---@param action_sprite_filename string '""'
+---@param action_unidentified_sprite_filename string "data/ui_gfx/gun_actions/unidentified.png"
+---@param action_type integer 0
+---@param action_spawn_level string '""'
+---@param action_spawn_probability string '""'
+---@param action_spawn_requires_flag string '""'
+---@param action_spawn_manual_unlock boolean false
+---@param action_max_uses integer -1
+---@param custom_xml_file string '""'
+---@param action_mana_drain integer 10
+---@param action_is_dangerous_blast boolean false
+---@param action_draw_many_count integer 0
+---@param action_ai_never_uses boolean false
+---@param action_never_unlimited boolean false
+---@param state_shuffled boolean false
+---@param state_cards_drawn integer 0
+---@param state_discarded_action boolean false
+---@param state_destroyed_action boolean false
+---@param fire_rate_wait integer 0
+---@param speed_multiplier number 1.0
+---@param child_speed_multiplier number 1.0
+---@param dampening number 1.0
+---@param explosion_radius number 0.0
+---@param spread_degrees number 0.0
+---@param pattern_degrees number 0.0
+---@param screenshake number 0.0
+---@param recoil number 0.0
+---@param damage_melee_add number 0.0
+---@param damage_projectile_add number 0.0
+---@param damage_electricity_add number 0.0
+---@param damage_fire_add number 0.0
+---@param damage_explosion_add number 0.0
+---@param damage_ice_add number 0.0
+---@param damage_slice_add number 0.0
+---@param damage_healing_add number 0.0
+---@param damage_curse_add number 0.0
+---@param damage_drill_add number 0.0
+---@param damage_null_all number 0.0
+---@param damage_critical_chance integer 0
+---@param damage_critical_multiplier number 0.0
+---@param explosion_damage_to_materials number 0.0
+---@param knockback_force number 0.0
+---@param reload_time integer 0
+---@param lightning_count integer 0
+---@param material string '""'
+---@param material_amount integer 0
+---@param trail_material string '""'
+---@param trail_material_amount integer 0
+---@param bounces integer 0
+---@param gravity number 0.0
+---@param light number 0.0
+---@param blood_count_multiplier number 1.0
+---@param gore_particles integer 0
+---@param ragdoll_fx integer 0
+---@param friendly_fire boolean false
+---@param physics_impulse_coeff number 0.0
+---@param lifetime_add integer 0
+---@param sprite string '""'
+---@param extra_entities string '""'
+---@param game_effect_entities string '""'
+---@param sound_loop_tag string '""'
+---@param projectile_file string '""'
+function _ConfigGunActionInfo_ReadToGame(action_id, action_name, action_description, action_sprite_filename, action_unidentified_sprite_filename, action_type, action_spawn_level, action_spawn_probability, action_spawn_requires_flag, action_spawn_manual_unlock, action_max_uses, custom_xml_file, action_mana_drain, action_is_dangerous_blast, action_draw_many_count, action_ai_never_uses, action_never_unlimited, state_shuffled, state_cards_drawn, state_discarded_action, state_destroyed_action, fire_rate_wait, speed_multiplier, child_speed_multiplier, dampening, explosion_radius, spread_degrees, pattern_degrees, screenshake, recoil, damage_melee_add, damage_projectile_add, damage_electricity_add, damage_fire_add, damage_explosion_add, damage_ice_add, damage_slice_add, damage_healing_add, damage_curse_add, damage_drill_add, damage_null_all, damage_critical_chance, damage_critical_multiplier, explosion_damage_to_materials, knockback_force, reload_time, lightning_count, material, material_amount, trail_material, trail_material_amount, bounces, gravity, light, blood_count_multiplier, gore_particles, ragdoll_fx, friendly_fire, physics_impulse_coeff, lifetime_add, sprite, extra_entities, game_effect_entities, sound_loop_tag, projectile_file) end
 
 ---@param filename string 
 ---@param pos_x integer? 0
@@ -96,7 +164,7 @@ function EntityLoadToEntity(filename, entity) end
 ---@param filename string 
 function EntitySave(entity_id, filename) end
 
----@param name string? ""
+---@param name string? '""'
 ---@return entity_id entity_id
 function EntityCreateNew(name) end
 
@@ -128,28 +196,28 @@ function EntityGetAllComponents(entity_id) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name component_type 
----@param tag string? ""
+---@param tag string? '""'
 ---@return component_id[]|nil
 ---@nodiscard
 function EntityGetComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name component_type 
----@param tag string? ""
+---@param tag string? '""'
 ---@return component_id|nil
 ---@nodiscard
 function EntityGetFirstComponent(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name component_type 
----@param tag string? ""
+---@param tag string? '""'
 ---@return component_id[]|nil
 ---@nodiscard
 function EntityGetComponentIncludingDisabled(entity_id, component_type_name, tag) end
 
 ---@param entity_id entity_id 
 ---@param component_type_name component_type 
----@param tag string? ""
+---@param tag string? '""'
 ---@return component_id|nil
 ---@nodiscard
 function EntityGetFirstComponentIncludingDisabled(entity_id, component_type_name, tag) end
@@ -186,7 +254,7 @@ function EntityAddChild(parent_id, child_id) end
 
 --- If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned.
 ---@param entity_id entity_id 
----@param tag string? ""
+---@param tag string? '""'
 ---@return entity_id[]|nil
 ---@nodiscard
 function EntityGetAllChildren(entity_id, tag) end
@@ -558,7 +626,7 @@ function AddMaterialInventoryMaterial(entity_id, material_name, count) end
 
 --- If material_name is empty, all materials will be removed.
 ---@param entity_id entity_id 
----@param material_name string? ""
+---@param material_name string? '""'
 function RemoveMaterialInventoryMaterial(entity_id, material_name) end
 
 --- Returns the id of the material taking the largest part of the first MaterialInventoryComponent in 'entity_id', or 0 if nothing is found.
@@ -589,7 +657,7 @@ function GameDoEnding2() end
 function GetParallelWorldPosition(world_pos_x, world_pos_y) end
 
 ---@param filename string 
----@param pixel_scenes string? "data/biome/_pixel_scenes.xml"
+---@param pixel_scenes string? '"data/biome/_pixel_scenes.xml"'
 function BiomeMapLoad_KeepPlayer(filename, pixel_scenes) end
 
 --- Deprecated. Might trigger various bugs. Use BiomeMapLoad_KeepPlayer() instead.
@@ -800,7 +868,7 @@ function GameTriggerGameOver() end
 ---@param colors_filename string 
 ---@param x number 
 ---@param y number 
----@param background_file string? ""
+---@param background_file string? '""'
 ---@param skip_biome_checks boolean? false
 ---@param skip_edge_textures boolean? false
 ---@param color_to_material_table {string:string}? {}
@@ -943,7 +1011,7 @@ function EntityGetHotspot(entity, hotspot_tag, transformed, include_disabled_com
 ---@param entity_id entity_id 
 ---@param name string 
 ---@param priority integer 
----@param followup_name string? ""
+---@param followup_name string? '""'
 ---@param followup_priority integer? 0
 function GamePlayAnimation(entity_id, name, priority, followup_name, followup_priority) end
 
@@ -1178,8 +1246,8 @@ function EntityGetClosestWormDetractor(pos_x, pos_y) end
 function GamePrint(log_line) end
 
 ---@param title string 
----@param description string? ""
----@param ui_custom_decoration_file string? ""
+---@param description string? '""'
+---@param ui_custom_decoration_file string? '""'
 function GamePrintImportant(title, description, ui_custom_decoration_file) end
 
 ---@return number x
@@ -1189,7 +1257,7 @@ function DEBUG_GetMouseWorld() end
 
 ---@param x number 
 ---@param y number 
----@param message string? ""
+---@param message string? '""'
 ---@param color_r number? 1
 ---@param color_g number? 0
 ---@param color_b number? 0
@@ -1302,7 +1370,7 @@ function GameIsModeFullyDeterministic() end
 function GlobalsSetValue(key, value) end
 
 ---@param key string 
----@param default_value string? ""
+---@param default_value string? '""'
 ---@return any|nil global
 ---@nodiscard
 function GlobalsGetValue(key, default_value) end
@@ -1523,12 +1591,12 @@ function ProceduralRandomi(x, y, a, b) end
 --- Does not work with PhysicsBody2Component. Returns the id of the created physics body.
 ---@param entity_id entity_id 
 ---@param image_file string 
----@param material string? ""
+---@param material string? '""'
 ---@param offset_x number? 0
 ---@param offset_y number? 0
 ---@param centered boolean? false
 ---@param is_circle boolean? false
----@param material_image_file string? ""
+---@param material_image_file string? '""'
 ---@param use_image_as_colors boolean? true
 ---@return physics_body_id
 function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y, centered, is_circle, material_image_file, use_image_as_colors) end
@@ -1848,9 +1916,9 @@ function GameUnsetPostFxTextureParameter(name) end
 function GameTextGetTranslatedOrNot(text_or_key) end
 
 ---@param key string 
----@param param0 string? ""
----@param param1 string? ""
----@param param2 string? ""
+---@param param0 string? '""'
+---@param param1 string? '""'
+---@param param2 string? '""'
 ---@return string
 ---@nodiscard
 function GameTextGet(key, param0, param1, param2) end
@@ -1941,7 +2009,7 @@ function GuiAnimateScaleIn(gui, id, acceleration, reset) end
 ---@param y number 
 ---@param text string 
 ---@param scale number? 1
----@param font string? ""
+---@param font string? '""'
 ---@param font_is_pixel_font boolean? true
 function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 
@@ -1964,7 +2032,7 @@ function GuiTextCentered(gui, x, y, text) end
 ---@param scale_y number? 0
 ---@param rotation number? 0
 ---@param rect_animation_playback_type integer? GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndHide
----@param rect_animation_name string? ""
+---@param rect_animation_name string? '""'
 function GuiImage(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotation, rect_animation_playback_type, rect_animation_name) end
 
 ---@param gui gui 
@@ -1974,8 +2042,8 @@ function GuiImage(gui, id, x, y, sprite_filename, alpha, scale, scale_y, rotatio
 ---@param width number 
 ---@param height number 
 ---@param alpha number? 1
----@param sprite_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
----@param sprite_highlight_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
+---@param sprite_filename string? '"data/ui_gfx/decorations/9piece0_gray.png"'
+---@param sprite_highlight_filename string? '"data/ui_gfx/decorations/9piece0_gray.png"'
 function GuiImageNinePiece(gui, id, x, y, width, height, alpha, sprite_filename, sprite_highlight_filename) end
 
 --- The old parameter order where 'id' is the last parameter is still supported. The function dynamically picks the correct order based on the type of the 4th parameter.
@@ -1985,7 +2053,7 @@ function GuiImageNinePiece(gui, id, x, y, width, height, alpha, sprite_filename,
 ---@param y number 
 ---@param text string 
 ---@param scale number? 1
----@param font string? ""
+---@param font string? '""'
 ---@param font_is_pixel_font boolean? true
 ---@return boolean clicked
 ---@return boolean right_clicked
@@ -2026,7 +2094,7 @@ function GuiSlider(gui, id, x, y, text, value, value_min, value_max, value_defau
 ---@param text string 
 ---@param width number 
 ---@param max_length integer 
----@param allowed_characters string? ""
+---@param allowed_characters string? '""'
 ---@return string new_text
 ---@nodiscard
 function GuiTextInput(gui, id, x, y, text, width, max_length, allowed_characters) end
@@ -2040,8 +2108,8 @@ function GuiBeginAutoBox(gui) end
 ---@param size_min_y number? 0
 ---@param mirrorize_over_x_axis boolean? false
 ---@param x_axis number? 0
----@param sprite_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
----@param sprite_highlight_filename string? "data/ui_gfx/decorations/9piece0_gray.png"
+---@param sprite_filename string? '"data/ui_gfx/decorations/9piece0_gray.png"'
+---@param sprite_highlight_filename string? '"data/ui_gfx/decorations/9piece0_gray.png"'
 function GuiEndAutoBoxNinePiece(gui, margin, size_min_x, size_min_y, mirrorize_over_x_axis, x_axis, sprite_filename, sprite_highlight_filename) end
 
 ---@param gui gui 
@@ -2114,7 +2182,7 @@ function GuiGetScreenDimensions(gui) end
 ---@param text string 
 ---@param scale number? 1
 ---@param line_spacing number? 2
----@param font string? ""
+---@param font string? '""'
 ---@param font_is_pixel_font boolean? true
 ---@return number width
 ---@return number height
@@ -2173,8 +2241,8 @@ function DebugBiomeMapGetFilename(x, y) end
 ---@param use_material_colors boolean? true
 function EntityConvertToMaterial(entity_id, material, use_material_colors) end
 
----@param material_dynamic string? ""
----@param material_static string? ""
+---@param material_dynamic string? '""'
+---@param material_static string? '""'
 function ConvertEverythingToGold(material_dynamic, material_static) end
 
 --- Converts 'material_from' to 'material_to' everwhere in the game world, replaces 'material_from_type' to 'material_to_type' in the material (CellData) global table, and marks 'material_from' as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. 'material_from' will still retain the original name id and wang color. Use CellFactory_GetType() to convert a material name to material type.
@@ -2197,7 +2265,7 @@ function ConvertMaterialOnAreaInstantly(area_x, area_y, area_w, area_h, material
 ---@param filename string 
 ---@param pos_x number 
 ---@param pos_y number 
----@param material string? "meat"
+---@param material string? '"meat"'
 ---@param scale_x number? 1
 ---@param impulse_x number? 0
 ---@param impulse_y number? 0
