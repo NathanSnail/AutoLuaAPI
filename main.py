@@ -154,7 +154,7 @@ function do_mod_appends(filename) end
 ---@param action_name string '""'
 ---@param action_description string '""'
 ---@param action_sprite_filename string '""'
----@param action_unidentified_sprite_filename string "data/ui_gfx/gun_actions/unidentified.png"
+---@param action_unidentified_sprite_filename string '"data/ui_gfx/gun_actions/unidentified.png"'
 ---@param action_type integer 0
 ---@param action_spawn_level string '""'
 ---@param action_spawn_probability string '""'
