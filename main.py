@@ -149,7 +149,7 @@ function DEBUG_GameReset() end
 ---@param filename string
 function do_mod_appends(filename) end
 
----Does something with these values, not used in vanilla.
+---Does something with these values, not used in vanilla. Only available in data/scripts/gun/gun.lua
 ---@param action_id string '""'
 ---@param action_name string '""'
 ---@param action_description string '""'
