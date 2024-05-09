@@ -144,6 +144,10 @@ function RegisterStreamingEvent(id, ui_name, ui_description, ui_icon_path, kind,
 
 ---Note: works only in dev builds.
 function DEBUG_GameReset() end
+
+---Executes the code in all of the appends to a given file
+---@param filename string
+function do_mod_appends(filename) end
 """
 
 overrides = {
@@ -218,6 +222,7 @@ overrides = {
 	"ModMaterialFilesGet": {
 		"comment": "Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later"
 	},
+	"ModLuaFileSetAppends": {"args": "filename:string, appends: {string}"},
 }
 
 
@@ -286,6 +291,7 @@ for k, e in enumerate(table.children):
 	if fn_args[0] == "":
 		fn_args = []
 	for arg in fn_args:
+		print(arg)
 		typed = arg.split(":")
 		if len(typed) != 2:
 			# print(fn_args)
@@ -344,6 +350,7 @@ for k, e in enumerate(table.children):
 	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")
 	out += fn_def + "\n\n"
+	print(fn_name, fn_sig)
 
 with open("out.lua", "w", encoding="utf-8") as f:
 	f.write(out.replace("\n\n\n", "\n\n"))

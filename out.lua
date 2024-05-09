@@ -65,6 +65,10 @@ function RegisterStreamingEvent(id, ui_name, ui_description, ui_icon_path, kind,
 ---Note: works only in dev builds.
 function DEBUG_GameReset() end
 
+---Executes the code in all of the appends to a given file
+---@param filename string
+function do_mod_appends(filename) end
+
 ---@param filename string 
 ---@param pos_x integer? 0
 ---@param pos_y integer? 0
@@ -2312,7 +2316,8 @@ function ModLuaFileGetAppends(filename) end
 
 --- Replaces the appends list (see ModLuaFileAppend) of a file with the given table. Available only in init.lua. Should not be called after OnMostPostInit(should be avoided after that because changes might not propagate, or could work in non-deterministic manner).
 ---@param filename string 
-function ModLuaFileSetAppends(filename) end
+---@param appends string[] 
+function ModLuaFileSetAppends(filename, appends) end
 
 --- Returns the current (modded or not) content of the data file 'filename'. Allows access only to data files and files from enabled mods. "mods/mod/data/file.xml" and "data/file.xml" point to the same file. Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string 
