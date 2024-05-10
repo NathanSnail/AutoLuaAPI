@@ -78,8 +78,7 @@ component_type = "---@alias component_type " + " | ".join(
 	[f'"{x}"' for x in components]
 )
 
-out = f"""
----@diagnostic disable: unused-local, missing-return
+out = f"""---@diagnostic disable: unused-local, missing-return
 ---@meta
 
 ---[[
@@ -109,7 +108,10 @@ __loaded = {{}}
 
 ---Represents cached dofile_once results, if a file is here dofile_once won't execute it again.
 ---@type {{string: fun(): any}}
-__loaded_once = {{}}
+__loadonce = {{}}
+
+-- Noita runs luajit, version is 5.1 though.
+_VERSION = "Lua 5.1"
 
 ---@param ... printable_string
 function print_error(...) end
