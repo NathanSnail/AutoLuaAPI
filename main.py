@@ -107,7 +107,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 __loaded = {{}}
 
 ---Represents cached dofile_once results, if a file is here dofile_once won't execute it again.
----@type {{string: fun(): any}}
+---@type {{string: {{any}}}}
 __loadonce = {{}}
 
 -- Noita runs luajit, version is 5.1 though.
