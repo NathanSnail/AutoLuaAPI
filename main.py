@@ -110,6 +110,10 @@ __loaded = {{}}
 ---@type {{string: {{any}}}}
 __loadonce = {{}}
 
+---Represents cached version of the current file. Only exists in lua component scripts.
+---@type fun(): any
+function ____cached_func() end
+
 -- Noita runs luajit, version is 5.1 though.
 _VERSION = "Lua 5.1"
 
