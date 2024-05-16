@@ -294,7 +294,7 @@ overrides = {
 		"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."
 	},
 	"GuiImage": {
-		"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.<br>Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
+		"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.\nDue to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
 	},
 	"PolymorphTableGet": {"args": "rare_table: bool = false "},
 	"EntityAddComponent": {
