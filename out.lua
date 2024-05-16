@@ -27,7 +27,7 @@
 __loaded = {}
 
 ---Represents cached dofile_once results, if a file is here dofile_once won't execute it again.
----@type {string: {any}}
+---@type {string: any[]}
 __loadonce = {}
 
 ---Represents cached version of the current file. Only exists in lua component scripts.
