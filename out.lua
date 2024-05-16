@@ -31,7 +31,7 @@ __loaded = {}
 __loadonce = {}
 
 ---Represents cached version of the current file. Only exists in lua component scripts.
----@type fun(): any
+---@return any
 function ____cached_func() end
 
 -- Noita runs luajit, version is 5.1 though.
