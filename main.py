@@ -308,6 +308,10 @@ overrides = {
 		"comment": "Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later"
 	},
 	"ModLuaFileSetAppends": {"args": "filename:string, appends: {string}"},
+	"PhysicsBodyIDGetTransform": {
+		"ret": "x: number, y: number, angle: number, vel_x: number, vel_y: number, angular_vel: number",
+		"overload": {"ret": "nil"},
+	},
 }
 
 

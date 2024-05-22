@@ -1724,12 +1724,13 @@ function PhysicsBodyIDQueryBodies(world_pos_min_x, world_pos_min_y, world_pos_ma
 
 --- NOTE! returns nil, if body was not found. Results are Box2D units. Velocities need to converted with PhysicsVecToGameVec.
 ---@param physics_body_id physics_body_id
----@return number nil|x
+---@return number x
 ---@return number y
 ---@return number angle
 ---@return number vel_x
 ---@return number vel_y
 ---@return number angular_vel
+---@overload fun(physics_body_id: physics_body_id): nil
 ---@nodiscard
 function PhysicsBodyIDGetTransform(physics_body_id) end
 
