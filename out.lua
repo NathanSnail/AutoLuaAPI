@@ -535,7 +535,7 @@ function ComponentObjectSetValue2(component_id, object_name, field_name, ...) en
 
 ---@param entity_id entity_id
 ---@param component_type_name component_type
----@param table_of_component_values {string:any}? nil
+---@param table_of_component_values {[string]:any}? nil
 ---@return component_id
 function EntityAddComponent2(entity_id, component_type_name, table_of_component_values) end
 
@@ -578,14 +578,14 @@ function ComponentGetEntity(component_id) end
 
 --- Returns a string-indexed table of string.
 ---@param component_id component_id
----@return {string:string}|nil
+---@return {[string]:string}|nil
 ---@nodiscard
 function ComponentGetMembers(component_id) end
 
 --- Returns a string-indexed table of string or nil.
 ---@param component_id component_id
 ---@param object_name string
----@return {string:string}|nil
+---@return {[string]:string}|nil
 ---@nodiscard
 function ComponentObjectGetMembers(component_id, object_name) end
 
@@ -888,7 +888,7 @@ function GameTriggerGameOver() end
 ---@param background_file string? '""'
 ---@param skip_biome_checks boolean? false
 ---@param skip_edge_textures boolean? false
----@param color_to_material_table {string:string}? {}
+---@param color_to_material_table {[string]:string}? {}
 ---@param background_z_index integer? 50
 ---@param load_even_if_duplicate boolean? false
 function LoadPixelScene(materials_filename, colors_filename, x, y, background_file, skip_biome_checks, skip_edge_textures, color_to_material_table, background_z_index, load_even_if_duplicate) end

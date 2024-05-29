@@ -26,7 +26,8 @@ def do_int(src, name):
 def type_alias(src, name):
 	if "{" in src:
 		if "-" in src:
-			src = src.replace("-", ":")
+			src = src.replace("-", "]:")
+			src = src.replace("{", "{[")
 		else:
 			src = src.replace("{", "")
 			src = src.replace("}", "[]")
