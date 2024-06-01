@@ -1,5 +1,6 @@
-from bs4 import BeautifulSoup
 import re
+
+from bs4 import BeautifulSoup
 
 TESTING = True
 
@@ -314,7 +315,9 @@ overrides = {
 		"ret": "x: number, y: number, angle: number, vel_x: number, vel_y: number, angular_vel: number",
 		"overload": {"ret": "nil"},
 	},
-    "GenomeSetHerdId": {"comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."}
+	"GenomeSetHerdId": {
+		"comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."
+	},
 }
 
 
@@ -419,8 +422,12 @@ for k, e in enumerate(table.children):
 
 	# print(fn_name, rets2, [x for x in rets2])
 	if comment != "":
-		fn_def += "--- "
-		fn_def += re.sub(r"([A-Za-z0-9_]*)(\(\))", r"`\1`\2", comment.replace("\n", "\n---"))
+		fn_def += "---"
+		fn_def += re.sub(
+			r"'([a-zA-Z0-9_]*)'",
+			r"`\1`",
+			re.sub(r"([A-Za-z0-9_]*)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")),
+		)
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
 	fn_def += "\n---@deprecated" if deprecated else ""
