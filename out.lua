@@ -321,7 +321,7 @@ function EntityGetTags(entity_id) end
 ---@nodiscard
 function EntityGetWithTag(tag) end
 
----Returns all entities in `radius` distance from `x`,`y`.
+---Returns all entities in `radius` distance from `x`, `y`.
 ---@param pos_x number
 ---@param pos_y number
 ---@param radius number
@@ -329,7 +329,7 @@ function EntityGetWithTag(tag) end
 ---@nodiscard
 function EntityGetInRadius(pos_x, pos_y, radius) end
 
----Returns all entities in `radius` distance from `x`,`y`.
+---Returns all entities in `radius` distance from `x`, `y`.
 ---@param pos_x number
 ---@param pos_y number
 ---@param radius number
@@ -835,7 +835,7 @@ function GameSetCameraPos(x, y) end
 ---@param is_free boolean
 function GameSetCameraFree(is_free) end
 
----Returns the camera rectangle. This may not be 100% pixel perfect with regards to what you see on the screen. `x`,`y` = top left corner of the rectangle.
+---Returns the camera rectangle. This may not be 100% pixel perfect with regards to what you see on the screen. `x`, `y` = top left corner of the rectangle.
 ---@return number x
 ---@return number y
 ---@return number w
@@ -2640,13 +2640,13 @@ function SetValueBool(key, value) end
 ---@nodiscard
 function GetValueBool(key, default_value) end
 
----Returns the script's return value, if any. Returns nil,error_string if the script had errors.
+---Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard `dofile` behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
 function dofile(filename) end
 
----Runs the script only once per lua context, returns the script's return value, if any. Returns nil,error_string if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard dofile behaviour is required.
+---Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard `dofile` behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)

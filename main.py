@@ -265,10 +265,12 @@ overrides = {
 	"dofile": {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
+		"comment": "Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
 	},
 	"dofile_once": {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
+		"comment": "Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
 	},
 	"ComponentGetValueVector2": {"ret": "x:number, y:number"},
 	"PhysicsAddJoint": {
@@ -424,9 +426,15 @@ for k, e in enumerate(table.children):
 	if comment != "":
 		fn_def += "---"
 		fn_def += re.sub(
-			r"'([a-zA-Z0-9_]*)'",
-			r"`\1`",
-			re.sub(r"([A-Za-z0-9_]*)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")),
+			r",([^ ])",
+			r", \1",
+			re.sub(
+				r"'([a-zA-Z0-9_]+)'",
+				r"`\1`",
+				re.sub(
+					r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")
+				),
+			),
 		)
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
