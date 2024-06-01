@@ -1234,7 +1234,7 @@ function EntityGetHerdRelation(entity_a, entity_b) end
 ---@nodiscard
 function EntityGetHerdRelationSafe(entity_a, entity_b) end
 
---- Deprecated, use GenomeStringToHerdID() and ComponentSetValue2() instead.
+--- Deprecated, use StringToHerdID() and ComponentSetValue2() instead.
 ---@param entity_id entity_id
 ---@param new_herd_id string
 ---@deprecated
