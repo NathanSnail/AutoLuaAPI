@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import re
 
 TESTING = True
 
@@ -419,7 +420,7 @@ for k, e in enumerate(table.children):
 	# print(fn_name, rets2, [x for x in rets2])
 	if comment != "":
 		fn_def += "--- "
-		fn_def += comment.replace("\n", "\n--- ")
+		fn_def += re.sub(r"([A-Za-z0-9_]*)(\(\))", r"`\1`\2", comment.replace("\n", "\n---"))
 	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
 	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
 	fn_def += "\n---@deprecated" if deprecated else ""

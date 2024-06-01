@@ -381,7 +381,7 @@ function EntityGetFilename(entity_id) end
 ---@nodiscard
 function EntitiesGetMaxID() end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return string|nil
@@ -389,7 +389,7 @@ function EntitiesGetMaxID() end
 ---@nodiscard
 function ComponentGetValue(component_id, variable_name) end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return boolean|nil
@@ -397,7 +397,7 @@ function ComponentGetValue(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueBool(component_id, variable_name) end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return integer|nil
@@ -405,7 +405,7 @@ function ComponentGetValueBool(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueInt(component_id, variable_name) end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return number|nil
@@ -413,7 +413,7 @@ function ComponentGetValueInt(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueFloat(component_id, variable_name) end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return number x
@@ -422,14 +422,14 @@ function ComponentGetValueFloat(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueVector2(component_id, variable_name) end
 
---- Deprecated, use ComponentSetValue2() instead.
+--- Deprecated, use `ComponentSetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@param value string
 ---@deprecated
 function ComponentSetValue(component_id, variable_name, value) end
 
---- Deprecated, use ComponentSetValue2() instead.
+--- Deprecated, use `ComponentSetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@param x number
@@ -437,7 +437,7 @@ function ComponentSetValue(component_id, variable_name, value) end
 ---@deprecated
 function ComponentSetValueVector2(component_id, variable_name, x, y) end
 
---- Deprecated, use ComponentSetValue2() instead.
+--- Deprecated, use `ComponentSetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@param min number
@@ -445,7 +445,7 @@ function ComponentSetValueVector2(component_id, variable_name, x, y) end
 ---@deprecated
 function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 
---- Deprecated, use ComponentSetValue2() instead.
+--- Deprecated, use `ComponentSetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@param min number
@@ -453,14 +453,14 @@ function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 ---@deprecated
 function ComponentSetValueValueRangeInt(component_id, variable_name, min, max) end
 
---- Deprecated, use ComponentSetValue2() instead.
+--- Deprecated, use `ComponentSetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@param value string
 ---@deprecated
 function ComponentSetMetaCustom(component_id, variable_name, value) end
 
---- Deprecated, use ComponentGetValue2() instead.
+--- Deprecated, use `ComponentGetValue2`() instead.
 ---@param component_id component_id
 ---@param variable_name string
 ---@return string|nil
@@ -468,7 +468,7 @@ function ComponentSetMetaCustom(component_id, variable_name, value) end
 ---@nodiscard
 function ComponentGetMetaCustom(component_id, variable_name) end
 
---- Deprecated, use ComponentObjectGetValue2() instead.
+--- Deprecated, use `ComponentObjectGetValue2`() instead.
 ---@param component_id component_id
 ---@param object_name string
 ---@param variable_name string
@@ -477,7 +477,7 @@ function ComponentGetMetaCustom(component_id, variable_name) end
 ---@nodiscard
 function ComponentObjectGetValue(component_id, object_name, variable_name) end
 
---- Deprecated, use ComponentObjectSetValue2() instead.
+--- Deprecated, use `ComponentObjectSetValue2`() instead.
 ---@param component_id component_id
 ---@param object_name string
 ---@param variable_name string
@@ -677,7 +677,7 @@ function GetParallelWorldPosition(world_pos_x, world_pos_y) end
 ---@param pixel_scenes string? '"data/biome/_pixel_scenes.xml"'
 function BiomeMapLoad_KeepPlayer(filename, pixel_scenes) end
 
---- Deprecated. Might trigger various bugs. Use BiomeMapLoad_KeepPlayer() instead.
+--- Deprecated. Might trigger various bugs. Use `BiomeMapLoad_KeepPlayer`() instead.
 ---@param filename string
 ---@deprecated
 function BiomeMapLoad(filename) end
@@ -976,7 +976,7 @@ function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectil
 ---@param knockback_force number? 0
 function EntityInflictDamage(entity, amount, damage_type, description, ragdoll_fx, impulse_x, impulse_y, entity_who_is_responsible, world_pos_x, world_pos_y, knockback_force) end
 
---- Has the same effects that would occur if 'entity' eats 'amount' number of cells of 'material_type' from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use CellFactory_GetType() to convert a material name to material type.
+--- Has the same effects that would occur if 'entity' eats 'amount' number of cells of 'material_type' from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use `CellFactory_GetType`() to convert a material name to material type.
 ---@param entity entity_id
 ---@param material_type integer
 ---@param amount number
@@ -991,7 +991,7 @@ function EntityRemoveIngestionStatusEffect(entity, status_type_id) end
 ---@param status_cooldown integer? 0
 function EntityRemoveStainStatusEffect(entity, status_type_id, status_cooldown) end
 
---- Adds random visible stains of 'material_type' to entity. 'amount' controls the number of stain cells added. Does nothing if 'entity' doesn't have a SpriteStainsComponent. Use CellFactory_GetType() to convert a material name to material type.
+--- Adds random visible stains of 'material_type' to entity. 'amount' controls the number of stain cells added. Does nothing if 'entity' doesn't have a SpriteStainsComponent. Use `CellFactory_GetType`() to convert a material name to material type.
 ---@param entity entity_id
 ---@param material_type integer
 ---@param amount number
@@ -1234,7 +1234,7 @@ function EntityGetHerdRelation(entity_a, entity_b) end
 ---@nodiscard
 function EntityGetHerdRelationSafe(entity_a, entity_b) end
 
---- Deprecated, use StringToHerdID() and ComponentSetValue2() instead.
+--- Deprecated, use `StringToHerdID`() and `ComponentSetValue2`() instead.
 ---@param entity_id entity_id
 ---@param new_herd_id string
 ---@deprecated
@@ -1516,7 +1516,7 @@ function BiomeMapSetPixel(x, y, color_int) end
 ---@nodiscard
 function BiomeMapGetPixel(x, y) end
 
---- Swaps red and blue channels of 'color'. This can be used make sense of the BiomeMapGetPixel() return values. E.g. if( BiomeMapGetPixel( x, y ) == BiomeMapConvertPixelFromUintToInt( 0xFF36D517 ) ) then print('hills') end
+--- Swaps red and blue channels of 'color'. This can be used make sense of the `BiomeMapGetPixel`() return values. E.g. if( BiomeMapGetPixel( x, y ) == BiomeMapConvertPixelFromUintToInt( 0xFF36D517 ) ) then print('hills') end
 ---@param color integer
 ---@return integer
 function BiomeMapConvertPixelFromUintToInt(color) end
@@ -1630,7 +1630,7 @@ function PhysicsAddBodyImage(entity_id, image_file, material, offset_x, offset_y
 function PhysicsAddBodyCreateBox(entity_id, material, offset_x, offset_y, width, height, centered) end
 
 --- Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.
---- Does not work with PhysicsBody2Component. Returns the id of the created joint.
+---Does not work with PhysicsBody2Component. Returns the id of the created joint.
 ---@param entity_id entity_id
 ---@param body_id0 integer
 ---@param body_id1 integer
@@ -1910,13 +1910,13 @@ function GameEntityPlaySoundLoop(entity, component_tag, intensity, intensity2) e
 ---@param w number
 function GameSetPostFxParameter(parameter_name, x, y, z, w) end
 
---- Will remove a post_final shader parameter value binding set via game GameSetPostFxParameter().
+--- Will remove a post_final shader parameter value binding set via game `GameSetPostFxParameter`().
 ---@param parameter_name string
 function GameUnsetPostFxParameter(parameter_name) end
 
 --- Can be used to pass 2D textures to the post_final shader. The shader uniform called 'parameter_name' will be set to the latest given value on this and following frames. 'texture_filename' can either point to a file, or a virtual file created using the ModImage API.
---- If 'update_texture' is true, the texture will be re-uploaded to the GPU (could be useful with dynamic textures, but will incur a heavy performance hit with textures that are loaded from the disk).
---- Accepted values for 'filtering_mode' and 'wrapping_mode' can be found in 'data/libs/utilities.lua'. Each call with a unique 'parameter_name' will create a separate texture while the parameter is in use, so this should be used with some care. While it's possible to change 'texture_filename' on the fly, if texture size changed, this causes destruction of the old texture and allocating a new one, which can be quite slow.
+---If 'update_texture' is true, the texture will be re-uploaded to the GPU (could be useful with dynamic textures, but will incur a heavy performance hit with textures that are loaded from the disk).
+---Accepted values for 'filtering_mode' and 'wrapping_mode' can be found in 'data/libs/utilities.lua'. Each call with a unique 'parameter_name' will create a separate texture while the parameter is in use, so this should be used with some care. While it's possible to change 'texture_filename' on the fly, if texture size changed, this causes destruction of the old texture and allocating a new one, which can be quite slow.
 ---@param parameter_name string
 ---@param texture_filename string
 ---@param filtering_mode integer
@@ -1924,7 +1924,7 @@ function GameUnsetPostFxParameter(parameter_name) end
 ---@param update_texture boolean? false
 function GameSetPostFxTextureParameter(parameter_name, texture_filename, filtering_mode, wrapping_mode, update_texture) end
 
---- Will remove a post_final shader parameter value binding set via game GameSetPostFxTextureParameter().
+--- Will remove a post_final shader parameter value binding set via game `GameSetPostFxTextureParameter`().
 ---@param name string
 function GameUnsetPostFxTextureParameter(name) end
 
@@ -1950,12 +1950,12 @@ function GuiDestroy(gui) end
 ---@param gui gui
 function GuiStartFrame(gui) end
 
---- Sets the options that apply to widgets during this frame. For 'option' use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to GuiStartFrame().
+--- Sets the options that apply to widgets during this frame. For 'option' use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame`().
 ---@param gui gui
 ---@param option integer
 function GuiOptionsAdd(gui, option) end
 
---- Sets the options that apply to widgets during this frame. For 'option' use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to GuiStartFrame().
+--- Sets the options that apply to widgets during this frame. For 'option' use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame`().
 ---@param gui gui
 ---@param option integer
 function GuiOptionsRemove(gui, option) end
@@ -1976,7 +1976,7 @@ function GuiOptionsAddForNextWidget(gui, option) end
 ---@param alpha number
 function GuiColorSetForNextWidget(gui, red, green, blue, alpha) end
 
---- Sets the rendering depth ('z') of the widgets following this call. Larger z = deeper. The z will be set to 0 on the next call to GuiStartFrame().
+--- Sets the rendering depth ('z') of the widgets following this call. Larger z = deeper. The z will be set to 0 on the next call to `GuiStartFrame`().
 ---@param gui gui
 ---@param z number
 function GuiZSet(gui, z) end
@@ -1985,29 +1985,29 @@ function GuiZSet(gui, z) end
 ---@param z number
 function GuiZSetForNextWidget(gui, z) end
 
---- Can be used to solve ID conflicts. All ids given to Gui* functions will be hashed with the ids stacked (and hashed together) using GuiIdPush() and GuiIdPop(). The id stack has a max size of 1024, and calls to the function will do nothing if the size is exceeded.
+--- Can be used to solve ID conflicts. All ids given to Gui* functions will be hashed with the ids stacked (and hashed together) using `GuiIdPush`() and `GuiIdPop`(). The id stack has a max size of 1024, and calls to the function will do nothing if the size is exceeded.
 ---@param gui gui
 ---@param id integer
 function GuiIdPush(gui, id) end
 
---- Pushes the hash of 'str' as a gui id. See GuiIdPush().
+--- Pushes the hash of 'str' as a gui id. See `GuiIdPush`().
 ---@param gui gui
 ---@param str string
 function GuiIdPushString(gui, str) end
 
---- See GuiIdPush().
+--- See `GuiIdPush`().
 ---@param gui gui
 function GuiIdPop(gui) end
 
---- Starts a scope where animations initiated using GuiAnimateAlphaFadeIn() etc. will be applied to all widgets.
+--- Starts a scope where animations initiated using `GuiAnimateAlphaFadeIn`() etc. will be applied to all widgets.
 ---@param gui gui
 function GuiAnimateBegin(gui) end
 
---- Ends a scope where animations initiated using GuiAnimateAlphaFadeIn() etc. will be applied to all widgets.
+--- Ends a scope where animations initiated using `GuiAnimateAlphaFadeIn`() etc. will be applied to all widgets.
 ---@param gui gui
 function GuiAnimateEnd(gui) end
 
---- Does an alpha tween animation for all widgets inside a scope set using GuiAnimateBegin() and GuiAnimateEnd().
+--- Does an alpha tween animation for all widgets inside a scope set using `GuiAnimateBegin`() and `GuiAnimateEnd`().
 ---@param gui gui
 ---@param id integer
 ---@param speed number
@@ -2015,7 +2015,7 @@ function GuiAnimateEnd(gui) end
 ---@param reset boolean
 function GuiAnimateAlphaFadeIn(gui, id, speed, step, reset) end
 
---- Does a scale tween animation for all widgets inside a scope set using GuiAnimateBegin() and GuiAnimateEnd().
+--- Does a scale tween animation for all widgets inside a scope set using `GuiAnimateBegin`() and `GuiAnimateEnd`().
 ---@param gui gui
 ---@param id integer
 ---@param acceleration number
@@ -2031,7 +2031,7 @@ function GuiAnimateScaleIn(gui, id, acceleration, reset) end
 ---@param font_is_pixel_font boolean? true
 function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 
---- Deprecated. Use GuiOptionsAdd() or GuiOptionsAddForNextWidget() with GUI_OPTION.Align_HorizontalCenter and GuiText() instead.
+--- Deprecated. Use `GuiOptionsAdd`() or `GuiOptionsAddForNextWidget`() with GUI_OPTION.Align_HorizontalCenter and `GuiText`() instead.
 ---@param gui gui
 ---@param x number
 ---@param y number
@@ -2040,7 +2040,7 @@ function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 function GuiTextCentered(gui, x, y, text) end
 
 --- 'scale' will be used for 'scale_y' if 'scale_y' equals 0.
---- Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters.
+---Due to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters.
 ---@param gui gui
 ---@param id integer
 ---@param x number
@@ -2136,7 +2136,7 @@ function GuiEndAutoBoxNinePiece(gui, margin, size_min_x, size_min_y, mirrorize_o
 ---@param description string
 function GuiTooltip(gui, text, description) end
 
---- This can be used to create a container with a vertical scroll bar. Widgets between GuiBeginScrollContainer() and GuiEndScrollContainer() will be positioned relative to the container.
+--- This can be used to create a container with a vertical scroll bar. Widgets between `GuiBeginScrollContainer`() and `GuiEndScrollContainer`() will be positioned relative to the container.
 ---@param gui gui
 ---@param id integer
 ---@param x number
@@ -2264,7 +2264,7 @@ function EntityConvertToMaterial(entity_id, material, use_material_colors) end
 ---@param material_static string? '""'
 function ConvertEverythingToGold(material_dynamic, material_static) end
 
---- Converts 'material_from' to 'material_to' everwhere in the game world, replaces 'material_from_type' to 'material_to_type' in the material (CellData) global table, and marks 'material_from' as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. 'material_from' will still retain the original name id and wang color. Use CellFactory_GetType() to convert a material name to material type.
+--- Converts 'material_from' to 'material_to' everwhere in the game world, replaces 'material_from_type' to 'material_to_type' in the material (CellData) global table, and marks 'material_from' as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. 'material_from' will still retain the original name id and wang color. Use `CellFactory_GetType`() to convert a material name to material type.
 ---@param material_from_type integer
 ---@param material_to_type integer
 function ConvertMaterialEverywhere(material_from_type, material_to_type) end
@@ -2313,7 +2313,7 @@ function ModGetAPIVersion() end
 ---@return boolean
 function ModDoesFileExist(filename) end
 
---- Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later
+--- Returns a list of filenames from which materials were loaded. Only works in `OnModInit`() and later
 ---@return string[]
 ---@nodiscard
 function ModMaterialFilesGet() end
@@ -2383,7 +2383,7 @@ function StreamingGetSettingsGhostsNamedAfterViewers() end
 ---@param time_voting_seconds number
 function StreamingSetCustomPhaseDurations(time_between_votes_seconds, time_voting_seconds) end
 
---- Cancels whatever is currently going on, and starts a new voting. _streaming_on_vote_start() and _streaming_get_event_for_vote() will be called as usually.
+--- Cancels whatever is currently going on, and starts a new voting. `_streaming_on_vote_start`() and `_streaming_get_event_for_vote`() will be called as usually.
 function StreamingForceNewVoting() end
 
 --- Turns the voting UI on or off.
@@ -2395,7 +2395,7 @@ function StreamingSetVotingEnabled(enabled) end
 ---@param from_filename string
 function ModLuaFileAppend(to_filename, from_filename) end
 
---- Returns the paths of files that have been appended to 'filename' using ModLuaFileAppend(). Unlike most Mod* functions, this one is available everywhere.
+--- Returns the paths of files that have been appended to 'filename' using `ModLuaFileAppend`(). Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string
 ---@return string[]
 ---@nodiscard
@@ -2422,14 +2422,14 @@ function ModTextFileSetContent(filename, new_content) end
 ---@return string
 function ModTextFileWhoSetContent(filename) end
 
---- Makes an image available for in-memory editing through ModImageGetPixel() and ModImageSetPixel().
---- Returns an id that can be used to access the image, and the dimensions of the image.
---- If an image file with the name wasn't found, an in-memory image of the given size will be created, filled with empty pixels (0x0), and added to the virtual filesystem under 'filename'.
---- If an image with the given name has been previously created through ModImageMakeEditable, the id of that image will be returned. In case memory allocation failed, or if this is called outside mod init using a filename that wasn't succesfully used with this function during the init, 0 will be returned as the id.
---- The game will apply further processing to some images, so the final binary data might end up different. For example, R and B channels are sometimes swapped, and on some textures the colors will be extended by one pixel outside areas where A>0.
---- If game code has already loaded the image (for example this could be the case with some UI textures), the changes will probably not be applied.
---- The changes done using the ModImage* API will need to be done again on each game restart/new game. It's possible that some images will be cached over restarts, and changes will not be visible in the game until a full executable restart - you will have to figure out where that applies.
---- Allows access to data files and files from enabled mods. "mods/mod/data/file.png" and "data/file.png" point to the same file. Available only in init.lua during mod init.
+--- Makes an image available for in-memory editing through `ModImageGetPixel`() and `ModImageSetPixel`().
+---Returns an id that can be used to access the image, and the dimensions of the image.
+---If an image file with the name wasn't found, an in-memory image of the given size will be created, filled with empty pixels (0x0), and added to the virtual filesystem under 'filename'.
+---If an image with the given name has been previously created through ModImageMakeEditable, the id of that image will be returned. In case memory allocation failed, or if this is called outside mod init using a filename that wasn't succesfully used with this function during the init, 0 will be returned as the id.
+---The game will apply further processing to some images, so the final binary data might end up different. For example, R and B channels are sometimes swapped, and on some textures the colors will be extended by one pixel outside areas where A>0.
+---If game code has already loaded the image (for example this could be the case with some UI textures), the changes will probably not be applied.
+---The changes done using the ModImage* API will need to be done again on each game restart/new game. It's possible that some images will be cached over restarts, and changes will not be visible in the game until a full executable restart - you will have to figure out where that applies.
+---Allows access to data files and files from enabled mods. "mods/mod/data/file.png" and "data/file.png" point to the same file. Available only in init.lua during mod init.
 ---@param filename string
 ---@param width integer
 ---@param height integer
@@ -2440,7 +2440,7 @@ function ModImageMakeEditable(filename, width, height) end
 
 --- Returns an id that can be used with ModImageGetPixel and ModImageSetPixel, and the dimensions of the image.
 --- If a previous successful call to ModImageMakeEditable hasn't been made with the given filename, 0 will be returned as 'id', 'w' and 'h'.
---- Unlike most Mod* functions, this one is available everywhere.
+---Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string
 ---@return integer id
 ---@return integer w
@@ -2448,10 +2448,10 @@ function ModImageMakeEditable(filename, width, height) end
 function ModImageIdFromFilename(filename) end
 
 --- Returns the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based.
---- Use ModImageMakeEditable to create an id that can be used with this function.
+---Use ModImageMakeEditable to create an id that can be used with this function.
 --- While it's possible to edit images after mod init, it's not guaranteed that game systems will see the changes, as the system might already have loaded the image at that point.
---- The function will silently fail nad return 0 if 'id' isn't valid.
---- Unlike most Mod* functions, this one is available everywhere.
+---The function will silently fail nad return 0 if 'id' isn't valid.
+---Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer
 ---@param x integer
 ---@param y integer
@@ -2460,9 +2460,9 @@ function ModImageIdFromFilename(filename) end
 function ModImageGetPixel(id, x, y) end
 
 --- Sets the color of a pixel in ABGR format (0xABGR). 'x' and 'y' are zero-based.
---- Use ModImageMakeEditable to create an id that can be used with this function.
+---Use ModImageMakeEditable to create an id that can be used with this function.
 --- The function will silently fail if 'id' isn't valid.
---- Unlike most Mod* functions, this one is available everywhere.
+---Unlike most Mod* functions, this one is available everywhere.
 ---@param id integer
 ---@param x integer
 ---@param y integer
@@ -2646,7 +2646,7 @@ function GetValueBool(key, default_value) end
 ---@overload fun(filename: string): (nil, error_string: string)
 function dofile(filename) end
 
---- Runs the script only once per lua context, returns the script's return value, if any. Returns nil,error_string if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile behaviour is required.
+--- Runs the script only once per lua context, returns the script's return value, if any. Returns nil,error_string if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard dofile behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
