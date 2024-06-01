@@ -313,6 +313,7 @@ overrides = {
 		"ret": "x: number, y: number, angle: number, vel_x: number, vel_y: number, angular_vel: number",
 		"overload": {"ret": "nil"},
 	},
+    "GenomeSetHerdId": {"comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."}
 }
 
 
