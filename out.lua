@@ -69,8 +69,7 @@ function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon) end
 ---@param ui_timer_offset_normalized number 0.0
 function GameRegisterStatusEffect(ui_name, ui_description, ui_icon, protects_from_fire, remove_cells_that_cause_when_activated, effect_entity, min_threshold_normalized, extra_status_00, effect_permanent, is_harmful, ui_timer_offset_normalized) end
 
----This doesn't seem to be used anymore in vanilla, use with caution.
----@deprecated
+---Only available in data/scripts/streaming_integratiion/event_list.lua
 ---@param id string
 ---@param ui_name string
 ---@param ui_description string
