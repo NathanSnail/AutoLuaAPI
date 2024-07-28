@@ -100,6 +100,8 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 ---@alias gui userdata
 ]]
 
+---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
+
 {component_type}
 ---@alias damage_type "NONE" | "DAMAGE_MELEE" | "DAMAGE_PROJECTILE" | "DAMAGE_EXPLOSION" | "DAMAGE_BITE" | "DAMAGE_FIRE" | "DAMAGE_MATERIAL" | "DAMAGE_FALL" | "DAMAGE_ELECTRICITY" | "DAMAGE_DROWNING" | "DAMAGE_PHYSICS_BODY_DAMAGED" | "DAMAGE_DRILL" | "DAMAGE_SLICE" | "DAMAGE_ICE" | "DAMAGE_HEALING" | "DAMAGE_PHYSICS_HIT" | "DAMAGE_RADIOACTIVE" | "DAMAGE_POISON" | "DAMAGE_MATERIAL_WITH_FLASH" | "DAMAGE_OVEREATING" | "DAMAGE_CURSE" | "DAMAGE_HOLY"
 ---@alias game_effect "NONE" | "ELECTROCUTION" | "FROZEN" | "ON_FIRE" | "POISON" | "BERSERK" | "CHARM" | "POLYMORPH" | "POLYMORPH_RANDOM" | "BLINDNESS" | "TELEPATHY" | "TELEPORTATION" | "REGENERATION" | "LEVITATION" | "MOVEMENT_SLOWER" | "FARTS" | "DRUNK" | "BREATH_UNDERWATER" | "RADIOACTIVE" | "WET" | "OILED" | "BLOODY" | "SLIMY" | "CRITICAL_HIT_BOOST" | "CONFUSION" | "MELEE_COUNTER" | "WORM_ATTRACTOR" | "WORM_DETRACTOR" | "FOOD_POISONING" | "FRIEND_THUNDERMAGE" | "FRIEND_FIREMAGE" | "INTERNAL_FIRE" | "INTERNAL_ICE" | "JARATE" | "KNOCKBACK" | "KNOCKBACK_IMMUNITY" | "MOVEMENT_SLOWER_2X" | "MOVEMENT_FASTER" | "STAINS_DROP_FASTER" | "SAVING_GRACE" | "DAMAGE_MULTIPLIER" | "HEALING_BLOOD" | "RESPAWN" | "PROTECTION_FIRE" | "PROTECTION_RADIOACTIVITY" | "PROTECTION_EXPLOSION" | "PROTECTION_MELEE" | "PROTECTION_ELECTRICITY" | "TELEPORTITIS" | "STAINLESS_ARMOUR" | "GLOBAL_GORE" | "EDIT_WANDS_EVERYWHERE" | "EXPLODING_CORPSE_SHOTS" | "EXPLODING_CORPSE" | "EXTRA_MONEY" | "EXTRA_MONEY_TRICK_KILL" | "HOVER_BOOST" | "PROJECTILE_HOMING" | "ABILITY_ACTIONS_MATERIALIZED" | "NO_DAMAGE_FLASH" | "NO_SLIME_SLOWDOWN" | "MOVEMENT_FASTER_2X" | "NO_WAND_EDITING" | "LOW_HP_DAMAGE_BOOST" | "FASTER_LEVITATION" | "STUN_PROTECTION_ELECTRICITY" | "STUN_PROTECTION_FREEZE" | "IRON_STOMACH" | "PROTECTION_ALL" | "INVISIBILITY" | "REMOVE_FOG_OF_WAR" | "MANA_REGENERATION" | "PROTECTION_DURING_TELEPORT" | "PROTECTION_POLYMORPH" | "PROTECTION_FREEZE" | "FROZEN_SPEED_UP" | "UNSTABLE_TELEPORTATION" | "POLYMORPH_UNSTABLE" | "CUSTOM" | "ALLERGY_RADIOACTIVE" | "RAINBOW_FARTS"
@@ -318,6 +320,10 @@ overrides = {
 	},
 	"GenomeSetHerdId": {
 		"comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."
+	},
+	"PhysicsApplyForceOnArea": {
+		"comment": "Applies a force calculated by 'calculate_force_for_body_fn' to all bodies in an area.",
+		"args": "calculate_force_for_body_fn: calculate_force_for_body_fn_type, ignore_this_entity:int, area_min_x:number, area_min_y:number,area_max_x:number, area_max_y:number",
 	},
 }
 
