@@ -276,6 +276,7 @@ function Reflection_RegisterProjectile(path) end
 function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon) end
 
 ---Only available in data/scripts/status_effects/status_reflect.lua
+---@param id string
 ---@param ui_name string
 ---@param ui_description string
 ---@param ui_icon string
@@ -287,7 +288,7 @@ function RegisterPerk(id, ui_name, ui_description, ui_icon, perk_icon) end
 ---@param effect_permanent boolean false
 ---@param is_harmful boolean false
 ---@param ui_timer_offset_normalized number 0.0
-function GameRegisterStatusEffect(ui_name, ui_description, ui_icon, protects_from_fire, remove_cells_that_cause_when_activated, effect_entity, min_threshold_normalized, extra_status_00, effect_permanent, is_harmful, ui_timer_offset_normalized) end
+function GameRegisterStatusEffect(id, ui_name, ui_description, ui_icon, protects_from_fire, remove_cells_that_cause_when_activated, effect_entity, min_threshold_normalized, extra_status_00, effect_permanent, is_harmful, ui_timer_offset_normalized) end
 
 ---Only available in data/scripts/streaming_integratiion/event_list.lua
 ---@param id string
