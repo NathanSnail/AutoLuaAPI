@@ -100,6 +100,31 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 ---@alias gui userdata
 ]]
 
+---@alias script_enabled_changed fun(entity_id: entity_id, is_enabled: boolean)
+---@alias script_damage_received fun(damage: number, message: string, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
+---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
+---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
+---@alias script_shot fun(projectile_entity_id: entity_id)
+---@alias script_collision_trigger fun(colliding_entity_id: entity_id)
+---@alias script_collision_trigger_timer_finished fun()
+---@alias script_physics_body_modified fun(is_destroyed: boolean)
+---@alias script_pressure_plate_change fun(new_state: boolean)
+---@alias script_inhaled_material fun(material_name, count)
+---@alias script_death fun(damage_type_bit_field: unsigned_integer, damage_message: string, entity_thats_responsible: integer, drop_items: boolean)
+---@alias script_throw_item fun(from_x: number, from_y: number, to_x: number, to_y: number)
+---@alias script_material_area_checker_failed fun(pos_x: integer, pos_y: integer)
+---@alias script_material_area_checker_success fun(pos_x: integer, pos_y: integer)
+---@alias script_electricity_receiver_switched fun(is_electrified: boolean)
+---@alias script_electricity_receiver_electrified fun()
+---@alias script_kick fun(entity_who_kicked: entity_id)
+---@alias script_interacting fun(entity_who_interacted: entity_id, entity_interacted: entity_id, interactable_name: string)
+---@alias script_audio_event_dead fun(bank_file: string, event_root: string)
+---@alias script_wand_fired fun(gun_entity_id: entity_id)
+---@alias script_teleported fun(from_x: number, from_y: number, to_x: number, to_y: number, portal_teleport: boolean)
+---@alias script_portal_teleport_used fun(entity_that_was_teleported: entity_id, from_x: number, from_y: number, to_x: number, to_y: number)
+---@alias script_polymorphing_to fun(entity_we_are_about_to_polymorph_to: string)
+---@alias script_biome_entered fun(biome_name: string, biome_old_name: string)
+
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
 
 {component_type}
