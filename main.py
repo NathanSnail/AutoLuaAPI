@@ -100,8 +100,66 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 ---@alias gui userdata
 ]]
 
+--Hybrid mode types 
+--[[
+---@class _entity_id
+---@class _component_id
+---@class unsigned_integer: integer
+---@class _physics_body_id
+---@class gui
+---@alias entity_id _entity_id | 0
+---@alias component_id _component_id | 0
+---@alias physics_body_id _physics_body_id | 0
+]]
+
+---Use `bit` table to compare with these constants, damage type is a bit field.
+---@alias damage_type_bit_field
+---|> 0 NONE 0x0
+---| 1 DAMAGE_MELEE 0x1
+---| 2 DAMAGE_PROJECTILE 0x2
+---| 4 DAMAGE_EXPLOSION 0x4
+---| 8 DAMAGE_BITE 0x8
+---| 16 DAMAGE_FIRE 0x10
+---| 32 DAMAGE_MATERIAL 0x20
+---| 64 DAMAGE_FALL 0x40
+---| 128 DAMAGE_ELECTRICITY 0x80
+---| 256 DAMAGE_DROWNING 0x100
+---| 512 DAMAGE_PHYSICS_BODY_DAMAGED 0x200
+---| 1024 DAMAGE_DRILL 0x400
+---| 2048 DAMAGE_SLICE 0x800
+---| 4096 DAMAGE_ICE 0x1000
+---| 8192 DAMAGE_HEALING 0x2000
+---| 16384 DAMAGE_PHYSIICS_HIT 0x4000
+---| 32768 DAMAGE_RADIOACTIVE 0x8000
+---| 65536 DAMAGE_POISON 0x10000
+---| 131072 DAMAGE_MATERIAL_WITH_FLASH 0x20000
+---| 262144 DAMAGE_OVEREATING 0x40000
+---| 524288 DAMAGE_CURSE 0x80000
+---| 1048576 DAMAGE_HOLY 0x100000
+
+---@alias damage_message
+---|> string
+---| "$damage_projectile"
+---| "$damage_electricity"
+---| "$damage_explosion"
+---| "$damage_fire"
+---| "$damage_melee"
+---| "$damage_drill"
+---| "$damage_slice"
+---| "$damage_ice"
+---| "$damage_healing"
+---| "$damage_physicshit"
+---| "$damage_radioactive"
+---| "$damage_poison"
+---| "$damage_water"
+---| "$damage_fall"
+---| "$damage_drowning"
+---| "$damage_frommaterial"
+---| "$damage_kick"
+---| "$damage_holy_mountains_curse"
+
 ---@alias script_enabled_changed fun(entity_id: entity_id, is_enabled: boolean)
----@alias script_damage_received fun(damage: number, message: string, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
+---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
 ---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
 ---@alias script_shot fun(projectile_entity_id: entity_id)
@@ -110,7 +168,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 ---@alias script_physics_body_modified fun(is_destroyed: boolean)
 ---@alias script_pressure_plate_change fun(new_state: boolean)
 ---@alias script_inhaled_material fun(material_name, count)
----@alias script_death fun(damage_type_bit_field: unsigned_integer, damage_message: string, entity_thats_responsible: entity_id, drop_items: boolean)
+---@alias script_death fun(damage_type_bit_field: damage_type_bit_field, damage_message: damage_message, entity_thats_responsible: entity_id, drop_items: boolean)
 ---@alias script_throw_item fun(from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_material_area_checker_failed fun(pos_x: integer, pos_y: integer)
 ---@alias script_material_area_checker_success fun(pos_x: integer, pos_y: integer)
