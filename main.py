@@ -110,7 +110,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return
 ---@alias script_physics_body_modified fun(is_destroyed: boolean)
 ---@alias script_pressure_plate_change fun(new_state: boolean)
 ---@alias script_inhaled_material fun(material_name, count)
----@alias script_death fun(damage_type_bit_field: unsigned_integer, damage_message: string, entity_thats_responsible: integer, drop_items: boolean)
+---@alias script_death fun(damage_type_bit_field: unsigned_integer, damage_message: string, entity_thats_responsible: entity_id, drop_items: boolean)
 ---@alias script_throw_item fun(from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_material_area_checker_failed fun(pos_x: integer, pos_y: integer)
 ---@alias script_material_area_checker_success fun(pos_x: integer, pos_y: integer)
