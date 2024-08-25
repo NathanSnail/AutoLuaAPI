@@ -443,6 +443,9 @@ overrides = {
 	"AddMaterialInventoryMaterial": {
 		"comment": "This function actually sets the amount in the inventory rather than adding."
 	},
+	"GameGetRealWorldTimeSinceStarted": {
+		"comment": "Returns time in seconds to a high precision"
+	},
 	"EntityAddComponent2": {
 		"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"
 	},
