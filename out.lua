@@ -1479,6 +1479,7 @@ function DEBUG_MARK(x, y, message, color_r, color_g, color_b) end
 ---@nodiscard
 function GameGetFrameNum() end
 
+---Returns time in seconds to a high precision
 ---@return number
 ---@nodiscard
 function GameGetRealWorldTimeSinceStarted() end
