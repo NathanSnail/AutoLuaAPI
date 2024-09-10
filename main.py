@@ -81,7 +81,7 @@ component_type = "---@alias component_type " + " | ".join(
 	[f'"{x}"' for x in components]
 )
 
-out = f"""---@diagnostic disable: unused-local, missing-return
+out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type, return-type-mismatch
 ---@meta
 
 ---[[
@@ -464,11 +464,40 @@ overrides = {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
 		"comment": "Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
+		"implementation": """
+	local impl = __loaded[filename]
+	if impl == nil then
+		impl, error_message = loadfile(filename)
+		if impl == nil then
+			return impl, error_message
+		end
+		__loaded[filename] = impl
+	end
+	local result = impl()
+	do_mod_appends(filename)
+	return result
+""",
 	},
 	"dofile_once": {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
 		"comment": "Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
+		"implementation": """
+	local result = nil
+	local cached = __loadonce[filename]
+	if cached ~= nil then
+		result = cached[1]
+	else
+		local impl, error_message = loadfile(filename)
+		if impl == nil then
+			return impl, error_message
+		end
+		result = impl()
+		__loadonce[filename] = { result }
+		do_mod_appends(filename)
+	end
+	return result
+""",
 	},
 	"ComponentGetValueVector2": {"ret": "x:number, y:number"},
 	"PhysicsAddJoint": {
@@ -551,6 +580,7 @@ for k, e in enumerate(table.children):
 	overloaded_args = ""
 	overloaded_ret = ""
 	deprecated = "deprecated" in comment.lower()
+	fn_impl = " "
 	nodiscard = (
 		"Get" in fn_name
 		or "Find" in fn_name
@@ -578,6 +608,8 @@ for k, e in enumerate(table.children):
 			custom_data += ("\n" if custom_data != "" else "") + override["custom"]
 		if "nodiscard" in override.keys():
 			nodiscard = override["nodiscard"]
+		if "implementation" in override.keys():
+			fn_impl = override["implementation"]
 	if ret[-5:] == ")|nil":
 		# special case where multiple thing are nil
 		ret = ret[1:-5]
@@ -656,7 +688,7 @@ for k, e in enumerate(table.children):
 
 	fn_def += custom_data
 
-	fn_def += "\nfunction " + fn_name + fn_sig + " end"
+	fn_def += "\nfunction " + fn_name + fn_sig + fn_impl + "end"
 	fn_def = fn_def.replace("  ", " ")
 	while "\n\n" in fn_def:
 		fn_def = fn_def.replace("\n\n", "\n")

@@ -1,4 +1,4 @@
----@diagnostic disable: unused-local, missing-return
+---@diagnostic disable: unused-local, missing-return, cast-local-type, return-type-mismatch
 ---@meta
 
 ---[[
@@ -2841,11 +2841,38 @@ function GetValueBool(key, default_value) end
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
-function dofile(filename) end
+function dofile(filename)
+	local impl = __loaded[filename]
+	if impl == nil then
+		impl, error_message = loadfile(filename)
+		if impl == nil then
+			return impl, error_message
+		end
+		__loaded[filename] = impl
+	end
+	local result = impl()
+	do_mod_appends(filename)
+	return result
+end
 
 ---Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard `dofile`() behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
-function dofile_once(filename) end
+function dofile_once(filename)
+	local result = nil
+	local cached = __loadonce[filename]
+	if cached ~= nil then
+		result = cached[1]
+	else
+		local impl, error_message = loadfile(filename)
+		if impl == nil then
+			return impl, error_message
+		end
+		result = impl()
+		__loadonce[filename] = { result }
+		do_mod_appends(filename)
+	end
+	return result
+end
 
