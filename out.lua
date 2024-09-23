@@ -853,6 +853,10 @@ function GetMaterialInventoryMainMaterial(entity_id, ignore_box2d_materials) end
 ---@param y number? camera_y
 function GameScreenshake(strength, x, y) end
 
+---Grants the victory steam achievement, to get a victory screen use:
+---```lua
+---GameAddFlagRun("ending_game_completed")
+---```
 function GameOnCompleted() end
 
 ---@param id string

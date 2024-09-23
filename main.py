@@ -460,6 +460,7 @@ overrides = {
 			"ret": "clicked: boolean, right_clicked: boolean",
 		}
 	},
+    "GameOnCompleted": {"comment": "Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun(\"ending_game_completed\")\n```"},
 	"dofile": {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
