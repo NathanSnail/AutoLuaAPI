@@ -1281,7 +1281,9 @@ function PolymorphTableRemoveEntity(entity_xml, from_common_table, from_rare_tab
 function PolymorphTableGet(rare_table) end
 
 ---Set a list of all entities sas the polymorph random table
-function PolymorphTableSet() end
+---@param table_of_xml_entities string[]
+---@param rare_table boolean? false
+function PolymorphTableSet(table_of_xml_entities, rare_table) end
 
 ---@param x number
 ---@param y number
