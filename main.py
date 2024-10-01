@@ -460,7 +460,9 @@ overrides = {
 			"ret": "clicked: boolean, right_clicked: boolean",
 		}
 	},
-    "GameOnCompleted": {"comment": "Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun(\"ending_game_completed\")\n```"},
+	"GameOnCompleted": {
+		"comment": 'Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun("ending_game_completed")\n```'
+	},
 	"dofile": {
 		"ret": "script_return_type:any",
 		"overload": {"ret": "(nil, error_string: string)"},
@@ -551,6 +553,9 @@ overrides = {
 	"PhysicsApplyForceOnArea": {
 		"comment": "Applies a force calculated by 'calculate_force_for_body_fn' to all bodies in an area.",
 		"args": "calculate_force_for_body_fn: calculate_force_for_body_fn_type, ignore_this_entity:int, area_min_x:number, area_min_y:number,area_max_x:number, area_max_y:number",
+	},
+	"PolymorphTableSet": {
+		"args": "table_of_xml_entities: {string}, rare_table: bool = false"
 	},
 }
 
