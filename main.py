@@ -557,6 +557,9 @@ overrides = {
 	"PolymorphTableSet": {
 		"args": "table_of_xml_entities: {string}, rare_table: bool = false"
 	},
+	"GameGetDateAndTimeLocal" : {
+		"ret": "year: integer, month: integer, day: integer, hour: integer, minute: integer, second: integer, jussi: bool, mammi: bool"
+	},
 }
 
 
