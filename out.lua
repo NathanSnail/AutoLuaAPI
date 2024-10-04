@@ -1667,12 +1667,14 @@ function GetRandomAction(x, y, max_level, i) end
 ---@nodiscard
 function GameGetDateAndTimeUTC() end
 
----@return integer ear
+---@return integer year
 ---@return integer month
 ---@return integer day
 ---@return integer hour
 ---@return integer minute
 ---@return integer second
+---@return boolean jussi
+---@return boolean mammi
 ---@nodiscard
 function GameGetDateAndTimeLocal() end
 
