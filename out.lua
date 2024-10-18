@@ -75,7 +75,18 @@
 ---| "$damage_kick"
 ---| "$damage_holy_mountains_curse"
 
----@alias script_enabled_changed fun(entity_id: entity_id, is_enabled: boolean)
+---@alias OnPlayerSpawned fun(player_entity: entity_id)
+---@alias OnPlayerDied fun(player_entity: entity_id)
+---@alias OnMagicNumbersAndWorldSeedInitialized fun()
+---@alias OnBiomeConfigLoaded fun()
+---@alias OnWorldInitialized fun()
+---@alias OnWorldPreUpdate fun()
+---@alias OnWorldPostUpdate fun()
+---@alias OnPausedChanged fun(is_paused: boolean, is_inventory_pause: boolean)
+---@alias OnModSettingsChanged fun()
+---@alias OnPausePreUpdate fun()
+---@alias OnCountSecrets fun(): integer, integer
+
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
 ---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
