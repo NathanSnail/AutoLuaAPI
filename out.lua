@@ -85,7 +85,7 @@
 ---@alias OnPausedChanged fun(is_paused: boolean, is_inventory_pause: boolean)
 ---@alias OnModSettingsChanged fun()
 ---@alias OnPausePreUpdate fun()
----@alias OnCountSecrets fun(): integer, integer
+---@alias OnCountSecrets fun(): total: integer, found: integer
 
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
@@ -95,7 +95,7 @@
 ---@alias script_collision_trigger_timer_finished fun()
 ---@alias script_physics_body_modified fun(is_destroyed: boolean)
 ---@alias script_pressure_plate_change fun(new_state: boolean)
----@alias script_inhaled_material fun(material_name, count)
+---@alias script_inhaled_material fun(material_name: string, count: integer)
 ---@alias script_death fun(damage_type_bit_field: damage_type_bit_field, damage_message: damage_message, entity_thats_responsible: entity_id, drop_items: boolean)
 ---@alias script_throw_item fun(from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_material_area_checker_failed fun(pos_x: integer, pos_y: integer)
