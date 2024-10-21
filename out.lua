@@ -399,7 +399,7 @@ function EntityKill(entity_id) end
 ---@nodiscard
 function EntityGetIsAlive(entity_id) end
 
----Deprectated, use EntityAddComponent2 instead.
+---Deprectated, use `EntityAddComponent2`() instead.
 ---@param entity_id entity_id
 ---@param component_type_name component_type
 ---@param table_of_component_values string[]? nil
@@ -1433,9 +1433,11 @@ function HerdIdToString(herd_id) end
 ---@nodiscard
 function GetHerdRelation(herd_id_a, herd_id_b) end
 
+---Deprecated, use `EntityGetHerdRelationSafe`() instead.
 ---@param entity_a entity_id
 ---@param entity_b entity_id
 ---@return number
+---@deprecated
 ---@nodiscard
 function EntityGetHerdRelation(entity_a, entity_b) end
 
