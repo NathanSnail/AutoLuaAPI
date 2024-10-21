@@ -544,7 +544,7 @@ overrides = {
 	},
 	"PolymorphTableGet": {"args": "rare_table: bool = false "},
 	"EntityAddComponent": {
-		"comment": "Deprectated, use EntityAddComponent2 instead.",
+		"comment": "Deprectated, use EntityAddComponent2() instead.",
 		"deprecated": True,
 	},
 	"RegisterGunAction": {
@@ -568,8 +568,12 @@ overrides = {
 	"PolymorphTableSet": {
 		"args": "table_of_xml_entities: {string}, rare_table: bool = false"
 	},
-	"GameGetDateAndTimeLocal" : {
+	"GameGetDateAndTimeLocal": {
 		"ret": "year: integer, month: integer, day: integer, hour: integer, minute: integer, second: integer, jussi: bool, mammi: bool"
+	},
+	"EntityGetHerdRelation": {
+		"comment": "Deprecated, use EntityGetHerdRelationSafe() instead.",
+		"deprecated": True,
 	},
 }
 
