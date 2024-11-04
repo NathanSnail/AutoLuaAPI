@@ -226,6 +226,18 @@
 ---| "PROTECTION_PROJECTILE"
 ---| "POLYMORPH_CESSATION"
 ---| "_LAST"
+---@alias ragdoll_fx
+---|> "NONE"
+---| "NORMAL"
+---| "BLOOD_EXPLOSION"
+---| "BLOOD_SPRAY"
+---| "FROZEN"
+---| "CONVERT_TO_MATERIAL"
+---| "CUSTOM_RAGDOLL_ENTITY"
+---| "DISINTEGRATED"
+---| "NO_RAGDOLL_FILE"
+---| "PLAYER_RAGDOLL_CAMERA"
+
 ---@alias printable_string string | number
 
 ---Represents cached dofile results.
@@ -1177,7 +1189,7 @@ function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectil
 ---@param amount number
 ---@param damage_type damage_type
 ---@param description string
----@param ragdoll_fx string
+---@param ragdoll_fx ragdoll_fx
 ---@param impulse_x number
 ---@param impulse_y number
 ---@param entity_who_is_responsible entity_id? 0
