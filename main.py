@@ -51,6 +51,8 @@ def type_alias(src, name):
 		src = src.replace("bool", "boolean")
 	if "int" in src:
 		src = do_int(src, name)
+	if "ragdoll_fx" in name:
+		src = src.replace("string", "ragdoll_fx")
 	if src[-1] in ".-":
 		src = src[:-1]
 	return src
@@ -309,6 +311,19 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---| "PROTECTION_PROJECTILE"
 ---| "POLYMORPH_CESSATION"
 ---| "_LAST"
+---@alias ragdoll_fx
+---|> "NONE"
+---| "NORMAL"
+---| "BLOOD_EXPLOSION"
+---| "BLOOD_SPRAY"
+---| "FROZEN"
+---| "CONVERT_TO_MATERIAL"
+---| "CUSTOM_RAGDOLL_ENTITY"
+---| "DISINTEGRATED"
+---| "NO_RAGDOLL_FILE"
+---| "PLAYER_RAGDOLL_CAMERA"
+
+
 ---@alias printable_string string | number
 
 ---Represents cached dofile results.
