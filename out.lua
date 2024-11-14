@@ -4,7 +4,7 @@
 ---[[
 ---@class entity_id
 ---@class component_id
----@class unsigned_integer
+---@class unsigned_integer: integer
 ---@class physics_body_id
 ---@class gui
 --]]
