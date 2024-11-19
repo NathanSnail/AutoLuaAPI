@@ -947,6 +947,7 @@ function BiomeMaterialSetValue(filename, material_name, field_name, value) end
 function BiomeMaterialGetValue(filename, material_name, field_name) end
 
 ---@return boolean
+---@nodiscard
 function GameIsIntroPlaying() end
 
 ---@return boolean
@@ -1099,6 +1100,7 @@ function GameDropPlayerInventoryItems(entity_id) end
 function GameDestroyInventoryItems(entity_id) end
 
 ---@return boolean
+---@nodiscard
 function GameIsInventoryOpen() end
 
 function GameTriggerGameOver() end
@@ -1594,19 +1596,23 @@ function InputGetJoystickAnalogStick(joystick_index, stick_id) end
 
 ---@param entity_id entity_id
 ---@return boolean
+---@nodiscard
 function IsPlayer(entity_id) end
 
 ---@param entity_id entity_id
 ---@return boolean
+---@nodiscard
 function IsInvisible(entity_id) end
 
 ---@return boolean
 function GameIsDailyRun() end
 
 ---@return boolean
+---@nodiscard
 function GameIsDailyRunOrDailyPracticeRun() end
 
 ---@return boolean
+---@nodiscard
 function GameIsModeFullyDeterministic() end
 
 ---@param key string
@@ -2464,6 +2470,7 @@ function GuiGetImageDimensions(gui, image_filename, scale) end
 function GuiGetPreviousWidgetInfo(gui) end
 
 ---@return boolean
+---@nodiscard
 function GameIsBetaBuild() end
 
 ---@return boolean
@@ -2527,6 +2534,7 @@ function GetDailyPracticeRunSeed() end
 ---Returns true if a mod with the id `mod_id` is currently active. For example mod_id = "nightmare".
 ---@param mod_id string
 ---@return boolean
+---@nodiscard
 function ModIsEnabled(mod_id) end
 
 ---Returns a table filled with the IDs of currently active mods.
