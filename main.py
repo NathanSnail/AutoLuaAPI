@@ -590,6 +590,14 @@ overrides = {
 		"comment": "Deprecated, use EntityGetHerdRelationSafe() instead.",
 		"deprecated": True,
 	},
+	"GameIsIntroPlaying": {"nodiscard": True},
+	"GameIsInventoryOpen": {"nodiscard": True},
+	"IsPlayer": {"nodiscard": True},
+	"IsInvisible": {"nodiscard": True},
+	"GameIsDailyRunOrDailyPracticeRun": {"nodiscard": True},
+	"GameIsModeFullyDeterministic": {"nodiscard": True},
+	"GameIsBetaBuild": {"nodiscard": True},
+	"ModIsEnabled": {"nodiscard": True},
 }
 
 
