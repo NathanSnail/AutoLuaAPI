@@ -6,81 +6,81 @@ TESTING = True
 
 
 def maybe_entity(name):
-	return "entity" in name or "item" in name or "parent" in name or "child" in name
+    return "entity" in name or "item" in name or "parent" in name or "child" in name
 
 
 def do_int(src, name):
-	if "integer" not in src:
-		src = src.replace("int", "integer")
-	if "uinteger32" in src:
-		return src.replace("uinteger32", "unsigned_integer")
-	if "uinteger" in src:
-		return src.replace("uinteger", "unsigned_integer")
-	if "component" in name:
-		return src.replace("integer", "component_id")
-	if "physics_body_id" in name:
-		return src.replace("integer", "physics_body_id")
-	if maybe_entity(name):
-		return src.replace("integer", "entity_id")
-	return src
+    if "integer" not in src:
+        src = src.replace("int", "integer")
+    if "uinteger32" in src:
+        return src.replace("uinteger32", "unsigned_integer")
+    if "uinteger" in src:
+        return src.replace("uinteger", "unsigned_integer")
+    if "component" in name:
+        return src.replace("integer", "component_id")
+    if "physics_body_id" in name:
+        return src.replace("integer", "physics_body_id")
+    if maybe_entity(name):
+        return src.replace("integer", "entity_id")
+    return src
 
 
 def type_alias(src, name):
-	if "{" in src:
-		if "-" in src:
-			src = src.replace("-", "]:")
-			src = src.replace("{", "{[")
-		else:
-			src = src.replace("{", "")
-			src = src.replace("}", "[]")
-	src = src.replace("float", "number")
-	src = src.replace("multiple_types", "any")
-	src = src.replace("multipletypes", "any")
-	src = src.replace("obj", "gui")
-	src = src.replace("int_body_id", "physics_body_id")
-	src = src.replace("item_entity_id", "entity_id")
-	if "component_type" in name:
-		src = src.replace("string", "component_type")
-	if "damage_type" in name:
-		src = src.replace("string", "damage_type")
-	if "game_effect_name" in name:
-		src = src.replace("string", "game_effect")
-	if "material_type" in name:
-		src = src.replace("number", "integer")
-	if "boolean" not in src:
-		src = src.replace("bool", "boolean")
-	if "int" in src:
-		src = do_int(src, name)
-	if "ragdoll_fx" in name:
-		src = src.replace("string", "ragdoll_fx")
-	if src[-1] in ".-":
-		src = src[:-1]
-	return src
+    if "{" in src:
+        if "-" in src:
+            src = src.replace("-", "]:")
+            src = src.replace("{", "{[")
+        else:
+            src = src.replace("{", "")
+            src = src.replace("}", "[]")
+    src = src.replace("float", "number")
+    src = src.replace("multiple_types", "any")
+    src = src.replace("multipletypes", "any")
+    src = src.replace("obj", "gui")
+    src = src.replace("int_body_id", "physics_body_id")
+    src = src.replace("item_entity_id", "entity_id")
+    if "component_type" in name:
+        src = src.replace("string", "component_type")
+    if "damage_type" in name:
+        src = src.replace("string", "damage_type")
+    if "game_effect_name" in name:
+        src = src.replace("string", "game_effect")
+    if "material_type" in name:
+        src = src.replace("number", "integer")
+    if "boolean" not in src:
+        src = src.replace("bool", "boolean")
+    if "int" in src:
+        src = do_int(src, name)
+    if "ragdoll_fx" in name:
+        src = src.replace("string", "ragdoll_fx")
+    if src[-1] in ".-":
+        src = src[:-1]
+    return src
 
 
 base_path = (
-	"/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/"
-	if TESTING
-	else input("modding api folder path: ") + "/"
+    "/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/"
+    if TESTING
+    else input("modding api folder path: ") + "/"
 )
 doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
 with open(doc_path, "r", encoding="utf-8") as f:
-	html = f.read()
+    html = f.read()
 
 with open(comp_path, "r", encoding="utf-8") as f:
-	comp_data = f.read()
+    comp_data = f.read()
 
 components = []
 for line in comp_data.split("\n"):
-	if not len(line):
-		continue
-	if line[0] in " \t":
-		continue
-	components.append(line)
+    if not len(line):
+        continue
+    if line[0] in " \t":
+        continue
+    components.append(line)
 
 component_type = "---@alias component_type " + " | ".join(
-	[f'"{x}"' for x in components]
+    [f'"{x}"' for x in components]
 )
 
 out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type, return-type-mismatch
@@ -460,40 +460,40 @@ function _ConfigGunActionInfo_ReadToGame(action_id, action_name, action_descript
 """
 
 overrides = {
-	"GetParallelWorldPosition": {"ret": "x:number,y:number"},
-	"InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
-	"BiomeMapGetName": {"ret": "name:string"},
-	"AddFlagPersistent": {"ret": "is_new:boolean"},
-	"GuiTextInput": {"ret": "new_text:string"},
-	"ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
-	"AddMaterialInventoryMaterial": {
-		"comment": "This function actually sets the amount in the inventory rather than adding."
-	},
-	"GameGetRealWorldTimeSinceStarted": {
-		"comment": "Returns time in seconds to a high precision"
-	},
-	"EntityAddComponent2": {
-		"args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"
-	},
-	"GlobalsGetValue": {"ret": "global:any|nil"},
-	"EntityGetAllComponents": {"ret": "components:{int}"},
-	"LoadPixelScene": {
-		"args": 'materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = "", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false '
-	},
-	"GuiButton": {
-		"overload": {
-			"args": "(gui: gui, x: number, y: number, text: string, id: integer)",
-			"ret": "clicked: boolean, right_clicked: boolean",
-		}
-	},
-	"GameOnCompleted": {
-		"comment": 'Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun("ending_game_completed")\n```'
-	},
-	"dofile": {
-		"ret": "script_return_type:any",
-		"overload": {"ret": "(nil, error_string: string)"},
-		"comment": "Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
-		"implementation": """
+    "GetParallelWorldPosition": {"ret": "x:number,y:number"},
+    "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
+    "BiomeMapGetName": {"ret": "name:string"},
+    "AddFlagPersistent": {"ret": "is_new:boolean"},
+    "GuiTextInput": {"ret": "new_text:string"},
+    "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},
+    "AddMaterialInventoryMaterial": {
+        "comment": "This function actually sets the amount in the inventory rather than adding."
+    },
+    "GameGetRealWorldTimeSinceStarted": {
+        "comment": "Returns time in seconds to a high precision"
+    },
+    "EntityAddComponent2": {
+        "args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"
+    },
+    "GlobalsGetValue": {"ret": "global:any|nil"},
+    "EntityGetAllComponents": {"ret": "components:{int}"},
+    "LoadPixelScene": {
+        "args": 'materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = "", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false '
+    },
+    "GuiButton": {
+        "overload": {
+            "args": "(gui: gui, x: number, y: number, text: string, id: integer)",
+            "ret": "clicked: boolean, right_clicked: boolean",
+        }
+    },
+    "GameOnCompleted": {
+        "comment": 'Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun("ending_game_completed")\n```'
+    },
+    "dofile": {
+        "ret": "script_return_type:any",
+        "overload": {"ret": "(nil, error_string: string)"},
+        "comment": "Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
+        "implementation": """
 	local impl = __loaded[filename]
 	if impl == nil then
 		impl, error_message = loadfile(filename)
@@ -506,12 +506,12 @@ overrides = {
 	do_mod_appends(filename)
 	return result
 """,
-	},
-	"dofile_once": {
-		"ret": "script_return_type:any",
-		"overload": {"ret": "(nil, error_string: string)"},
-		"comment": "Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
-		"implementation": """
+    },
+    "dofile_once": {
+        "ret": "script_return_type:any",
+        "overload": {"ret": "(nil, error_string: string)"},
+        "comment": "Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use dofile_once(), unless the standard dofile() behaviour is required.",
+        "implementation": """
 	local result = nil
 	local cached = __loadonce[filename]
 	if cached ~= nil then
@@ -527,220 +527,220 @@ overrides = {
 	end
 	return result
 """,
-	},
-	"ComponentGetValueVector2": {"ret": "x:number, y:number"},
-	"PhysicsAddJoint": {
-		"comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."
-	},
-	# "GuiCreate": {"nodiscard": True},
-	"EntityGetWithTag": {"ret": "entity_id: {int}"},
-	"EntityGetInRadius": {"ret": "entity_id: {int}"},
-	"EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
-	"GetGameEffectLoadTo": {"nodiscard": False},
-	"StringToHerdId": {"nodiscard": True},
-	"HerdIdToString": {"nodiscard": True},
-	"PhysicsPosToGamePos": {"nodiscard": True},
-	"GamePosToPhysicsPos": {"nodiscard": True},
-	"PhysicsVecToGameVec": {"nodiscard": True},
-	"GameVecToPhysicsVec": {"nodiscard": True},
-	"EntityLoad": {"args": "filename:string, pos_x:integer = 0, pos_y:integer = 0"},
-	"GameGetGameEffect": {"comment": "returns 0 on failure"},
-	"GetValueBool": {"args": "key: string, default_value: bool"},
-	"SetValueBool": {"args": "key: string, value: bool"},
-	"EntityGetAllChildren": {
-		"ret": "{entity_id}|nil",
-		"comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned.",
-	},
-	"DoesWorldExistAt": {
-		"comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."
-	},
-	"GuiImage": {
-		"comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.\nDue to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
-	},
-	"PolymorphTableGet": {"args": "rare_table: bool = false "},
-	"EntityAddComponent": {
-		"comment": "Deprectated, use EntityAddComponent2() instead.",
-		"deprecated": True,
-	},
-	"RegisterGunAction": {
-		"args": "action_id:string, action_name:string, action_description:string, action_sprite_filename:string, action_unidentified_sprite_filename:string, action_type:number, action_spawn_level:string, action_spawn_probability:string, action_spawn_requires_flag:string, action_spawn_manual_unlock:boolean, action_max_uses:number, custom_xml_file:string, action_mana_drain:number, action_is_dangerous_blast:boolean, action_draw_many_count:number, action_ai_never_uses:boolean, action_never_unlimited:boolean, state_shuffled:boolean, state_cards_drawn:number, state_discarded_action:boolean, state_destroyed_action:boolean, fire_rate_wait:number, speed_multiplier:number, child_speed_multiplier:number, dampening:number, explosion_radius:number, spread_degrees:number, pattern_degrees:number, screenshake:number, recoil:number, damage_melee_add:number, damage_projectile_add:number, damage_electricity_add:number, damage_fire_add:number, damage_explosion_add:number, damage_ice_add:number, damage_slice_add:number, damage_healing_add:number, damage_curse_add:number, damage_drill_add:number, damage_null_all:number, damage_critical_chance:number, damage_critical_multiplier:number, explosion_damage_to_materials:number, knockback_force:number, reload_time:number, lightning_count:number, material:string, material_amount:number, trail_material:string, trail_material_amount:number, bounces:number, gravity:number, light:number, blood_count_multiplier:number, gore_particles:number, ragdoll_fx:number, friendly_fire:boolean, physics_impulse_coeff:number, lifetime_add:number, sprite:string, extra_entities:string, game_effect_entities:string, sound_loop_tag:string, projectile_file:string "
-	},
-	"ModMaterialFilesGet": {
-		"comment": "Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later"
-	},
-	"ModLuaFileSetAppends": {"args": "filename:string, appends: {string}"},
-	"PhysicsBodyIDGetTransform": {
-		"ret": "x: number, y: number, angle: number, vel_x: number, vel_y: number, angular_vel: number",
-		"overload": {"ret": "nil"},
-	},
-	"GenomeSetHerdId": {
-		"comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."
-	},
-	"PhysicsApplyForceOnArea": {
-		"comment": "Applies a force calculated by 'calculate_force_for_body_fn' to all bodies in an area.",
-		"args": "calculate_force_for_body_fn: calculate_force_for_body_fn_type, ignore_this_entity:int, area_min_x:number, area_min_y:number,area_max_x:number, area_max_y:number",
-	},
-	"PolymorphTableSet": {
-		"args": "table_of_xml_entities: {string}, rare_table: bool = false"
-	},
-	"GameGetDateAndTimeLocal": {
-		"ret": "year: integer, month: integer, day: integer, hour: integer, minute: integer, second: integer, jussi: bool, mammi: bool"
-	},
-	"EntityGetHerdRelation": {
-		"comment": "Deprecated, use EntityGetHerdRelationSafe() instead.",
-		"deprecated": True,
-	},
-	"GameIsIntroPlaying": {"nodiscard": True},
-	"GameIsInventoryOpen": {"nodiscard": True},
-	"IsPlayer": {"nodiscard": True},
-	"IsInvisible": {"nodiscard": True},
-	"GameIsDailyRunOrDailyPracticeRun": {"nodiscard": True},
-	"GameIsModeFullyDeterministic": {"nodiscard": True},
-	"GameIsBetaBuild": {"nodiscard": True},
-	"ModIsEnabled": {"nodiscard": True},
+    },
+    "ComponentGetValueVector2": {"ret": "x:number, y:number"},
+    "PhysicsAddJoint": {
+        "comment": "Note: this function has a hidden 7th boolean parameter which does something and also can have as few as 3 arguments of unknown types.\nDoes not work with PhysicsBody2Component. Returns the id of the created joint."
+    },
+    # "GuiCreate": {"nodiscard": True},
+    "EntityGetWithTag": {"ret": "entity_id: {int}"},
+    "EntityGetInRadius": {"ret": "entity_id: {int}"},
+    "EntityGetInRadiusWithTag": {"ret": "entity_id: {int}"},
+    "GetGameEffectLoadTo": {"nodiscard": False},
+    "StringToHerdId": {"nodiscard": True},
+    "HerdIdToString": {"nodiscard": True},
+    "PhysicsPosToGamePos": {"nodiscard": True},
+    "GamePosToPhysicsPos": {"nodiscard": True},
+    "PhysicsVecToGameVec": {"nodiscard": True},
+    "GameVecToPhysicsVec": {"nodiscard": True},
+    "EntityLoad": {"args": "filename:string, pos_x:integer = 0, pos_y:integer = 0"},
+    "GameGetGameEffect": {"comment": "returns 0 on failure"},
+    "GetValueBool": {"args": "key: string, default_value: bool"},
+    "SetValueBool": {"args": "key: string, value: bool"},
+    "EntityGetAllChildren": {
+        "ret": "{entity_id}|nil",
+        "comment": "If passed the optional 'tag' parameter, will return only child entities that have that tag (If 'tag' isn't a valid tag name, will return no entities). If no entities are found returns nil, but if entities are found but the tag doesn't match an empty table is returned.",
+    },
+    "DoesWorldExistAt": {
+        "comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."
+    },
+    "GuiImage": {
+        "comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.\nDue to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
+    },
+    "PolymorphTableGet": {"args": "rare_table: bool = false "},
+    "EntityAddComponent": {
+        "comment": "Deprectated, use EntityAddComponent2() instead.",
+        "deprecated": True,
+    },
+    "RegisterGunAction": {
+        "args": "action_id:string, action_name:string, action_description:string, action_sprite_filename:string, action_unidentified_sprite_filename:string, action_type:number, action_spawn_level:string, action_spawn_probability:string, action_spawn_requires_flag:string, action_spawn_manual_unlock:boolean, action_max_uses:number, custom_xml_file:string, action_mana_drain:number, action_is_dangerous_blast:boolean, action_draw_many_count:number, action_ai_never_uses:boolean, action_never_unlimited:boolean, state_shuffled:boolean, state_cards_drawn:number, state_discarded_action:boolean, state_destroyed_action:boolean, fire_rate_wait:number, speed_multiplier:number, child_speed_multiplier:number, dampening:number, explosion_radius:number, spread_degrees:number, pattern_degrees:number, screenshake:number, recoil:number, damage_melee_add:number, damage_projectile_add:number, damage_electricity_add:number, damage_fire_add:number, damage_explosion_add:number, damage_ice_add:number, damage_slice_add:number, damage_healing_add:number, damage_curse_add:number, damage_drill_add:number, damage_null_all:number, damage_critical_chance:number, damage_critical_multiplier:number, explosion_damage_to_materials:number, knockback_force:number, reload_time:number, lightning_count:number, material:string, material_amount:number, trail_material:string, trail_material_amount:number, bounces:number, gravity:number, light:number, blood_count_multiplier:number, gore_particles:number, ragdoll_fx:number, friendly_fire:boolean, physics_impulse_coeff:number, lifetime_add:number, sprite:string, extra_entities:string, game_effect_entities:string, sound_loop_tag:string, projectile_file:string "
+    },
+    "ModMaterialFilesGet": {
+        "comment": "Returns a list of filenames from which materials were loaded. Only works in OnModInit() and later"
+    },
+    "ModLuaFileSetAppends": {"args": "filename:string, appends: {string}"},
+    "PhysicsBodyIDGetTransform": {
+        "ret": "x: number, y: number, angle: number, vel_x: number, vel_y: number, angular_vel: number",
+        "overload": {"ret": "nil"},
+    },
+    "GenomeSetHerdId": {
+        "comment": "Deprecated, use StringToHerdID() and ComponentSetValue2() instead."
+    },
+    "PhysicsApplyForceOnArea": {
+        "comment": "Applies a force calculated by 'calculate_force_for_body_fn' to all bodies in an area.",
+        "args": "calculate_force_for_body_fn: calculate_force_for_body_fn_type, ignore_this_entity:int, area_min_x:number, area_min_y:number,area_max_x:number, area_max_y:number",
+    },
+    "PolymorphTableSet": {
+        "args": "table_of_xml_entities: {string}, rare_table: bool = false"
+    },
+    "GameGetDateAndTimeLocal": {
+        "ret": "year: integer, month: integer, day: integer, hour: integer, minute: integer, second: integer, jussi: bool, mammi: bool"
+    },
+    "EntityGetHerdRelation": {
+        "comment": "Deprecated, use EntityGetHerdRelationSafe() instead.",
+        "deprecated": True,
+    },
+    "GameIsIntroPlaying": {"nodiscard": True},
+    "GameIsInventoryOpen": {"nodiscard": True},
+    "IsPlayer": {"nodiscard": True},
+    "IsInvisible": {"nodiscard": True},
+    "GameIsDailyRunOrDailyPracticeRun": {"nodiscard": True},
+    "GameIsModeFullyDeterministic": {"nodiscard": True},
+    "GameIsBetaBuild": {"nodiscard": True},
+    "ModIsEnabled": {"nodiscard": True},
 }
 
 
 tree = BeautifulSoup(html, features="html.parser")
 table = tree.find("table")
 for k, e in enumerate(table.children):
-	if k % 2:
-		continue
-	parts = [x for x in e.children]
-	# print(parts)
-	example = parts[1]
-	ret = parts[3].text
-	comment = "\n".join(parts[5].strings)
-	example_parts = [x for x in example.children]
-	fn_name = example_parts[0].text
-	if "Input" in fn_name and fn_name != "GuiTextInput":
-		# hax hax hax
-		d = ret.split("(")
-		ret = d[0]
-		comment = "".join("".join(d[1:]).split(")")[:-1])
-	ret = ret.replace(" ", "")
-	# print(fn_name)
-	# print(comment)
-	fn_args = example_parts[2].text
-	overloaded = False
-	custom_data = ""
-	overloaded_args = ""
-	overloaded_ret = ""
-	deprecated = "deprecated" in comment.lower()
-	fn_impl = " "
-	nodiscard = (
-		"Get" in fn_name
-		or "Find" in fn_name
-		or "Raytrace" in fn_name
-		or "Input" in fn_name
-		or "Has" in fn_name
-	)
-	if fn_name in overrides.keys():
-		override = overrides[fn_name]
-		if "ret" in override.keys():
-			ret = override["ret"]
-		if "args" in override.keys():
-			fn_args = override["args"]
-		if "comment" in override.keys():
-			comment = override["comment"]
-		if "deprecated" in override.keys():
-			deprecated = override["deprecated"]
-		if "overload" in override.keys():
-			overloaded = True
-			overload = override["overload"]
-			overloaded_ret = overload["ret"]
-			if "args" in overload.keys():
-				overloaded_args = overload["args"]
-		if "custom" in override.keys():
-			custom_data += ("\n" if custom_data != "" else "") + override["custom"]
-		if "nodiscard" in override.keys():
-			nodiscard = override["nodiscard"]
-		if "implementation" in override.keys():
-			fn_impl = override["implementation"]
-	if ret[-5:] == ")|nil":
-		# special case where multiple thing are nil
-		ret = ret[1:-5]
-		overloaded = True
-		overloaded_ret = "nil"
-	fn_args = fn_args.replace("value_or_values", "...")
-	fn_args = fn_args.replace(" ", "").split(",")
-	fn_def = ""
-	fn_args2 = []
-	if fn_args[0] == "":
-		fn_args = []
-	for arg in fn_args:
-		# print(arg)
-		typed = arg.split(":")
-		if len(typed) != 2:
-			# print(fn_args)
-			continue
-		arg_name = typed[0]
-		arg_type = typed[1]
-		# print(arg_type)
-		arg_default = arg_type.split("=")
-		extra = ""
-		if len(arg_default) == 2:
-			extra = arg_default[1]
-			arg_type = arg_default[0]
-		if extra != "" and extra[0] == '"':
-			extra = "'" + extra + "'"
-		arg_type = type_alias(arg_type, arg_name)
-		fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
-	rets = ret.split(",")
-	rets2 = []
-	if rets[0] == "":
-		rets = []
-	for e in rets:
-		typed = e.split(":")
-		# print(typed)
-		if len(typed) != 2:
-			# print(fn_args)
-			rets2.append((type_alias(typed[0], ""),))
-			continue
-		ret_name = typed[0]
-		ret_type = typed[1]
-		# print(arg_type)
-		ret_type = type_alias(ret_type, ret_name)
-		rets2.append((ret_type, ret_name))
+    if k % 2:
+        continue
+    parts = [x for x in e.children]
+    # print(parts)
+    example = parts[1]
+    ret = parts[3].text
+    comment = "\n".join(parts[5].strings)
+    example_parts = [x for x in example.children]
+    fn_name = example_parts[0].text
+    if "Input" in fn_name and fn_name != "GuiTextInput":
+        # hax hax hax
+        d = ret.split("(")
+        ret = d[0]
+        comment = "".join("".join(d[1:]).split(")")[:-1])
+    ret = ret.replace(" ", "")
+    # print(fn_name)
+    # print(comment)
+    fn_args = example_parts[2].text
+    overloaded = False
+    custom_data = ""
+    overloaded_args = ""
+    overloaded_ret = ""
+    deprecated = "deprecated" in comment.lower()
+    fn_impl = " "
+    nodiscard = (
+        "Get" in fn_name
+        or "Find" in fn_name
+        or "Raytrace" in fn_name
+        or "Input" in fn_name
+        or "Has" in fn_name
+    )
+    if fn_name in overrides.keys():
+        override = overrides[fn_name]
+        if "ret" in override.keys():
+            ret = override["ret"]
+        if "args" in override.keys():
+            fn_args = override["args"]
+        if "comment" in override.keys():
+            comment = override["comment"]
+        if "deprecated" in override.keys():
+            deprecated = override["deprecated"]
+        if "overload" in override.keys():
+            overloaded = True
+            overload = override["overload"]
+            overloaded_ret = overload["ret"]
+            if "args" in overload.keys():
+                overloaded_args = overload["args"]
+        if "custom" in override.keys():
+            custom_data += ("\n" if custom_data != "" else "") + override["custom"]
+        if "nodiscard" in override.keys():
+            nodiscard = override["nodiscard"]
+        if "implementation" in override.keys():
+            fn_impl = override["implementation"]
+    if ret[-5:] == ")|nil":
+        # special case where multiple thing are nil
+        ret = ret[1:-5]
+        overloaded = True
+        overloaded_ret = "nil"
+    fn_args = fn_args.replace("value_or_values", "...")
+    fn_args = fn_args.replace(" ", "").split(",")
+    fn_def = ""
+    fn_args2 = []
+    if fn_args[0] == "":
+        fn_args = []
+    for arg in fn_args:
+        # print(arg)
+        typed = arg.split(":")
+        if len(typed) != 2:
+            # print(fn_args)
+            continue
+        arg_name = typed[0]
+        arg_type = typed[1]
+        # print(arg_type)
+        arg_default = arg_type.split("=")
+        extra = ""
+        if len(arg_default) == 2:
+            extra = arg_default[1]
+            arg_type = arg_default[0]
+        if extra != "" and extra[0] == '"':
+            extra = "'" + extra + "'"
+        arg_type = type_alias(arg_type, arg_name)
+        fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
+    rets = ret.split(",")
+    rets2 = []
+    if rets[0] == "":
+        rets = []
+    for e in rets:
+        typed = e.split(":")
+        # print(typed)
+        if len(typed) != 2:
+            # print(fn_args)
+            rets2.append((type_alias(typed[0], ""),))
+            continue
+        ret_name = typed[0]
+        ret_type = typed[1]
+        # print(arg_type)
+        ret_type = type_alias(ret_type, ret_name)
+        rets2.append((ret_type, ret_name))
 
-	# print(fn_name, rets2, [x for x in rets2])
-	if comment != "":
-		fn_def += "---"
-		fn_def += re.sub(
-			r",([^ ])",
-			r", \1",
-			re.sub(
-				r"'([a-zA-Z0-9_]+)'",
-				r"`\1`",
-				re.sub(
-					r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")
-				),
-			),
-		)
-	fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
-	fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
-	fn_def += "\n---@deprecated" if deprecated else ""
+    # print(fn_name, rets2, [x for x in rets2])
+    if comment != "":
+        fn_def += "---"
+        fn_def += re.sub(
+            r",([^ ])",
+            r", \1",
+            re.sub(
+                r"'([a-zA-Z0-9_]+)'",
+                r"`\1`",
+                re.sub(
+                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")
+                ),
+            ),
+        )
+    fn_def += "\n" + "\n".join(["---@param " + " ".join(x) for x in fn_args2])
+    fn_def += "\n" + "\n".join(["---@return " + " ".join(x) for x in rets2])
+    fn_def += "\n---@deprecated" if deprecated else ""
 
-	fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
-	fn_sig_overload = (
-		"(" + ", ".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
-		if overloaded_args == ""
-		else overloaded_args
-	)
+    fn_sig = "(" + ", ".join([x[0] for x in fn_args2]) + ")"
+    fn_sig_overload = (
+        "(" + ", ".join([x[0] + ": " + x[1] for x in fn_args2]) + ")"
+        if overloaded_args == ""
+        else overloaded_args
+    )
 
-	if overloaded:
-		fn_def += "\n---@overload fun" + fn_sig_overload + ": " + overloaded_ret
-	if nodiscard:
-		fn_def += "\n---@nodiscard"
+    if overloaded:
+        fn_def += "\n---@overload fun" + fn_sig_overload + ": " + overloaded_ret
+    if nodiscard:
+        fn_def += "\n---@nodiscard"
 
-	fn_def += custom_data
+    fn_def += custom_data
 
-	fn_def += "\nfunction " + fn_name + fn_sig + fn_impl + "end"
-	fn_def = fn_def.replace("  ", " ")
-	while "\n\n" in fn_def:
-		fn_def = fn_def.replace("\n\n", "\n")
-	out += fn_def + "\n\n"
-	# print(fn_name, fn_sig)
+    fn_def += "\nfunction " + fn_name + fn_sig + fn_impl + "end"
+    fn_def = fn_def.replace("  ", " ")
+    while "\n\n" in fn_def:
+        fn_def = fn_def.replace("\n\n", "\n")
+    out += fn_def + "\n\n"
+    # print(fn_name, fn_sig)
 
 with open("out.lua", "w", encoding="utf-8") as f:
-	f.write(out.replace("\n\n\n", "\n\n").replace(" \n", "\n"))
+    f.write(out.replace("\n\n\n", "\n\n").replace(" \n", "\n"))
