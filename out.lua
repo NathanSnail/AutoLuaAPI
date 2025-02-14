@@ -108,7 +108,7 @@
 ---@alias script_wand_fired fun(gun_entity_id: entity_id)
 ---@alias script_teleported fun(from_x: number, from_y: number, to_x: number, to_y: number, portal_teleport: boolean)
 ---@alias script_portal_teleport_used fun(entity_that_was_teleported: entity_id, from_x: number, from_y: number, to_x: number, to_y: number)
----@alias script_polymorphing_to fun(entity_id: entity_id, target_polymorph_path: string)
+---@alias script_polymorphing_to fun(target_polymorph_path: string)
 ---@alias script_biome_entered fun(biome_name: string, biome_old_name: string)
 
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
