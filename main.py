@@ -91,8 +91,8 @@ def get_field_name(line: str) -> str:
         if "RESULT" in typename:
             return typename.split("RESULT")[1]
         raise Exception(f"Can't parse field name from {line}")
-    line = line[4:]
-    return [x for x in line.split(" ")[1:] if x != ""][0]
+    line = line[28:]
+    return line.split(" ")[0]
 
 components = []
 fields = []
