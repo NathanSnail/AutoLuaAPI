@@ -1,4 +1,6 @@
+from functools import reduce
 import re
+from typing import List
 
 from bs4 import BeautifulSoup
 
@@ -25,7 +27,7 @@ def do_int(src, name):
     return src
 
 
-def type_alias(src, name):
+def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
     if "{" in src:
         if "-" in src:
             src = src.replace("-", "]:")
@@ -39,6 +41,11 @@ def type_alias(src, name):
     src = src.replace("obj", "gui")
     src = src.replace("int_body_id", "physics_body_id")
     src = src.replace("item_entity_id", "entity_id")
+    if "field_name" in name or "variable_name" in name and "Biome" not in fn_name:
+        if reduce(lambda a, b: a or b, ["object_name" in x for x in other_args]):
+            pass # TODO: add object types
+        else:
+            src = src.replace("string", "field_type")
     if "component_type" in name:
         src = src.replace("string", "component_type")
     if "damage_type" in name:
@@ -71,14 +78,43 @@ with open(doc_path, "r", encoding="utf-8") as f:
 with open(comp_path, "r", encoding="utf-8") as f:
     comp_data = f.read()
 
+def get_field_name(line: str) -> str:
+    if line[27] != " ":
+        line = line[4:]
+        typename = line.split(" ")[0]
+        if "::Enum" in typename:
+            return typename.split("::Enum")[1]
+        if "*" in typename:
+            return typename.split("*")[1]
+        if "VECTOR" in typename:
+            return typename.split("VECTOR")[1]
+        if "RESULT" in typename:
+            return typename.split("RESULT")[1]
+        raise Exception(f"Can't parse field name from {line}")
+    line = line[4:]
+    return [x for x in line.split(" ")[1:] if x != ""][0]
+
 components = []
+fields = []
+objects = []
+is_object = False
 for line in comp_data.split("\n"):
     if not len(line):
         continue
+    if line[1] == "-":
+        is_object = "Objects" in line
+    if line[:4] == "    ":
+        name = get_field_name(line)
+        if is_object:
+            objects.append(name)
+        else:
+            fields.append(name)
     if line[0] in " \t":
         continue
     components.append(line)
 
+field_type = "---@alias field_type " + " | ".join([f'"{x}"' for x in fields])
+object_type = "---@alias object_type " + " | ".join([f'"{x}"' for x in objects])
 component_type = "---@alias component_type " + " | ".join(
     [f'"{x}"' for x in components]
 )
@@ -199,6 +235,10 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
 
 {component_type}
+---lua_ls doesn't support dependent types properly so this includes the field types for *all* components
+{field_type}
+---lua_ls doesn't support dependent types properly so this includes the object types for *all* components
+{object_type}
 ---@alias damage_type
 ---|> "NONE"
 ---| "DAMAGE_MELEE"
@@ -684,7 +724,7 @@ for k, e in enumerate(table.children):
             arg_type = arg_default[0]
         if extra != "" and extra[0] == '"':
             extra = "'" + extra + "'"
-        arg_type = type_alias(arg_type, arg_name)
+        arg_type = type_alias(fn_name, fn_args, arg_type, arg_name)
         fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
     rets = ret.split(",")
     rets2 = []
@@ -695,12 +735,12 @@ for k, e in enumerate(table.children):
         # print(typed)
         if len(typed) != 2:
             # print(fn_args)
-            rets2.append((type_alias(typed[0], ""),))
+            rets2.append((type_alias(fn_name, fn_args, typed[0], ""),))
             continue
         ret_name = typed[0]
         ret_type = typed[1]
         # print(arg_type)
-        ret_type = type_alias(ret_type, ret_name)
+        ret_type = type_alias(fn_name, fn_args, ret_type, ret_name)
         rets2.append((ret_type, ret_name))
 
     # print(fn_name, rets2, [x for x in rets2])
