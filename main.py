@@ -41,6 +41,8 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
     src = src.replace("obj", "gui")
     src = src.replace("int_body_id", "physics_body_id")
     src = src.replace("item_entity_id", "entity_id")
+    if "object_name" in name:
+        src = src.replace("string", "object_type")
     if "field_name" in name or "variable_name" in name and "Biome" not in fn_name:
         if reduce(lambda a, b: a or b, ["object_name" in x for x in other_args]):
             pass # TODO: add object types

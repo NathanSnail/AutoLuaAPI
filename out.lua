@@ -692,7 +692,7 @@ function ComponentGetMetaCustom(component_id, variable_name) end
 
 ---Deprecated, use `ComponentObjectGetValue2`() instead.
 ---@param component_id component_id
----@param object_name string
+---@param object_name object_type
 ---@param variable_name string
 ---@return string|nil
 ---@deprecated
@@ -701,7 +701,7 @@ function ComponentObjectGetValue(component_id, object_name, variable_name) end
 
 ---Deprecated, use `ComponentObjectSetValue2`() instead.
 ---@param component_id component_id
----@param object_name string
+---@param object_name object_type
 ---@param variable_name string
 ---@param value string
 ---@deprecated
@@ -742,7 +742,7 @@ function ComponentSetValue2(component_id, field_name, ...) end
 
 ---Returns one or many values matching the type or subtypes of the requested field in a component subobject. Reports error and returns nil if the field type is not supported or `object_name` is not a metaobject.
 ---@param component_id component_id
----@param object_name string
+---@param object_name object_type
 ---@param field_name string
 ---@return any|nil
 ---@nodiscard
@@ -750,7 +750,7 @@ function ComponentObjectGetValue2(component_id, object_name, field_name) end
 
 ---Sets the value of a field in a component subobject. Value(s) should have a type matching the field type. Reports error if the values weren't given in correct type, the field type is not supported or `object_name` is not a metaobject.
 ---@param component_id component_id
----@param object_name string
+---@param object_name object_type
 ---@param field_name string
 ---@param ... any
 function ComponentObjectSetValue2(component_id, object_name, field_name, ...) end
@@ -806,7 +806,7 @@ function ComponentGetMembers(component_id) end
 
 ---Returns a string-indexed table of string or nil.
 ---@param component_id component_id
----@param object_name string
+---@param object_name object_type
 ---@return {[string]:string}|nil
 ---@nodiscard
 function ComponentObjectGetMembers(component_id, object_name) end
@@ -923,7 +923,7 @@ function BiomeGetValue(filename, field_name) end
 
 ---Can be used to edit biome configs during initialization. See biome_modifiers.lua for an usage example.
 ---@param filename string
----@param meta_object_name string
+---@param meta_object_name object_type
 ---@param field_name string
 ---@param value any
 function BiomeObjectSetValue(filename, meta_object_name, field_name, value) end
