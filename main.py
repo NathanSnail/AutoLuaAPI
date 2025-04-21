@@ -2,7 +2,7 @@ from functools import reduce
 import re
 from typing import List
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 TESTING = True
 
@@ -645,6 +645,10 @@ overrides = {
 
 tree = BeautifulSoup(html, features="html.parser")
 table = tree.find("table")
+
+if table is None or isinstance(table, NavigableString):
+    raise Exception("Component docs missing function table")
+
 for k, e in enumerate(table.children):
     if k % 2:
         continue
