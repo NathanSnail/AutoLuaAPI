@@ -206,6 +206,9 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias OnWorldPreUpdate fun()
 ---@alias OnWorldPostUpdate fun()
 ---@alias OnPausedChanged fun(is_paused: boolean, is_inventory_pause: boolean)
+---@alias OnModPreInit fun()
+---@alias OnModInit fun()
+---@alias OnModPostInit fun()
 ---@alias OnModSettingsChanged fun()
 ---@alias OnPausePreUpdate fun()
 ---@alias OnCountSecrets fun(): total: integer, found: integer
