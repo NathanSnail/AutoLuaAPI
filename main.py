@@ -45,7 +45,7 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
         src = src.replace("string", "object_type")
     if "field_name" in name or "variable_name" in name and "Biome" not in fn_name:
         if reduce(lambda a, b: a or b, ["object_name" in x for x in other_args]):
-            pass # TODO: add object types
+            pass  # TODO: add object types
         else:
             src = src.replace("string", "field_type")
     if "component_type" in name:
@@ -80,6 +80,7 @@ with open(doc_path, "r", encoding="utf-8") as f:
 with open(comp_path, "r", encoding="utf-8") as f:
     comp_data = f.read()
 
+
 def get_field_name(line: str) -> str:
     if line[27] != " ":
         line = line[4:]
@@ -95,6 +96,7 @@ def get_field_name(line: str) -> str:
         raise Exception(f"Can't parse field name from {line}")
     line = line[28:]
     return line.split(" ")[0]
+
 
 components = []
 fields = []
@@ -762,7 +764,11 @@ for k, e in enumerate(table.children):
                 r"'([a-zA-Z0-9_]+)'",
                 r"`\1`",
                 re.sub(
-                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", re.sub(r"\n +", "\n", comment).replace("\n", "{comment_newline}\n---")
+                    r"([A-Za-z0-9_]+)(\(\))",
+                    r"`\1`\2",
+                    re.sub(r"\n +", "\n", comment).replace(
+                        "\n", "{comment_newline}\n---"
+                    ),
                 ),
             ),
         )
