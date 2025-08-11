@@ -383,7 +383,7 @@ __loadonce = {{}}
 ---@return any
 function ____cached_func() end
 
--- Noita runs luajit, version is 5.1 though.
+---Noita runs luajit, version is 5.1 though.
 _VERSION = "Lua 5.1"
 
 ---@param ... printable_string
@@ -762,7 +762,7 @@ for k, e in enumerate(table.children):
                 r"'([a-zA-Z0-9_]+)'",
                 r"`\1`",
                 re.sub(
-                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "\n---")
+                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "{comment_newline}\n---")
                 ),
             ),
         )
@@ -786,6 +786,7 @@ for k, e in enumerate(table.children):
 
     fn_def += "\nfunction " + fn_name + fn_sig + fn_impl + "end"
     fn_def = fn_def.replace("  ", " ")
+    fn_def = fn_def.replace("{comment_newline}", "  ")
     while "\n\n" in fn_def:
         fn_def = fn_def.replace("\n\n", "\n")
     out += fn_def + "\n\n"
