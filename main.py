@@ -762,7 +762,7 @@ for k, e in enumerate(table.children):
                 r"'([a-zA-Z0-9_]+)'",
                 r"`\1`",
                 re.sub(
-                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", comment.replace("\n", "{comment_newline}\n---")
+                    r"([A-Za-z0-9_]+)(\(\))", r"`\1`\2", re.sub(r"\n +", "\n", comment).replace("\n", "{comment_newline}\n---")
                 ),
             ),
         )
