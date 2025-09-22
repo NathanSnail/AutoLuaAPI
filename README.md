@@ -6,27 +6,27 @@ In VSCode open the `sumneko.lua` extension settings and edit `Workspace: Library
 In NVim
 ```lua
 local servers = {
-  lua_ls = {
-  	-- cmd = {...},
+	lua_ls = {
+		-- cmd = {...},
 		-- filetypes { ...},
 		-- capabilities = {},
 		settings = {
-		  Lua = {
-			  runtime = { version = "LuaJIT" },
-        workspace = {
-          ignoreSubmodules = false,
-          checkThirdParty = false,
-          library = {
-            "~/Documents/code/AutoLuaAPI/out.lua",
-          },
-        },
-        completion = {
-          callSnippet = "Replace",
-          autoRequire = true,
-        },
-      },
-    },
-  },
+			Lua = {
+				runtime = { version = "LuaJIT" },
+				workspace = {
+					ignoreSubmodules = false,
+					checkThirdParty = false,
+					library = {
+						"~/Documents/code/AutoLuaAPI/out.lua",
+					},
+				},
+				completion = {
+					callSnippet = "Replace",
+					autoRequire = true,
+				},
+			},
+		},
+	},
 }
 for k, v in pairs(servers) do
 	vim.lsp.config[k] = v
