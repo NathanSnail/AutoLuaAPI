@@ -1,12 +1,37 @@
 # What is this?
 This is an alternative API definition file for Noita's modding API which aims to provide beta function support and full type safety.
 # How to install
-Install Evaisa's Noita API for Visual Studio Code, go to definition of any function, then replace the definition source file with this.
-Alternatively for a standalone install you can just add this to your mod and include it via your method of choice, if you have NathanSnail's Noita File Autocomplete you can use
+Add out.lua to your Lua library path. 
+In VSCode open the `sumneko.lua` extension settings and edit `Workspace: Library` to contain the path to the definitions.
+In NVim
+```lua
+local servers = {
+  lua_ls = {
+  	-- cmd = {...},
+		-- filetypes { ...},
+		-- capabilities = {},
+		settings = {
+		  Lua = {
+			  runtime = { version = "LuaJIT" },
+        workspace = {
+          ignoreSubmodules = false,
+          checkThirdParty = false,
+          library = {
+            "~/Documents/code/AutoLuaAPI/out.lua",
+          },
+        },
+        completion = {
+          callSnippet = "Replace",
+          autoRequire = true,
+        },
+      },
+    },
+  },
+}
+for k, v in pairs(servers) do
+	vim.lsp.config[k] = v
+end
 ```
---dofile("mods/MODID/api_def.lua")  
-```
-otherwise you should add it to your Lua library path.
 
 # Why is entity_id not integer?
 I think that seperating these types makes sure that code is more correct, as most integer operations on them do not make sense.
