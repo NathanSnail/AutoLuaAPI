@@ -2836,6 +2836,7 @@ function SetProjectileConfigs() end
 ---@param reload_time integer
 function StartReload(reload_time) end
 
+---Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate.
 ---@param inventoryitem_id entity_id
 ---@param uses_remaining integer
 ---@return boolean uses_remaining_reduced
