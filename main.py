@@ -645,6 +645,7 @@ overrides = {
     "GameIsModeFullyDeterministic": {"nodiscard": True},
     "GameIsBetaBuild": {"nodiscard": True},
     "ModIsEnabled": {"nodiscard": True},
+    "ActionUsesRemainingChanged": {"comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."}
 }
 
 
