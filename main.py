@@ -6,7 +6,6 @@ import config
 from bs4 import BeautifulSoup, NavigableString
 
 
-
 def maybe_entity(name):
     return "entity" in name or "item" in name or "parent" in name or "child" in name
 
@@ -68,9 +67,7 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
 
 
 base_path = (
-    config.DEFAULT_PATH
-    if config.TESTING
-    else input("modding api folder path: ") + "/"
+    config.DEFAULT_PATH if config.TESTING else input("modding api folder path: ") + "/"
 )
 doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
@@ -214,6 +211,8 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias OnModSettingsChanged fun()
 ---@alias OnPausePreUpdate fun()
 ---@alias OnCountSecrets fun(): total: integer, found: integer
+
+---@alias achievement_id "BEAT_THE_GAME" | "BIOME_EXCAVATION_SITE" | "BIOME_SNOWCAVE" | "BIOME_SNOWCASTLE" | "BIOME_RAINFOREST" | "BIOME_VAULT" | "BIOME_CRYPT" | "GODS_AFRAID" | "GODS_IMPRESSED" | "GODS_ENRAGED" | "PROGRESS_PERKS" | "PROGRESS_SPELLS" | "PROGRESS_ENEMIES" | "ALL_ORBS"
 
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
@@ -536,6 +535,10 @@ overrides = {
     "GameOnCompleted": {
         "comment": 'Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun("ending_game_completed")\n```'
     },
+    "GameGiveAchievement": {
+        "args": "achievement_id: achievement_id",
+        "comment": "Grants the user a steam achievement corresponding to the 'achievement_id'.\nThis function normally does nothing because of mod restrictions, either patch data.wak or disable mod restrictions to make this function work.",
+    },
     "dofile": {
         "ret": "script_return_type:any",
         "overload": {"ret": "(nil, error_string: string)"},
@@ -645,7 +648,9 @@ overrides = {
     "GameIsModeFullyDeterministic": {"nodiscard": True},
     "GameIsBetaBuild": {"nodiscard": True},
     "ModIsEnabled": {"nodiscard": True},
-    "ActionUsesRemainingChanged": {"comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."}
+    "ActionUsesRemainingChanged": {
+        "comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."
+    },
 }
 
 
