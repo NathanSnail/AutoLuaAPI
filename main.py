@@ -1,10 +1,10 @@
 from functools import reduce
 import re
 from typing import List
+import config
 
 from bs4 import BeautifulSoup, NavigableString
 
-TESTING = True
 
 
 def maybe_entity(name):
@@ -69,7 +69,7 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
 
 base_path = (
     "/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/"
-    if TESTING
+    if config.TESTING
     else input("modding api folder path: ") + "/"
 )
 doc_path = base_path + "lua_api_documentation.html"
