@@ -68,7 +68,7 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
 
 
 base_path = (
-    "/home/nathan/.local/share/Steam/steamapps/common/Noita/tools_modding/"
+    config.DEFAULT_PATH
     if config.TESTING
     else input("modding api folder path: ") + "/"
 )
