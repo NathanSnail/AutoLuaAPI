@@ -893,8 +893,8 @@ function GameOnCompleted() end
 
 ---Grants the user a steam achievement corresponding to the `achievement_id`. 
 ---DOES NOT WORK IN SAFE API!
----@param (achievement_id achievement_id)
-function GameGiveAchievement((achievement_id) end
+---@param achievement_id achievement_id
+function GameGiveAchievement(achievement_id) end
 
 function GameDoEnding2() end
 

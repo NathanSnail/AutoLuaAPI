@@ -539,7 +539,7 @@ overrides = {
         "comment": 'Grants the victory steam achievement, to get a victory screen use:\n```lua\nGameAddFlagRun("ending_game_completed")\n```'
     },
     "GameGiveAchievement": {
-        "args": "(achievement_id: achievement_id)",
+        "args": "achievement_id: achievement_id",
         "comment": "Grants the user a steam achievement corresponding to the 'achievement_id'.\nDOES NOT WORK IN SAFE API!",
     },
     "dofile": {
