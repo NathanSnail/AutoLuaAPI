@@ -216,12 +216,9 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias OnCountSecrets fun(): total: integer, found: integer
 --META END: init callbacks
 
-<<<<<<< HEAD
---META BEGIN: script callbacks
-=======
 ---@alias achievement_id "BEAT_THE_GAME" | "BIOME_EXCAVATION_SITE" | "BIOME_SNOWCAVE" | "BIOME_SNOWCASTLE" | "BIOME_RAINFOREST" | "BIOME_VAULT" | "BIOME_CRYPT" | "GODS_AFRAID" | "GODS_IMPRESSED" | "GODS_ENRAGED" | "PROGRESS_PERKS" | "PROGRESS_SPELLS" | "PROGRESS_ENEMIES" | "ALL_ORBS"
 
->>>>>>> 56cb48e7cd3ea3d16403d9e28522a137d585fdcb
+--META BEGIN: script callbacks
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
 ---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
