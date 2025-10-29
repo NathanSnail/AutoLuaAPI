@@ -90,6 +90,36 @@
 ---@alias OnPausePreUpdate fun()
 ---@alias OnCountSecrets fun(): total: integer, found: integer
 
+---@type OnPlayerSpawned
+function OnPlayerSpawned(player_entity) end
+---@type OnPlayerDied
+function OnPlayerDied(player_entity) end
+---@type OnMagicNumbersAndWorldSeedInitialized
+function OnMagicNumbersAndWorldSeedInitialized() end
+---@type OnBiomeConfigLoaded
+function OnBiomeConfigLoaded() end
+---@type OnWorldInitialized
+function OnWorldInitialized() end
+---@type OnWorldPreUpdate
+function OnWorldPreUpdate() end
+---@type OnWorldPostUpdate
+function OnWorldPostUpdate() end
+---@type OnPausedChanged
+function OnPausedChanged(is_paused, is_inventory_pause) end
+---@type OnModPreInit
+function OnModPreInit() end
+---@type OnModInit
+function OnModInit() end
+---@type OnModPostInit
+function OnModPostInit() end
+---@type OnModSettingsChanged
+function OnModSettingsChanged() end
+---@type OnPausePreUpdate
+function OnPausePreUpdate() end
+---@type OnCountSecrets
+function OnCountSecrets() end
+
+
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
 ---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
@@ -113,6 +143,53 @@
 ---@alias script_portal_teleport_used fun(entity_that_was_teleported: entity_id, from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_polymorphing_to fun(target_polymorph_path: string)
 ---@alias script_biome_entered fun(biome_name: string, biome_old_name: string)
+
+---@type script_damage_received
+function damage_received(damage, message, entity_thats_responsible, is_fatal, projectile_thats_responsible) end
+---@type script_damage_about_to_be_received
+function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance) end
+---@type script_item_pickup
+function item_pickup(entity_item, entity_pickupper, item_name) end
+---@type script_shot
+function shot(projectile_entity_id) end
+---@type script_collision_trigger
+function collision_trigger(colliding_entity_id) end
+---@type script_collision_trigger_timer_finished
+function collision_trigger_timer_finished() end
+---@type script_physics_body_modified
+function physics_body_modified(is_destroyed) end
+---@type script_pressure_plate_change
+function pressure_plate_change(new_state) end
+---@type script_inhaled_material
+function inhaled_material(material_name, count) end
+---@type script_death
+function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items) end
+---@type script_throw_item
+function throw_item(from_x, from_y, to_x, to_y) end
+---@type script_material_area_checker_failed
+function material_area_checker_failed(pos_x, pos_y) end
+---@type script_material_area_checker_success
+function material_area_checker_success(pos_x, pos_y) end
+---@type script_electricity_receiver_switched
+function electricity_receiver_switched(is_electrified) end
+---@type script_electricity_receiver_electrified
+function electricity_receiver_electrified() end
+---@type script_kick
+function kick(entity_who_kicked) end
+---@type script_interacting
+function interacting(entity_who_interacted, entity_interacted, interactable_name) end
+---@type script_audio_event_dead
+function audio_event_dead(bank_file, event_root) end
+---@type script_wand_fired
+function wand_fired(gun_entity_id) end
+---@type script_teleported
+function teleported(from_x, from_y, to_x, to_y, portal_teleport) end
+---@type script_portal_teleport_used
+function portal_teleport_used(entity_that_was_teleported, from_x, from_y, to_x, to_y) end
+---@type script_polymorphing_to
+function polymorphing_to(target_polymorph_path) end
+---@type script_biome_entered
+function biome_entered(biome_name, biome_old_name) end
 
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
 

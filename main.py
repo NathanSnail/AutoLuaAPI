@@ -6,7 +6,6 @@ import config
 from bs4 import BeautifulSoup, NavigableString
 
 
-
 def maybe_entity(name):
     return "entity" in name or "item" in name or "parent" in name or "child" in name
 
@@ -68,10 +67,10 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
 
 
 base_path = (
-    config.DEFAULT_PATH
-    if config.TESTING
-    else input("modding api folder path: ") + "/"
+    config.DEFAULT_PATH if config.TESTING else input("modding api folder path: ") + "/"
 )
+if base_path == "/":
+    base_path = config.DEFAULT_PATH
 doc_path = base_path + "lua_api_documentation.html"
 comp_path = base_path + "component_documentation.txt"
 with open(doc_path, "r", encoding="utf-8") as f:
@@ -200,6 +199,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---| "$damage_kick"
 ---| "$damage_holy_mountains_curse"
 
+--META BEGIN: init callbacks
 ---@alias OnPlayerSpawned fun(player_entity: entity_id)
 ---@alias OnPlayerDied fun(player_entity: entity_id)
 ---@alias OnMagicNumbersAndWorldSeedInitialized fun()
@@ -214,7 +214,9 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias OnModSettingsChanged fun()
 ---@alias OnPausePreUpdate fun()
 ---@alias OnCountSecrets fun(): total: integer, found: integer
+--META END: init callbacks
 
+--META BEGIN: script callbacks
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
 ---@alias script_damage_about_to_be_received fun(damage: number, x: number, y: number, entity_thats_responsible: entity_id, critical_hit_chance: integer): new_damage: number, new_critical_hit_chance: integer
 ---@alias script_item_pickup fun(entity_item: entity_id, entity_pickupper: entity_id, item_name: string)
@@ -238,6 +240,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---@alias script_portal_teleport_used fun(entity_that_was_teleported: entity_id, from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_polymorphing_to fun(target_polymorph_path: string)
 ---@alias script_biome_entered fun(biome_name: string, biome_old_name: string)
+--META END: script callbacks
 
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
 
@@ -506,6 +509,36 @@ function do_mod_appends(filename) end
 function _ConfigGunActionInfo_ReadToGame(action_id, action_name, action_description, action_sprite_filename, action_unidentified_sprite_filename, action_type, action_spawn_level, action_spawn_probability, action_spawn_requires_flag, action_spawn_manual_unlock, action_max_uses, custom_xml_file, action_mana_drain, action_is_dangerous_blast, action_draw_many_count, action_ai_never_uses, action_never_unlimited, state_shuffled, state_cards_drawn, state_discarded_action, state_destroyed_action, fire_rate_wait, speed_multiplier, child_speed_multiplier, dampening, explosion_radius, spread_degrees, pattern_degrees, screenshake, recoil, damage_melee_add, damage_projectile_add, damage_electricity_add, damage_fire_add, damage_explosion_add, damage_ice_add, damage_slice_add, damage_healing_add, damage_curse_add, damage_drill_add, damage_null_all, damage_critical_chance, damage_critical_multiplier, explosion_damage_to_materials, knockback_force, reload_time, lightning_count, material, material_amount, trail_material, trail_material_amount, bounces, gravity, light, blood_count_multiplier, gore_particles, ragdoll_fx, friendly_fire, physics_impulse_coeff, lifetime_add, sprite, extra_entities, game_effect_entities, sound_loop_tag, projectile_file) end
 """
 
+
+def make_callback_fn(trim: str):
+    def callback_fn(src: str):
+        extra = ""
+        for line in src.split("\n"):
+            if line == "":
+                continue
+            parts = line.split("---@alias ")[1].split(" ")
+            args = " ".join(parts[1:]).replace("fun(", "")
+            callback = parts[0]
+            args_typeless = re.sub(":[^,]+", "", re.sub("\\).*", "", args))
+            extra += f"---@type {callback}\nfunction {callback.replace(trim, "")}({args_typeless}) end\n"
+        return src + "\n" + extra
+
+    return callback_fn
+
+
+meta_sections = {
+    "init callbacks": (config.INIT_CALLBACK_FNS, make_callback_fn("")),
+    "script callbacks": (config.SCRIPT_CALLBACK_FNS, make_callback_fn("script_")),
+}
+for section, callback in meta_sections.items():
+    first_split = out.split(f"--META BEGIN: {section}")
+    end_split = first_split[1].split(f"--META END: {section}")
+    if not callback[0]:
+        out = first_split[0] + end_split[0] + end_split[1]
+        continue
+    out = first_split[0] + callback[1](end_split[0]) + end_split[1]
+
+
 overrides = {
     "GetParallelWorldPosition": {"ret": "x:number,y:number"},
     "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
@@ -645,7 +678,9 @@ overrides = {
     "GameIsModeFullyDeterministic": {"nodiscard": True},
     "GameIsBetaBuild": {"nodiscard": True},
     "ModIsEnabled": {"nodiscard": True},
-    "ActionUsesRemainingChanged": {"comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."}
+    "ActionUsesRemainingChanged": {
+        "comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."
+    },
 }
 
 
