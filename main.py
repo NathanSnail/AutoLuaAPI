@@ -859,4 +859,4 @@ for k, e in enumerate(table.children):
     # print(fn_name, fn_sig)
 
 with open("out.lua", "w", encoding="utf-8") as f:
-    f.write(out.replace("\n\n\n", "\n\n").replace(" \n", "\n"))
+    f.write("\n".join(line.rstrip() for line in out.replace("\n\n\n", "\n\n").replace(" \n", "\n").split("\n")))
