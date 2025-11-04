@@ -1906,8 +1906,8 @@ function RandomDistribution(min, max, mean, sharpness, baseline) end
 ---@return number
 function RandomDistributionf(min, max, mean, sharpness, baseline) end
 
----Identical to `Random`() but with `x` and `y` used to seed. 
----This does not interfere with the current random seed from `SetRandomSeed`().
+---Identical to `Random()` but with `x` and `y` used to seed. 
+---This does not interfere with the current random seed from `SetRandomSeed()`.
 ---@param x number
 ---@param y number
 ---@param a integer|number? optional
@@ -1915,9 +1915,9 @@ function RandomDistributionf(min, max, mean, sharpness, baseline) end
 ---@return integer|number
 function ProceduralRandom(x, y, a, b) end
 
----Identical to `Randomf`() but with `x` and `y` used to seed. 
----This does not interfere with the current random seed from `SetRandomSeed`(). 
----Has the same bounding issue as ``Randomf`()`.
+---Identical to `Randomf()` but with `x` and `y` used to seed. 
+---This does not interfere with the current random seed from `SetRandomSeed()`. 
+---Has the same bounding issue as ``Randomf()``.
 ---@param x number
 ---@param y number
 ---@param a number? optional
