@@ -1917,7 +1917,7 @@ function ProceduralRandom(x, y, a, b) end
 ---Similar to 
 ---```lua 
 ---SetRandomSeed(x, y) 
----Random(a, b) 
+---Randomf(a, b) 
 ---``` 
 ---except it does not modify the global seed state
 ---@param x number
