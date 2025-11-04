@@ -90,6 +90,35 @@
 ---@alias OnPausePreUpdate fun()
 ---@alias OnCountSecrets fun(): total: integer, found: integer
 
+---@type OnPlayerSpawned
+function OnPlayerSpawned(player_entity) end
+---@type OnPlayerDied
+function OnPlayerDied(player_entity) end
+---@type OnMagicNumbersAndWorldSeedInitialized
+function OnMagicNumbersAndWorldSeedInitialized() end
+---@type OnBiomeConfigLoaded
+function OnBiomeConfigLoaded() end
+---@type OnWorldInitialized
+function OnWorldInitialized() end
+---@type OnWorldPreUpdate
+function OnWorldPreUpdate() end
+---@type OnWorldPostUpdate
+function OnWorldPostUpdate() end
+---@type OnPausedChanged
+function OnPausedChanged(is_paused, is_inventory_pause) end
+---@type OnModPreInit
+function OnModPreInit() end
+---@type OnModInit
+function OnModInit() end
+---@type OnModPostInit
+function OnModPostInit() end
+---@type OnModSettingsChanged
+function OnModSettingsChanged() end
+---@type OnPausePreUpdate
+function OnPausePreUpdate() end
+---@type OnCountSecrets
+function OnCountSecrets() end
+
 ---@alias achievement_id "BEAT_THE_GAME" | "BIOME_EXCAVATION_SITE" | "BIOME_SNOWCAVE" | "BIOME_SNOWCASTLE" | "BIOME_RAINFOREST" | "BIOME_VAULT" | "BIOME_CRYPT" | "GODS_AFRAID" | "GODS_IMPRESSED" | "GODS_ENRAGED" | "PROGRESS_PERKS" | "PROGRESS_SPELLS" | "PROGRESS_ENEMIES" | "ALL_ORBS"
 
 ---@alias script_damage_received fun(damage: number, message: damage_message, entity_thats_responsible: entity_id, is_fatal: boolean, projectile_thats_responsible: entity_id)
@@ -115,6 +144,53 @@
 ---@alias script_portal_teleport_used fun(entity_that_was_teleported: entity_id, from_x: number, from_y: number, to_x: number, to_y: number)
 ---@alias script_polymorphing_to fun(target_polymorph_path: string)
 ---@alias script_biome_entered fun(biome_name: string, biome_old_name: string)
+
+---@type script_damage_received
+function damage_received(damage, message, entity_thats_responsible, is_fatal, projectile_thats_responsible) end
+---@type script_damage_about_to_be_received
+function damage_about_to_be_received(damage, x, y, entity_thats_responsible, critical_hit_chance) end
+---@type script_item_pickup
+function item_pickup(entity_item, entity_pickupper, item_name) end
+---@type script_shot
+function shot(projectile_entity_id) end
+---@type script_collision_trigger
+function collision_trigger(colliding_entity_id) end
+---@type script_collision_trigger_timer_finished
+function collision_trigger_timer_finished() end
+---@type script_physics_body_modified
+function physics_body_modified(is_destroyed) end
+---@type script_pressure_plate_change
+function pressure_plate_change(new_state) end
+---@type script_inhaled_material
+function inhaled_material(material_name, count) end
+---@type script_death
+function death(damage_type_bit_field, damage_message, entity_thats_responsible, drop_items) end
+---@type script_throw_item
+function throw_item(from_x, from_y, to_x, to_y) end
+---@type script_material_area_checker_failed
+function material_area_checker_failed(pos_x, pos_y) end
+---@type script_material_area_checker_success
+function material_area_checker_success(pos_x, pos_y) end
+---@type script_electricity_receiver_switched
+function electricity_receiver_switched(is_electrified) end
+---@type script_electricity_receiver_electrified
+function electricity_receiver_electrified() end
+---@type script_kick
+function kick(entity_who_kicked) end
+---@type script_interacting
+function interacting(entity_who_interacted, entity_interacted, interactable_name) end
+---@type script_audio_event_dead
+function audio_event_dead(bank_file, event_root) end
+---@type script_wand_fired
+function wand_fired(gun_entity_id) end
+---@type script_teleported
+function teleported(from_x, from_y, to_x, to_y, portal_teleport) end
+---@type script_portal_teleport_used
+function portal_teleport_used(entity_that_was_teleported, from_x, from_y, to_x, to_y) end
+---@type script_polymorphing_to
+function polymorphing_to(target_polymorph_path) end
+---@type script_biome_entered
+function biome_entered(biome_name, biome_old_name) end
 
 ---@alias calculate_force_for_body_fn_type fun(body_entity: physics_body_id, body_mass: number, body_x: number, body_y: number, body_vel_x: number, body_vel_y: number, body_vel_angular: number): (force_world_pos_x: number, force_world_pos_y: number, force_x:number, force_y:number, force_angular:number)
 
@@ -420,7 +496,7 @@ function EntityKill(entity_id) end
 ---@nodiscard
 function EntityGetIsAlive(entity_id) end
 
----Deprectated, use `EntityAddComponent2`() instead.
+---Deprectated, use `EntityAddComponent2()` instead.
 ---@param entity_id entity_id
 ---@param component_type_name component_type
 ---@param table_of_component_values string[]? nil
@@ -608,7 +684,7 @@ function EntityGetFilename(entity_id) end
 ---@nodiscard
 function EntitiesGetMaxID() end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return string|nil
@@ -616,7 +692,7 @@ function EntitiesGetMaxID() end
 ---@nodiscard
 function ComponentGetValue(component_id, variable_name) end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return boolean|nil
@@ -624,7 +700,7 @@ function ComponentGetValue(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueBool(component_id, variable_name) end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return integer|nil
@@ -632,7 +708,7 @@ function ComponentGetValueBool(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueInt(component_id, variable_name) end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return number|nil
@@ -640,7 +716,7 @@ function ComponentGetValueInt(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueFloat(component_id, variable_name) end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return number x
@@ -649,14 +725,14 @@ function ComponentGetValueFloat(component_id, variable_name) end
 ---@nodiscard
 function ComponentGetValueVector2(component_id, variable_name) end
 
----Deprecated, use `ComponentSetValue2`() instead.
+---Deprecated, use `ComponentSetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@param value string
 ---@deprecated
 function ComponentSetValue(component_id, variable_name, value) end
 
----Deprecated, use `ComponentSetValue2`() instead.
+---Deprecated, use `ComponentSetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@param x number
@@ -664,7 +740,7 @@ function ComponentSetValue(component_id, variable_name, value) end
 ---@deprecated
 function ComponentSetValueVector2(component_id, variable_name, x, y) end
 
----Deprecated, use `ComponentSetValue2`() instead.
+---Deprecated, use `ComponentSetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@param min number
@@ -672,7 +748,7 @@ function ComponentSetValueVector2(component_id, variable_name, x, y) end
 ---@deprecated
 function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 
----Deprecated, use `ComponentSetValue2`() instead.
+---Deprecated, use `ComponentSetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@param min number
@@ -680,14 +756,14 @@ function ComponentSetValueValueRange(component_id, variable_name, min, max) end
 ---@deprecated
 function ComponentSetValueValueRangeInt(component_id, variable_name, min, max) end
 
----Deprecated, use `ComponentSetValue2`() instead.
+---Deprecated, use `ComponentSetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@param value string
 ---@deprecated
 function ComponentSetMetaCustom(component_id, variable_name, value) end
 
----Deprecated, use `ComponentGetValue2`() instead.
+---Deprecated, use `ComponentGetValue2()` instead.
 ---@param component_id component_id
 ---@param variable_name field_type
 ---@return string|nil
@@ -695,7 +771,7 @@ function ComponentSetMetaCustom(component_id, variable_name, value) end
 ---@nodiscard
 function ComponentGetMetaCustom(component_id, variable_name) end
 
----Deprecated, use `ComponentObjectGetValue2`() instead.
+---Deprecated, use `ComponentObjectGetValue2()` instead.
 ---@param component_id component_id
 ---@param object_name object_type
 ---@param variable_name string
@@ -704,7 +780,7 @@ function ComponentGetMetaCustom(component_id, variable_name) end
 ---@nodiscard
 function ComponentObjectGetValue(component_id, object_name, variable_name) end
 
----Deprecated, use `ComponentObjectSetValue2`() instead.
+---Deprecated, use `ComponentObjectSetValue2()` instead.
 ---@param component_id component_id
 ---@param object_name object_type
 ---@param variable_name string
@@ -910,7 +986,7 @@ function GetParallelWorldPosition(world_pos_x, world_pos_y) end
 ---@param pixel_scenes string? '"data/biome/_pixel_scenes.xml"'
 function BiomeMapLoad_KeepPlayer(filename, pixel_scenes) end
 
----Deprecated. Might trigger various bugs. Use `BiomeMapLoad_KeepPlayer`() instead.
+---Deprecated. Might trigger various bugs. Use `BiomeMapLoad_KeepPlayer()` instead.
 ---@param filename string
 ---@deprecated
 function BiomeMapLoad(filename) end
@@ -1211,7 +1287,7 @@ function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectil
 ---@param knockback_force number? 0
 function EntityInflictDamage(entity, amount, damage_type, description, ragdoll_fx, impulse_x, impulse_y, entity_who_is_responsible, world_pos_x, world_pos_y, knockback_force) end
 
----Has the same effects that would occur if `entity` eats `amount` number of cells of `material_type` from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use `CellFactory_GetType`() to convert a material name to material type.
+---Has the same effects that would occur if `entity` eats `amount` number of cells of `material_type` from the game world. Use this instead of directly modifying IngestionComponent values, if possible. Might not work with non-player entities. Use `CellFactory_GetType()` to convert a material name to material type.
 ---@param entity entity_id
 ---@param material_type integer
 ---@param amount number
@@ -1226,7 +1302,7 @@ function EntityRemoveIngestionStatusEffect(entity, status_type_id) end
 ---@param status_cooldown integer? 0
 function EntityRemoveStainStatusEffect(entity, status_type_id, status_cooldown) end
 
----Adds random visible stains of `material_type` to entity. `amount` controls the number of stain cells added. Does nothing if `entity` doesn't have a SpriteStainsComponent. Use `CellFactory_GetType`() to convert a material name to material type.
+---Adds random visible stains of `material_type` to entity. `amount` controls the number of stain cells added. Does nothing if `entity` doesn't have a SpriteStainsComponent. Use `CellFactory_GetType()` to convert a material name to material type.
 ---@param entity entity_id
 ---@param material_type integer
 ---@param amount number
@@ -1458,7 +1534,7 @@ function HerdIdToString(herd_id) end
 ---@nodiscard
 function GetHerdRelation(herd_id_a, herd_id_b) end
 
----Deprecated, use `EntityGetHerdRelationSafe`() instead.
+---Deprecated, use `EntityGetHerdRelationSafe()` instead.
 ---@param entity_a entity_id
 ---@param entity_b entity_id
 ---@return number
@@ -1473,7 +1549,7 @@ function EntityGetHerdRelation(entity_a, entity_b) end
 ---@nodiscard
 function EntityGetHerdRelationSafe(entity_a, entity_b) end
 
----Deprecated, use `StringToHerdID`() and `ComponentSetValue2`() instead.
+---Deprecated, use `StringToHerdID()` and `ComponentSetValue2()` instead.
 ---@param entity_id entity_id
 ---@param new_herd_id string
 ---@deprecated
@@ -1762,7 +1838,7 @@ function BiomeMapSetPixel(x, y, color_int) end
 ---@nodiscard
 function BiomeMapGetPixel(x, y) end
 
----Swaps red and blue channels of `color`. This can be used make sense of the `BiomeMapGetPixel`() return values. E.g. if( BiomeMapGetPixel( x, y ) == BiomeMapConvertPixelFromUintToInt( 0xFF36D517 ) ) then print(`hills`) end
+---Swaps red and blue channels of `color`. This can be used make sense of the `BiomeMapGetPixel()` return values. E.g. if( BiomeMapGetPixel( x, y ) == BiomeMapConvertPixelFromUintToInt( 0xFF36D517 ) ) then print(`hills`) end
 ---@param color integer
 ---@return integer
 function BiomeMapConvertPixelFromUintToInt(color) end
@@ -2163,7 +2239,7 @@ function GameEntityPlaySoundLoop(entity, component_tag, intensity, intensity2) e
 ---@param w number
 function GameSetPostFxParameter(parameter_name, x, y, z, w) end
 
----Will remove a post_final shader parameter value binding set via game `GameSetPostFxParameter`().
+---Will remove a post_final shader parameter value binding set via game `GameSetPostFxParameter()`.
 ---@param parameter_name string
 function GameUnsetPostFxParameter(parameter_name) end
 
@@ -2177,7 +2253,7 @@ function GameUnsetPostFxParameter(parameter_name) end
 ---@param update_texture boolean? false
 function GameSetPostFxTextureParameter(parameter_name, texture_filename, filtering_mode, wrapping_mode, update_texture) end
 
----Will remove a post_final shader parameter value binding set via game `GameSetPostFxTextureParameter`().
+---Will remove a post_final shader parameter value binding set via game `GameSetPostFxTextureParameter()`.
 ---@param name string
 function GameUnsetPostFxTextureParameter(name) end
 
@@ -2203,12 +2279,12 @@ function GuiDestroy(gui) end
 ---@param gui gui
 function GuiStartFrame(gui) end
 
----Sets the options that apply to widgets during this frame. For `option` use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame`().
+---Sets the options that apply to widgets during this frame. For `option` use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame()`.
 ---@param gui gui
 ---@param option integer
 function GuiOptionsAdd(gui, option) end
 
----Sets the options that apply to widgets during this frame. For `option` use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame`().
+---Sets the options that apply to widgets during this frame. For `option` use the values in the GUI_OPTION table in "data/scripts/lib/utilities.lua". Values from consecutive calls will be combined. For example calling this with the values GUI_OPTION.Align_Left and GUI_OPTION.GamepadDefaultWidget will set both options for the next widget. The options will be cleared on next call to `GuiStartFrame()`.
 ---@param gui gui
 ---@param option integer
 function GuiOptionsRemove(gui, option) end
@@ -2229,7 +2305,7 @@ function GuiOptionsAddForNextWidget(gui, option) end
 ---@param alpha number
 function GuiColorSetForNextWidget(gui, red, green, blue, alpha) end
 
----Sets the rendering depth (`z`) of the widgets following this call. Larger z = deeper. The z will be set to 0 on the next call to `GuiStartFrame`().
+---Sets the rendering depth (`z`) of the widgets following this call. Larger z = deeper. The z will be set to 0 on the next call to `GuiStartFrame()`.
 ---@param gui gui
 ---@param z number
 function GuiZSet(gui, z) end
@@ -2238,29 +2314,29 @@ function GuiZSet(gui, z) end
 ---@param z number
 function GuiZSetForNextWidget(gui, z) end
 
----Can be used to solve ID conflicts. All ids given to Gui* functions will be hashed with the ids stacked (and hashed together) using `GuiIdPush`() and `GuiIdPop`(). The id stack has a max size of 1024, and calls to the function will do nothing if the size is exceeded.
+---Can be used to solve ID conflicts. All ids given to Gui* functions will be hashed with the ids stacked (and hashed together) using `GuiIdPush()` and `GuiIdPop()`. The id stack has a max size of 1024, and calls to the function will do nothing if the size is exceeded.
 ---@param gui gui
 ---@param id integer
 function GuiIdPush(gui, id) end
 
----Pushes the hash of `str` as a gui id. See `GuiIdPush`().
+---Pushes the hash of `str` as a gui id. See `GuiIdPush()`.
 ---@param gui gui
 ---@param str string
 function GuiIdPushString(gui, str) end
 
----See `GuiIdPush`().
+---See `GuiIdPush()`.
 ---@param gui gui
 function GuiIdPop(gui) end
 
----Starts a scope where animations initiated using `GuiAnimateAlphaFadeIn`() etc. will be applied to all widgets.
+---Starts a scope where animations initiated using `GuiAnimateAlphaFadeIn()` etc. will be applied to all widgets.
 ---@param gui gui
 function GuiAnimateBegin(gui) end
 
----Ends a scope where animations initiated using `GuiAnimateAlphaFadeIn`() etc. will be applied to all widgets.
+---Ends a scope where animations initiated using `GuiAnimateAlphaFadeIn()` etc. will be applied to all widgets.
 ---@param gui gui
 function GuiAnimateEnd(gui) end
 
----Does an alpha tween animation for all widgets inside a scope set using `GuiAnimateBegin`() and `GuiAnimateEnd`().
+---Does an alpha tween animation for all widgets inside a scope set using `GuiAnimateBegin()` and `GuiAnimateEnd()`.
 ---@param gui gui
 ---@param id integer
 ---@param speed number
@@ -2268,7 +2344,7 @@ function GuiAnimateEnd(gui) end
 ---@param reset boolean
 function GuiAnimateAlphaFadeIn(gui, id, speed, step, reset) end
 
----Does a scale tween animation for all widgets inside a scope set using `GuiAnimateBegin`() and `GuiAnimateEnd`().
+---Does a scale tween animation for all widgets inside a scope set using `GuiAnimateBegin()` and `GuiAnimateEnd()`.
 ---@param gui gui
 ---@param id integer
 ---@param acceleration number
@@ -2284,7 +2360,7 @@ function GuiAnimateScaleIn(gui, id, acceleration, reset) end
 ---@param font_is_pixel_font boolean? true
 function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 
----Deprecated. Use `GuiOptionsAdd`() or `GuiOptionsAddForNextWidget`() with GUI_OPTION.Align_HorizontalCenter and `GuiText`() instead.
+---Deprecated. Use `GuiOptionsAdd()` or `GuiOptionsAddForNextWidget()` with GUI_OPTION.Align_HorizontalCenter and `GuiText()` instead.
 ---@param gui gui
 ---@param x number
 ---@param y number
@@ -2389,7 +2465,7 @@ function GuiEndAutoBoxNinePiece(gui, margin, size_min_x, size_min_y, mirrorize_o
 ---@param description string
 function GuiTooltip(gui, text, description) end
 
----This can be used to create a container with a vertical scroll bar. Widgets between `GuiBeginScrollContainer`() and `GuiEndScrollContainer`() will be positioned relative to the container.
+---This can be used to create a container with a vertical scroll bar. Widgets between `GuiBeginScrollContainer()` and `GuiEndScrollContainer()` will be positioned relative to the container.
 ---@param gui gui
 ---@param id integer
 ---@param x number
@@ -2518,7 +2594,7 @@ function EntityConvertToMaterial(entity_id, material, use_material_colors) end
 ---@param material_static string? '""'
 function ConvertEverythingToGold(material_dynamic, material_static) end
 
----Converts `material_from` to `material_to` everwhere in the game world, replaces `material_from_type` to `material_to_type` in the material (CellData) global table, and marks `material_from` as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. `material_from` will still retain the original name id and wang color. Use `CellFactory_GetType`() to convert a material name to material type.
+---Converts `material_from` to `material_to` everwhere in the game world, replaces `material_from_type` to `material_to_type` in the material (CellData) global table, and marks `material_from` as a "Transformed" material. Every call will add a new entry to WorldStateComponent which serializes these changes, so please call sparingly. The material conversion will be spread over multiple frames. `material_from` will still retain the original name id and wang color. Use `CellFactory_GetType()` to convert a material name to material type.
 ---@param material_from_type integer
 ---@param material_to_type integer
 function ConvertMaterialEverywhere(material_from_type, material_to_type) end
@@ -2568,7 +2644,7 @@ function ModGetAPIVersion() end
 ---@return boolean
 function ModDoesFileExist(filename) end
 
----Returns a list of filenames from which materials were loaded. Only works in `OnModInit`() and later
+---Returns a list of filenames from which materials were loaded. Only works in `OnModInit()` and later
 ---@return string[]
 ---@nodiscard
 function ModMaterialFilesGet() end
@@ -2638,7 +2714,7 @@ function StreamingGetSettingsGhostsNamedAfterViewers() end
 ---@param time_voting_seconds number
 function StreamingSetCustomPhaseDurations(time_between_votes_seconds, time_voting_seconds) end
 
----Cancels whatever is currently going on, and starts a new voting. `_streaming_on_vote_start`() and `_streaming_get_event_for_vote`() will be called as usually.
+---Cancels whatever is currently going on, and starts a new voting. `_streaming_on_vote_start()` and `_streaming_get_event_for_vote()` will be called as usually.
 function StreamingForceNewVoting() end
 
 ---Turns the voting UI on or off.
@@ -2650,7 +2726,7 @@ function StreamingSetVotingEnabled(enabled) end
 ---@param from_filename string
 function ModLuaFileAppend(to_filename, from_filename) end
 
----Returns the paths of files that have been appended to `filename` using `ModLuaFileAppend`(). Unlike most Mod* functions, this one is available everywhere.
+---Returns the paths of files that have been appended to `filename` using `ModLuaFileAppend()`. Unlike most Mod* functions, this one is available everywhere.
 ---@param filename string
 ---@return string[]
 ---@nodiscard
@@ -2677,7 +2753,7 @@ function ModTextFileSetContent(filename, new_content) end
 ---@return string
 function ModTextFileWhoSetContent(filename) end
 
----Makes an image available for in-memory editing through `ModImageGetPixel`() and `ModImageSetPixel`().  
+---Makes an image available for in-memory editing through `ModImageGetPixel()` and `ModImageSetPixel()`.  
 ---Returns an id that can be used to access the image, and the dimensions of the image.  
 ---If an image file with the name wasn't found, an in-memory image of the given size will be created, filled with empty pixels (0x0), and added to the virtual filesystem under `filename`.  
 ---If an image with the given name has been previously created through ModImageMakeEditable, the id of that image will be returned. In case memory allocation failed, or if this is called outside mod init using a filename that wasn't succesfully used with this function during the init, 0 will be returned as the id.  
@@ -2896,7 +2972,7 @@ function SetValueBool(key, value) end
 ---@nodiscard
 function GetValueBool(key, default_value) end
 
----Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard `dofile`() behaviour is required.
+---Returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once()`, unless the standard `dofile()` behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
@@ -2914,7 +2990,7 @@ function dofile(filename)
 	return result
 end
 
----Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once`(), unless the standard `dofile`() behaviour is required.
+---Runs the script only once per lua context, returns the script's return value, if any. Returns nil, `error_string` if the script had errors. For performance reasons it is recommended scripts use `dofile_once()`, unless the standard `dofile()` behaviour is required.
 ---@param filename string
 ---@return any script_return_type
 ---@overload fun(filename: string): (nil, error_string: string)
