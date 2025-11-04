@@ -512,6 +512,12 @@ overrides = {
     "Randomf": {
         "comment": "If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`.\nDue to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds",
     },
+    "RandomDistributionf": {
+        "comment": "Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds",
+    },
+    "ProceduralRandomf": {
+        "comment": "If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns a number between 0 and `a`. If given 4 arguments returns a number between `a` and `b`.\nDue to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds",
+    },
     "AddFlagPersistent": {"ret": "is_new:boolean"},
     "GuiTextInput": {"ret": "new_text:string"},
     "ComponentGetVector": {"ret": "{int}|{number}|{string}|nil"},

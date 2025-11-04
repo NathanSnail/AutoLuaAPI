@@ -1805,7 +1805,8 @@ function SetRandomSeed(x, y) end
 ---@return number|integer
 function Random(a, b) end
 
----This is kinda messy. If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`.
+---If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`. 
+---Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds
 ---@param min number? optional
 ---@param max number? optional
 ---@return number
@@ -1819,6 +1820,7 @@ function Randomf(min, max) end
 ---@return integer
 function RandomDistribution(min, max, mean, sharpness, baseline) end
 
+---Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds
 ---@param min number
 ---@param max number
 ---@param mean number
@@ -1835,7 +1837,8 @@ function RandomDistributionf(min, max, mean, sharpness, baseline) end
 ---@return integer|number
 function ProceduralRandom(x, y, a, b) end
 
----This is kinda messy. If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns a number between 0 and `a`. If given 4 arguments returns a number between `a` and `b`.
+---If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns a number between 0 and `a`. If given 4 arguments returns a number between `a` and `b`. 
+---Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds
 ---@param x number
 ---@param y number
 ---@param a number? optional
