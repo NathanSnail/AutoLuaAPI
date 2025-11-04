@@ -1906,6 +1906,14 @@ function RandomDistribution(min, max, mean, sharpness, baseline) end
 ---@return number
 function RandomDistributionf(min, max, mean, sharpness, baseline) end
 
+---If given exactly 3 args is equivalent to `ProceduralRandomi()`, otherwise is equivalent to `ProceduralRandomf()`
+---@param x number
+---@param y number
+---@param a integer|number? optional
+---@param b integer|number? optional
+---@return integer|number
+function ProceduralRandom(x, y, a, b) end
+
 ---Similar to 
 ---```lua 
 ---SetRandomSeed(x, y) 
@@ -1914,20 +1922,12 @@ function RandomDistributionf(min, max, mean, sharpness, baseline) end
 ---except it does not modify the global seed state
 ---@param x number
 ---@param y number
----@param a integer|number? optional
----@param b integer|number? optional
----@return integer|number
-function ProceduralRandom(x, y, a, b) end
-
----Functionally identical to `ProceduralRandom()`.
----@param x number
----@param y number
 ---@param a number? optional
 ---@param b number? optional
 ---@return number
 function ProceduralRandomf(x, y, a, b) end
 
----Functionally identical to `ProceduralRandom()` except the return value is always rounded to an integer
+---Functionally identical to `ProceduralRandomf()` except the return value is always rounded to an integer
 ---@param x number
 ---@param y number
 ---@param a integer? optional

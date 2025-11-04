@@ -555,13 +555,13 @@ overrides = {
         "comment": "Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.",
     },
     "ProceduralRandom": {
-        "comment": "Similar to\n```lua\nSetRandomSeed(x, y)\nRandom(a, b)\n```\nexcept it does not modify the global seed state",
+        "comment": "If given exactly 3 args is equivalent to ProceduralRandomi(), otherwise is equivalent to ProceduralRandomf()",
     },
     "ProceduralRandomf": {
-        "comment": "Functionally identical to ProceduralRandom().",
+        "comment": "Similar to\n```lua\nSetRandomSeed(x, y)\nRandom(a, b)\n```\nexcept it does not modify the global seed state",
     },
     "ProceduralRandomi": {
-        "comment": "Functionally identical to ProceduralRandom() except the return value is always rounded to an integer",
+        "comment": "Functionally identical to ProceduralRandomf() except the return value is always rounded to an integer",
     },
     "AddFlagPersistent": {"ret": "is_new:boolean"},
     "GuiTextInput": {"ret": "new_text:string"},
