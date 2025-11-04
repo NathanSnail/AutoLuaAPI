@@ -1875,13 +1875,15 @@ function BiomeMapGetName(x, y) end
 ---@param y number
 function SetRandomSeed(x, y) end
 
----This is kinda messy. If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns int between 0 and `a`. If given 2 arguments returns int between `a` and `b`.
+---If given 0 arguments, returns number within the bounds (0, 1]. If given 1 arguments, returns integer between 0.0 and `a`. If given 2 arguments returns integer between `a` and `b`. 
+---Decimal inputs for integer parameters will be rounded.
 ---@param a integer? optional
 ---@param b integer? optional
 ---@return number|integer
 function Random(a, b) end
 
----This is kinda messy. If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`.
+---If given 0 arguments, returns number within the bounds (0, 1]. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`. 
+---Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.
 ---@param min number? optional
 ---@param max number? optional
 ---@return number
@@ -1895,6 +1897,7 @@ function Randomf(min, max) end
 ---@return integer
 function RandomDistribution(min, max, mean, sharpness, baseline) end
 
+---Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.
 ---@param min number
 ---@param max number
 ---@param mean number
@@ -1903,7 +1906,12 @@ function RandomDistribution(min, max, mean, sharpness, baseline) end
 ---@return number
 function RandomDistributionf(min, max, mean, sharpness, baseline) end
 
----This is kinda messy. If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns int between 0 and `a`. If given 4 arguments returns number between `a` and `b`.
+---Similar to 
+---```lua 
+---SetRandomSeed(x, y) 
+---Random(a, b) 
+---``` 
+---except it does not modify the global seed state
 ---@param x number
 ---@param y number
 ---@param a integer|number? optional
@@ -1911,7 +1919,7 @@ function RandomDistributionf(min, max, mean, sharpness, baseline) end
 ---@return integer|number
 function ProceduralRandom(x, y, a, b) end
 
----This is kinda messy. If given 2 arguments, returns number between 0.0 and 1.0. If given 3 arguments, returns a number between 0 and `a`. If given 4 arguments returns a number between `a` and `b`.
+---Functionally identical to `ProceduralRandom()`.
 ---@param x number
 ---@param y number
 ---@param a number? optional
@@ -1919,7 +1927,7 @@ function ProceduralRandom(x, y, a, b) end
 ---@return number
 function ProceduralRandomf(x, y, a, b) end
 
----This is kinda messy. If given 2 arguments, returns 0 or 1. If given 3 arguments, returns an int between 0 and `a`. If given 4 arguments returns an int between `a` and `b`.
+---Functionally identical to `ProceduralRandom()` except the return value is always rounded to an integer
 ---@param x number
 ---@param y number
 ---@param a integer? optional
