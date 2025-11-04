@@ -546,19 +546,22 @@ overrides = {
     "InputGetJoystickAnalogStick": {"ret": "x:number,y:number"},
     "BiomeMapGetName": {"ret": "name:string"},
     "Random": {
-        "comment": "If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns integer between 0.0 and `a`. If given 2 arguments returns integer between `a` and `b`.\nDecimal inputs for integer parameters will be rounded.",
+        "comment": "If given 0 arguments, returns number within the bounds (0, 1]. If given 1 arguments, returns integer between 0.0 and `a`. If given 2 arguments returns integer between `a` and `b`.\nDecimal inputs for integer parameters will be rounded.",
     },
     "Randomf": {
-        "comment": "If given 0 arguments, returns number between 0.0 and 1.0. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`.\nDue to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.",
+        "comment": "If given 0 arguments, returns number within the bounds (0, 1]. If given 1 arguments, returns number between 0.0 and `a`. If given 2 arguments returns number between `a` and `b`.\nDue to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.",
     },
     "RandomDistributionf": {
         "comment": "Due to conversion from engine float to Lua double, there is a miniscule chance for the return value to be very slightly out of bounds.",
     },
     "ProceduralRandom": {
-        "comment": "Identical to Random() but with `x` and `y` used to seed.\n This does not interfere with the current random seed from SetRandomSeed().",
+        "comment": "Similar to\n```lua\nSetRandomSeed(x, y)\nRandom(a, b)\n```\nexcept it does not modify the global seed state",
     },
     "ProceduralRandomf": {
-        "comment": "Identical to Randomf() but with `x` and `y` used to seed.\n This does not interfere with the current random seed from SetRandomSeed().\nHas the same bounding issue as `Randomf()`.",
+        "comment": "Functionally identical to ProceduralRandom().",
+    },
+    "ProceduralRandomi": {
+        "comment": "Functionally identical to ProceduralRandom() except the return value is always rounded to an integer",
     },
     "AddFlagPersistent": {"ret": "is_new:boolean"},
     "GuiTextInput": {"ret": "new_text:string"},
