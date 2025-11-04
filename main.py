@@ -558,7 +558,7 @@ overrides = {
         "comment": "If given exactly 3 args is equivalent to ProceduralRandomi(), otherwise is equivalent to ProceduralRandomf()",
     },
     "ProceduralRandomf": {
-        "comment": "Similar to\n```lua\nSetRandomSeed(x, y)\nRandom(a, b)\n```\nexcept it does not modify the global seed state",
+        "comment": "Similar to\n```lua\nSetRandomSeed(x, y)\nRandomf(a, b)\n```\nexcept it does not modify the global seed state",
     },
     "ProceduralRandomi": {
         "comment": "Functionally identical to ProceduralRandomf() except the return value is always rounded to an integer",
