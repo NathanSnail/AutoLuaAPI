@@ -706,6 +706,9 @@ overrides = {
     "ActionUsesRemainingChanged": {
         "comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."
     },
+    "ComponentGetValue2" : {
+        "ret": "...: any"
+    }
 }
 
 

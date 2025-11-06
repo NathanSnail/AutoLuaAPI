@@ -811,7 +811,7 @@ function ComponentHasTag(component_id, tag) end
 ---Returns one or many values matching the type or subtypes of the requested field. Reports error and returns nil if the field type is not supported or field was not found. This is up to 7.5x faster than the old ComponentSetValue functions.
 ---@param component_id component_id
 ---@param field_name field_type
----@return any|nil
+---@return any ...
 ---@nodiscard
 function ComponentGetValue2(component_id, field_name) end
 
