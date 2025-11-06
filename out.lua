@@ -1349,13 +1349,15 @@ function GamePlayAnimation(entity_id, name, priority, followup_name, followup_pr
 ---@nodiscard
 function GameGetVelocityCompVelocity(entity_id) end
 
----returns 0 on failure
+---Returns 0 on failure
+---Doesn't return `GameEffectComponent`s directly on the entity, they must be seperated through one or more layers of children.
 ---@param entity_id entity_id
 ---@param game_effect_name game_effect
 ---@return component_id component_id
 ---@nodiscard
 function GameGetGameEffect(entity_id, game_effect_name) end
 
+---This function doesn't really work, it returns the count of matching enabled `GameEffectComponent`s on direct children of `entity_id`. Other than `CRITICAL_HIT_BOOST` applying to projectiles all vanilla game effects apply if the effect is seperated through at least 1 layer of children (and for some effects 0). If you want to count the number of effects on an entity you can call this on the entity and recursively call it on all of its children (including indirect ones), then add the counts together. If you just want to test if an entity has an effect `GameGetGameEffect()` works.
 ---@param entity_id entity_id
 ---@param game_effect_name game_effect
 ---@return integer
