@@ -508,7 +508,7 @@ function EntityAddComponent(entity_id, component_type_name, table_of_component_v
 ---@param component_id component_id
 function EntityRemoveComponent(entity_id, component_id) end
 
----Returns a table of component ids.
+---Returns the ids of all components on `entity_id` (including disabled).
 ---@param entity_id entity_id
 ---@return component_id[] components
 ---@nodiscard

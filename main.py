@@ -576,7 +576,10 @@ overrides = {
         "args": "entity_id:int, component_type_name: string, table_of_component_values:{string-multiple_types} = nil"
     },
     "GlobalsGetValue": {"ret": "global:any|nil"},
-    "EntityGetAllComponents": {"ret": "components:{int}"},
+    "EntityGetAllComponents": {
+        "ret": "components:{int}",
+        "comment": "Returns the ids of all components on 'entity_id' (including disabled).",
+    },
     "LoadPixelScene": {
         "args": 'materials_filename:string, colors_filename:string, x:number, y:number, background_file:string = "", skip_biome_checks:bool = false, skip_edge_textures:bool = false, color_to_material_table:{string-string} = {}, background_z_index:int = 50, load_even_if_duplicate:bool = false '
     },
@@ -648,8 +651,12 @@ overrides = {
     "PhysicsVecToGameVec": {"nodiscard": True},
     "GameVecToPhysicsVec": {"nodiscard": True},
     "EntityLoad": {"args": "filename:string, pos_x:integer = 0, pos_y:integer = 0"},
-    "GameGetGameEffect": {"comment": "Returns 0 on failure\nDoesn't return `GameEffectComponent`s directly on the entity, they must be seperated through one or more layers of children."},
-    "GameGetGameEffectCount": {"comment": "This function doesn't really work, it returns the count of matching enabled `GameEffectComponent`s on direct children of `entity_id`. Other than `CRITICAL_HIT_BOOST` applying to projectiles all vanilla game effects apply if the effect is seperated through at least 1 layer of children (and for some effects 0). If you want to count the number of effects on an entity you can call this on the entity and recursively call it on all of its children (including indirect ones), then add the counts together. If you just want to test if an entity has an effect GameGetGameEffect() works."},
+    "GameGetGameEffect": {
+        "comment": "Returns 0 on failure\nDoesn't return `GameEffectComponent`s directly on the entity, they must be seperated through one or more layers of children."
+    },
+    "GameGetGameEffectCount": {
+        "comment": "This function doesn't really work, it returns the count of matching enabled `GameEffectComponent`s on direct children of `entity_id`. Other than `CRITICAL_HIT_BOOST` applying to projectiles all vanilla game effects apply if the effect is seperated through at least 1 layer of children (and for some effects 0). If you want to count the number of effects on an entity you can call this on the entity and recursively call it on all of its children (including indirect ones), then add the counts together. If you just want to test if an entity has an effect GameGetGameEffect() works."
+    },
     "GetValueBool": {"args": "key: string, default_value: bool"},
     "SetValueBool": {"args": "key: string, value: bool"},
     "EntityGetAllChildren": {
@@ -706,9 +713,7 @@ overrides = {
     "ActionUsesRemainingChanged": {
         "comment": "Returns `WorldState.consume_actions`, and updates the spell entity corresponding to `inventoryitem_id` to have the new number of uses if appropriate."
     },
-    "ComponentGetValue2" : {
-        "ret": "...: any"
-    }
+    "ComponentGetValue2": {"ret": "...: any"},
 }
 
 
@@ -863,4 +868,9 @@ for k, e in enumerate(table.children):
     # print(fn_name, fn_sig)
 
 with open("out.lua", "w", encoding="utf-8") as f:
-    f.write("\n".join(line.rstrip() for line in out.replace("\n\n\n", "\n\n").replace(" \n", "\n").split("\n")))
+    f.write(
+        "\n".join(
+            line.rstrip()
+            for line in out.replace("\n\n\n", "\n\n").replace(" \n", "\n").split("\n")
+        )
+    )
