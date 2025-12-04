@@ -667,7 +667,7 @@ overrides = {
         "comment": "Returns true if the area inside the bounding box has been streamed in and no pixel scenes are loading in the area (pixel scenes may not be loaded)."
     },
     "GuiImage": {
-        "comment": "'scale' will be used for 'scale_y' if 'scale_y' equals 0.\nDue to a bug the function will sometimes stop working unless alpha, scale, scale_y are passed. For this reason it is recommended to fill in the default parameters."
+        "args": 'gui:obj, id:int, x:number, y:number, sprite_filename:string, alpha:number = 0, scale:number = 1, scale_y:number = 0, rotation:number = 0, rect_animation_playback_type:int = GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndHide, rect_animation_name:string = ""',
     },
     "PolymorphTableGet": {"args": "rare_table: bool = false "},
     "EntityAddComponent": {
