@@ -2770,6 +2770,7 @@ function ModTextFileWhoSetContent(filename) end
 ---@return integer id
 ---@return integer w
 ---@return integer h
+---@nodiscard
 function ModImageMakeEditable(filename, width, height) end
 
 ---Returns an id that can be used with ModImageGetPixel and ModImageSetPixel, and the dimensions of the image.
