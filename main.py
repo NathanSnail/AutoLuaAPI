@@ -668,6 +668,7 @@ overrides = {
     },
     "GuiImage": {
         "args": 'gui:obj, id:int, x:number, y:number, sprite_filename:string, alpha:number = 0, scale:number = 1, scale_y:number = 0, rotation:number = 0, rect_animation_playback_type:int = GUI_RECT_ANIMATION_PLAYBACK.PlayToEndAndHide, rect_animation_name:string = ""',
+        "comment": "The default 'alpha' is 0, which makes the image completely invisible. Because of this you almost always want to pass alpha.",
     },
     "PolymorphTableGet": {"args": "rare_table: bool = false "},
     "EntityAddComponent": {

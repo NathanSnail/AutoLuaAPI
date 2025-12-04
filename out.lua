@@ -2372,7 +2372,7 @@ function GuiText(gui, x, y, text, scale, font, font_is_pixel_font) end
 ---@deprecated
 function GuiTextCentered(gui, x, y, text) end
 
----`scale` will be used for `scale_y` if `scale_y` equals 0.
+---The default `alpha` is 0, which makes the image completely invisible. Because of this you almost always want to pass alpha.
 ---@param gui gui
 ---@param id integer
 ---@param x number
