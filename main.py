@@ -199,6 +199,16 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---| "$damage_kick"
 ---| "$damage_holy_mountains_curse"
 
+---@alias SessionNumber
+---| "is_biome_map_initialized" `bool = false`
+---| "BIOME_MAP" `string = "data/biome_impl/biome_map.png"`
+---| "BIOME_MAP_PIXEL_SCENES" `string = "data/biome/_pixel_scenes.xml"`
+---| "NEW_GAME_PLUS_COUNT" `int = 0 [0, 30]` // Increases by one every time you enter New Game Plus.
+---| "DESIGN_SCALE_ENEMIES" `bool = false` // Set to true the first time you enter New Game Plus.
+---| "DESIGN_NEW_GAME_PLUS_HP_SCALE_MIN" `float = 1 [0, 20]` // Increases when you enter New Game Plus.
+---| "DESIGN_NEW_GAME_PLUS_HP_SCALE_MAX" `float = 1 [0, 50]` // Increases when you enter New Game Plus.
+---| "DESIGN_NEW_GAME_PLUS_ATTACK_SPEED" `float = 1 [0.125, 1]` // Halves every time you enter New Game Plus. 
+
 --META BEGIN: init callbacks
 ---@alias OnPlayerSpawned fun(player_entity: entity_id)
 ---@alias OnPlayerDied fun(player_entity: entity_id)
@@ -716,6 +726,8 @@ overrides = {
     },
     "ComponentGetValue2": {"ret": "...: any"},
     "ModImageMakeEditable": {"nodiscard": True},
+    "SessionNumbersGetValue": {"args": "key: SessionNumber"},
+    "SessionNumbersSetValue": {"args": "key: SessionNumber, value: string"},
 }
 
 
