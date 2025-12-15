@@ -10,7 +10,7 @@ def maybe_entity(name):
     return "entity" in name or "item" in name or "parent" in name or "child" in name
 
 
-def do_int(src, name):
+def do_int(src: str, name: str) -> str:
     if "integer" not in src:
         src = src.replace("int", "integer")
     if "uinteger32" in src:
@@ -26,7 +26,7 @@ def do_int(src, name):
     return src
 
 
-def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
+def type_alias(fn_name: str, other_args: List[str], src: str, name: str, is_optional: bool, is_arg: bool) -> str:
     if "{" in src:
         if "-" in src:
             src = src.replace("-", "]:")
@@ -59,6 +59,8 @@ def type_alias(fn_name: str, other_args: List[str], src: str, name: str):
         src = src.replace("bool", "boolean")
     if "int" in src:
         src = do_int(src, name)
+        if "entity_id" in src and is_optional and is_arg:
+            src = src + " | 0"
     if "ragdoll_fx" in name:
         src = src.replace("string", "ragdoll_fx")
     if src[-1] in ".-":
@@ -813,12 +815,14 @@ for k, e in enumerate(table.children):
         # print(arg_type)
         arg_default = arg_type.split("=")
         extra = ""
+        is_optional = False
         if len(arg_default) == 2:
+            is_optional = True
             extra = arg_default[1]
             arg_type = arg_default[0]
         if extra != "" and extra[0] == '"':
             extra = "'" + extra + "'"
-        arg_type = type_alias(fn_name, fn_args, arg_type, arg_name)
+        arg_type = type_alias(fn_name, fn_args, arg_type, arg_name, is_optional, True)
         fn_args2.append((arg_name, arg_type + ("?" if extra != "" else ""), extra))
     rets = ret.split(",")
     rets2 = []
@@ -829,12 +833,12 @@ for k, e in enumerate(table.children):
         # print(typed)
         if len(typed) != 2:
             # print(fn_args)
-            rets2.append((type_alias(fn_name, fn_args, typed[0], ""),))
+            rets2.append((type_alias(fn_name, fn_args, typed[0], "", False, False),))
             continue
         ret_name = typed[0]
         ret_type = typed[1]
         # print(arg_type)
-        ret_type = type_alias(fn_name, fn_args, ret_type, ret_name)
+        ret_type = type_alias(fn_name, fn_args, ret_type, ret_name, False, False)
         rets2.append((ret_type, ret_name))
 
     # print(fn_name, rets2, [x for x in rets2])

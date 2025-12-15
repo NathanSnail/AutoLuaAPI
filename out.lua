@@ -1281,7 +1281,7 @@ function GameCreateSpriteForXFrames(filename, x, y, centered, sprite_offset_x, s
 ---@param target_y number
 ---@param projectile_entity entity_id
 ---@param send_message boolean? true
----@param verlet_parent_entity entity_id? 0
+---@param verlet_parent_entity entity_id | 0? 0
 function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectile_entity, send_message, verlet_parent_entity) end
 
 ---@param entity entity_id
@@ -1291,7 +1291,7 @@ function GameShootProjectile(shooter_entity, x, y, target_x, target_y, projectil
 ---@param ragdoll_fx ragdoll_fx
 ---@param impulse_x number
 ---@param impulse_y number
----@param entity_who_is_responsible entity_id? 0
+---@param entity_who_is_responsible entity_id | 0? 0
 ---@param world_pos_x number? entity_x
 ---@param world_pos_y number? entity_y
 ---@param knockback_force number? 0
@@ -1762,7 +1762,7 @@ function StatsBiomeGetValue(key) end
 
 function StatsBiomeReset() end
 
----@param killed_entity_id entity_id? 0
+---@param killed_entity_id entity_id | 0? 0
 function StatsLogPlayerKill(killed_entity_id) end
 
 ---@param action_id string
