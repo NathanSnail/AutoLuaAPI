@@ -473,9 +473,10 @@ function _ConfigGunActionInfo_ReadToGame(action_id, action_name, action_descript
 ---@return entity_id entity_id
 function EntityLoad(filename, pos_x, pos_y) end
 
+---Like EntityLoad except if the path is `"data/entities/animals/boss_centipede/sampo.xml"` then will test if `Random(0, 1000) == 999` and if so load `"data/entities/items/orbs/orb_11.xml"` instead.
 ---@param filename string
----@param pos_x number? 0
----@param pos_y number? 0
+---@param pos_x integer? 0
+---@param pos_y integer? 0
 ---@return entity_id entity_id
 function EntityLoadEndGameItem(filename, pos_x, pos_y) end
 
