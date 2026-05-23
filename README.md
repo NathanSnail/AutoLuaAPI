@@ -3,7 +3,7 @@ This is an alternative API definition file for Noita's modding API which aims to
 # How to install
 Add out.lua to your Lua library path. 
 
-In VSCode open the `sumneko.lua` extension settings and edit `Workspace: Library` to contain the path to the definitions.
+In VSCode install the Lua extension by "sumneko". Then open the `sumneko.lua` extension settings and edit `Workspace: Library` to contain the path to the definitions.
 
 In NVim
 ```lua
