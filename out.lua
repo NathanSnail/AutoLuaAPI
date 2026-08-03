@@ -2272,6 +2272,8 @@ function GameSetPostFxTextureParameter(parameter_name, texture_filename, filteri
 ---@param name string
 function GameUnsetPostFxTextureParameter(name) end
 
+---If the string begins with `$`, it will try to parse it as a key, and otherwise will return the raw string provided.
+---If recognised as a key and the translation key is invalid, it will log it and return `""`, otherwise it will return the translation.
 ---@param text_or_key string
 ---@return string
 ---@nodiscard
