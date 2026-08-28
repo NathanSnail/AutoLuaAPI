@@ -1,4 +1,5 @@
 from functools import reduce
+import json
 import re
 from typing import List
 import config
@@ -123,6 +124,8 @@ object_type = "---@alias object_type " + " | ".join([f'"{x}"' for x in objects])
 component_type = "---@alias component_type " + " | ".join(
     [f'"{x}"' for x in components]
 )
+magic_numbers_json = json.load(open("magic_numbers.json"))
+magic_numbers = "---@alias MagicNumber \n" + "\n".join(f'---| "{x["name"]}" `{x["type"]} = {x["default"]}` {x.get("doc", "")}' for x in magic_numbers_json)
 
 out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type, return-type-mismatch
 ---@meta
@@ -263,6 +266,7 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 {field_type}
 ---lua_ls doesn't support dependent types properly so this includes the object types for *all* components
 {object_type}
+{magic_numbers}
 ---@alias damage_type
 ---|> "NONE"
 ---| "DAMAGE_MELEE"
@@ -386,7 +390,6 @@ out = f"""---@diagnostic disable: unused-local, missing-return, cast-local-type,
 ---| "DISINTEGRATED"
 ---| "NO_RAGDOLL_FILE"
 ---| "PLAYER_RAGDOLL_CAMERA"
-
 
 ---@alias printable_string string | number
 
@@ -733,7 +736,8 @@ overrides = {
     "ModImageMakeEditable": {"nodiscard": True},
     "SessionNumbersGetValue": {"args": "key: SessionNumber"},
     "SessionNumbersSetValue": {"args": "key: SessionNumber, value: string"},
-    "EntityLoadEndGameItem": {"args": "filename: string, pos_x: integer = 0, pos_y: integer = 0", "comment": "Like `EntityLoad` except if the path is `\"data/entities/animals/boss_centipede/sampo.xml\"` then will test if `Random(0, 1000) == 999` and if so load `\"data/entities/items/orbs/orb_11.xml\"` instead."}
+    "EntityLoadEndGameItem": {"args": "filename: string, pos_x: integer = 0, pos_y: integer = 0", "comment": "Like `EntityLoad` except if the path is `\"data/entities/animals/boss_centipede/sampo.xml\"` then will test if `Random(0, 1000) == 999` and if so load `\"data/entities/items/orbs/orb_11.xml\"` instead."},
+    "MagicNumbersGetValue": {"args": "key: MagicNumber"},
 }
 
 

@@ -1,0 +1,2446 @@
+[
+    {
+        "name": "ANIMALAI_FLYING_OFFSET_Y",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SHOW_MOUSE_MATERIAL",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "PLAYER_KICK_FORCE",
+        "type": "float",
+        "default": "50",
+        "required": false
+    },
+    {
+        "name": "PLAYER_KICK_VERLET_RADIUS",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "PLAYER_KICK_VERLET_FORCE",
+        "type": "float",
+        "default": "4",
+        "required": false
+    },
+    {
+        "name": "PLAYER_KICK_FRAMES_IGNORE_COLLISION",
+        "type": "int",
+        "default": "35",
+        "required": false
+    },
+    {
+        "name": "INVENTORY_GUI_ALWAYS_VISIBLE",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "CAMERA_IS_FREE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "REPORT_DAMAGE_TYPE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "REPORT_DAMAGE_FONT",
+        "type": "string",
+        "default": "data/fonts/font_damage.xml",
+        "required": false
+    },
+    {
+        "name": "REPORT_DAMAGE_SCALE",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "REPORT_DAMAGE_BLOCK_MESSAGE_INTERVAL_FRAMES",
+        "type": "int",
+        "default": "30",
+        "required": false
+    },
+    {
+        "name": "GAME_LOG_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "RANDOMIZE_LARGE_EXPLOSION_RAYS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "EXPLOSION_FACTORY_FALLING_DIRT_FX_PROBABILITY",
+        "type": "int",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "EXPLOSION_FACTORY_STAIN_PERCENTAGE",
+        "type": "float",
+        "default": "0.4",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_JOINT_MAX_FORCE_MULTIPLIER",
+        "type": "float",
+        "default": "160",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_RAGDOLL_JOINT_MAX_FORCE_MULTIPLIER",
+        "type": "float",
+        "default": "400",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_RAGDOLL_JOINT_MIN_BREAK_FORCE",
+        "type": "float",
+        "default": "200",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_RAGDOLL_JOINT_STIFFNESS",
+        "type": "float",
+        "default": "0.05",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_RAGDOLL_VERY_STIFF_JOINT_STIFFNESS",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "PHYSICS_FIX_SHELF_BUG",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GUI_HP_MULTIPLIER",
+        "type": "float",
+        "default": "25",
+        "required": false,
+        "doc": "Determines the scale that's used to display damage numbers and HP. Also used for the HP values in Saving Grace and Extra Life"
+    },
+    {
+        "name": "THROW_UI_TIMESTEP_COEFF",
+        "type": "float",
+        "default": "4",
+        "required": false
+    },
+    {
+        "name": "VERLET_STAIN_DROP_CHANCE_DIV",
+        "type": "int",
+        "default": "200",
+        "required": false
+    },
+    {
+        "name": "ITEM_SWITCH_ITEM_TWEEN_TIME_FRAMES",
+        "type": "float",
+        "default": "4",
+        "required": false
+    },
+    {
+        "name": "APPARITION_MIN_BONES_REQUIRED",
+        "type": "int",
+        "default": "35",
+        "required": false,
+        "doc": "How many files need to be in the bones folder before Kummitus starts spawning"
+    },
+    {
+        "name": "TELEPORT_ATTACK_COOLDOWN_FRAMES",
+        "type": "int",
+        "default": "60",
+        "required": false
+    },
+    {
+        "name": "GAMEPLAY_LIVES_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_MOVEMENT_SLOWER_SPEED_MULTIPLIER_MIN",
+        "type": "float",
+        "default": "0.6",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_MOVEMENT_SLOWER_SPEED_MULTIPLIER_MAX",
+        "type": "float",
+        "default": "0.85",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_MOVEMENT_FASTER_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "1.5",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_MOVEMENT_FASTER_2X_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "2.5",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_CRITICAL_HIT_BOOST_CRIT_EXTRA_CHANCE",
+        "type": "int",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_STAINS_DROP_FASTER_DROP_CHANCE_MULTIPLIER",
+        "type": "int",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_DAMAGE_MULTIPLIER_COEFF",
+        "type": "float",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_INVISIBILITY_SHOT_COOLDOWN_FRAMES",
+        "type": "int",
+        "default": "300",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_TELEPORTITIS_COOLDOWN_FRAMES",
+        "type": "int",
+        "default": "60",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_TELEPORTITIS_DAMAGE_MULTIPLIER",
+        "type": "float",
+        "default": "0.8",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_ELECROCUTION_RESISTANCE_DURATION_FRAMES",
+        "type": "int",
+        "default": "60",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_FIRE_MOVEMENT_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "1.15",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_MANA_REGENERATION_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "DAMAGE_CRITICAL_HIT_MULTIPLIER",
+        "type": "float",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_GLOBAL_GORE_GORE_MULTIPLIER",
+        "type": "int",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "GAMEEFFECT_EXTRA_MONEY_TRICK_KILL_MULTIPLIER",
+        "type": "int",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "GAMEFFECT_WEAKNESS_DAMAGE_MULTIPLIER",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "GAME_OVER_DAMAGE_FLASH_FADE_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "INGESTION_AMOUNT_PER_CELL_MULTIPLIER",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "INGESTION_SATIATION_PER_CELL",
+        "type": "unsigned int",
+        "default": "6",
+        "required": false
+    },
+    {
+        "name": "INGESTION_OVERINGESTION_MSG_PERIOD",
+        "type": "unsigned int",
+        "default": "120",
+        "required": false
+    },
+    {
+        "name": "INGESTION_LIMIT_SLOW_MOVEMENT",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "INGESTION_LIMIT_DAMAGE",
+        "type": "float",
+        "default": "1.5",
+        "required": false
+    },
+    {
+        "name": "INGESTION_LIMIT_EXPLODING",
+        "type": "float",
+        "default": "1.75",
+        "required": false
+    },
+    {
+        "name": "INGESTION_LIMIT_EXPLOSION",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "GAMEPLAY_CHARACTER_LIQUID_FORCES_ENABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_PARTICLES_ALPHA",
+        "type": "float",
+        "default": "0.09",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_PARTICLES_ALPHA_CHANGE_SPD",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_EXPLOSION_TIME_MOVED_FAST_MIN",
+        "type": "int",
+        "default": "60",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_EXPLOSION_TIME_MOVED_FAST_MAX",
+        "type": "int",
+        "default": "150",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_EXPLOSION_COOLDOWN",
+        "type": "int",
+        "default": "90",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_EXPLOSION_GROUND_RAY_LENGTH",
+        "type": "float",
+        "default": "30",
+        "required": false
+    },
+    {
+        "name": "PLAYER_FAST_MOVEMENT_EXPLOSION_GROUND_PENETRATE_LENGTH",
+        "type": "float",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "COOP_RESPAWN_TIMER_FRAMES",
+        "type": "int",
+        "default": "7200",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_1",
+        "type": "float",
+        "default": "3.78",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_2",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_3",
+        "type": "float",
+        "default": "0.9",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_4",
+        "type": "float",
+        "default": "0.6",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_5",
+        "type": "float",
+        "default": "0.4",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_6",
+        "type": "float",
+        "default": "0.3",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_7",
+        "type": "float",
+        "default": "0.27",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_8",
+        "type": "float",
+        "default": "0.26",
+        "required": false
+    },
+    {
+        "name": "DROP_LEVEL_9",
+        "type": "float",
+        "default": "0.25",
+        "required": false
+    },
+    {
+        "name": "BIOME_MAP",
+        "type": "string",
+        "default": "data/scripts/biome_map.lua",
+        "required": false
+    },
+    {
+        "name": "BIOME_APPARITION_CHANCE",
+        "type": "int",
+        "default": "30",
+        "required": false,
+        "doc": "Used for Kummitus state transitions 0 -> 3"
+    },
+    {
+        "name": "BIOME_RANDOM_BLOCK_CHANCE",
+        "type": "float",
+        "default": "0.5",
+        "required": false
+    },
+    {
+        "name": "BIOME_USE_BIG_WANG",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "BIOME_PATH_FIND_HEIGHT_LIMIT",
+        "type": "int",
+        "default": "205",
+        "required": false
+    },
+    {
+        "name": "BIOME_PATH_FIND_WORLD_POS_MIN_X",
+        "type": "int",
+        "default": "159",
+        "required": false
+    },
+    {
+        "name": "BIOME_PATH_FIND_WORLD_POS_MAX_X",
+        "type": "int",
+        "default": "223",
+        "required": false
+    },
+    {
+        "name": "WORLD_SEED",
+        "type": "unsigned int",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "NUM_ORBS_TOTAL",
+        "type": "int",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "CAMERA_MOUSE_INTERPOLATION_SPEED",
+        "type": "float",
+        "default": "0.25",
+        "required": false
+    },
+    {
+        "name": "CAMERA_GAMEPAD_INTERPOLATION_SPEED",
+        "type": "float",
+        "default": "1.75",
+        "required": false
+    },
+    {
+        "name": "CAMERA_GAMEPAD_MAX_DISTANCE",
+        "type": "float",
+        "default": "55",
+        "required": false
+    },
+    {
+        "name": "CAMERA_POSITION_INTERPOLATION_SPEED",
+        "type": "float",
+        "default": "3.52",
+        "required": false
+    },
+    {
+        "name": "CAMERA_DISTANCE_INTERPOLATION_SPEED",
+        "type": "float",
+        "default": "1.16",
+        "required": false
+    },
+    {
+        "name": "CAMERA_NO_MOVE_BUFFER_NEAR_PLAYER",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "CAMERA_NO_MOVE_BUFFER_NEAR_VIEWPORT_EDGE",
+        "type": "float",
+        "default": "0.3",
+        "required": false
+    },
+    {
+        "name": "CAMERA_RECOIL_ATTACK_SPEED",
+        "type": "float",
+        "default": "0.15",
+        "required": false
+    },
+    {
+        "name": "CAMERA_RECOIL_RELEASE_SPEED",
+        "type": "float",
+        "default": "15",
+        "required": false
+    },
+    {
+        "name": "CAMERA_RECOIL_AMOUNT",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_SMOOTHING_THRESHOLD_X",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_SMOOTHING_THRESHOLD_Y_MAX",
+        "type": "float",
+        "default": "65",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_SMOOTHING_THRESHOLD_Y_MIN",
+        "type": "float",
+        "default": "-40",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_SPD_UP_X",
+        "type": "float",
+        "default": "0.935",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_SPD_UP_Y",
+        "type": "float",
+        "default": "0.935",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_SPD_DOWN_X",
+        "type": "float",
+        "default": "0.935",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_SPD_DOWN_Y",
+        "type": "float",
+        "default": "0.935",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_AMOUNT_X",
+        "type": "float",
+        "default": "1.1",
+        "required": false
+    },
+    {
+        "name": "CAMERA_ERROR_CORRECTION_AMOUNT_Y",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "CAMERA_FAST_SWITCH_SPEED",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "MULTIPLAYER_CAMERA_SMOOTHING",
+        "type": "float",
+        "default": "0.25",
+        "required": false
+    },
+    {
+        "name": "MULTIPLAYER_CAMERA_MAX_SMOOTH_DISTANCE",
+        "type": "float",
+        "default": "512",
+        "required": false
+    },
+    {
+        "name": "CAMERA_IS_UI_OPEN",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "PLAYER_USE_NEW_JETPACK",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DOUBLE_CLICK_MAX_SPAN_SECONDS",
+        "type": "float",
+        "default": "0.35",
+        "required": false
+    },
+    {
+        "name": "ESC_QUITS_GAME",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_AIMING_VECTOR_SMOOTHING_COEFF",
+        "type": "float",
+        "default": "0.75",
+        "required": false
+    },
+    {
+        "name": "CONTROLS_AIMING_VECTOR_FULL_LENGTH_PIXELS",
+        "type": "float",
+        "default": "100",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_SHOT_VIBRATION_FORCE_MIN",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_SHOT_VIBRATION_FORCE_COEFF",
+        "type": "float",
+        "default": "0.015",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_SHOT_VIBRATION_TIME_COEFF",
+        "type": "float",
+        "default": "0.04",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_ANALOG_FLYING_LOW",
+        "type": "float",
+        "default": "0.1",
+        "required": false
+    },
+    {
+        "name": "GAMEPAD_ANALOG_FLYING_HIGH",
+        "type": "float",
+        "default": "0.95",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_FX_EXPLOSION_ROTATION",
+        "type": "float",
+        "default": "0.1",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_BLOOD_MULTIPLIER",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_FIRE_DEATH_IGNITE_EVERY_N_PIXEL",
+        "type": "int",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_IMPULSE_RANDOMNESS",
+        "type": "float",
+        "default": "0.04",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_OWN_VELOCITY_IMPULSE_MULTIPLIER",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "RAGDOLL_CRITICAL_HIT_FORCE_MULTIPLIER",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "DAMAGE_BLOOD_AMOUNT_MIN",
+        "type": "int",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "DAMAGE_BLOOD_AMOUNT_MAX",
+        "type": "int",
+        "default": "40",
+        "required": false
+    },
+    {
+        "name": "DAMAGE_FIRE_DAMAGE_MAX_HP_MIN_BOUND",
+        "type": "float",
+        "default": "0.8",
+        "required": false
+    },
+    {
+        "name": "DAMAGE_BLOOD_SPRAY_CHANCE",
+        "type": "int",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "EXPLOSION_FACTORY_GORE_FX_PROBABLITY",
+        "type": "int",
+        "default": "60",
+        "required": false
+    },
+    {
+        "name": "EXPLOSION_FACTORY_GORE_FX_HOLE_PROBABILITY",
+        "type": "int",
+        "default": "30",
+        "required": false
+    },
+    {
+        "name": "EXPLOSION_FACTORY_GORE_FX_BLOOD_STAIN_COLOR",
+        "type": "unsigned int",
+        "default": "4286055685",
+        "required": false
+    },
+    {
+        "name": "GRID_MAX_UPDATES_PER_FRAME",
+        "type": "int",
+        "default": "128",
+        "required": false
+    },
+    {
+        "name": "GRID_FLEXIBLE_MAX_UPDATES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GRID_MIN_UPDATES_PER_FRAME",
+        "type": "int",
+        "default": "40",
+        "required": false
+    },
+    {
+        "name": "CELLFACTORY_CELLDATA_MAX_COUNT",
+        "type": "int",
+        "default": "1024",
+        "required": false,
+        "doc": "The max number of individual materials permitted to exist by the engine"
+    },
+    {
+        "name": "PARTICLE_EMITTER_MAX_PARTICLES",
+        "type": "int",
+        "default": "100000",
+        "required": false,
+        "doc": "Added in the Mar 11, 2023 patch"
+    },
+    {
+        "name": "VIRTUAL_RESOLUTION_X",
+        "type": "int",
+        "default": "427",
+        "required": false
+    },
+    {
+        "name": "VIRTUAL_RESOLUTION_Y",
+        "type": "int",
+        "default": "242",
+        "required": false
+    },
+    {
+        "name": "VIRTUAL_RESOLUTION_OFFSET_X",
+        "type": "float",
+        "default": "-1",
+        "required": false
+    },
+    {
+        "name": "VIRTUAL_RESOLUTION_OFFSET_Y",
+        "type": "float",
+        "default": "-1",
+        "required": false
+    },
+    {
+        "name": "GRID_RENDER_BORDER",
+        "type": "int",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "GRID_RENDER_TILE_SIZE",
+        "type": "int",
+        "default": "32",
+        "required": false
+    },
+    {
+        "name": "DRAW_PARALLAX_BACKGROUND",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DRAW_PARALLAX_BACKGROUND_BEFORE_DEPTH",
+        "type": "float",
+        "default": "512",
+        "required": false
+    },
+    {
+        "name": "RENDER_PARALLAX_BACKGROUND_SHADER_GRADIENT",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "RENDER_SKYLIGHT_MAX_REDUCTION_AMOUNT",
+        "type": "float",
+        "default": "96",
+        "required": false
+    },
+    {
+        "name": "RENDER_SKYLIGHT_ABOVE_WEIGHT",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "RENDER_SKYLIGHT_SIDES_WEIGHT",
+        "type": "float",
+        "default": "0.75",
+        "required": false
+    },
+    {
+        "name": "RENDER_SKYLIGHT_TOTAL_WEIGHT",
+        "type": "float",
+        "default": "0.9",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_LO_TIME",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_LO_SCALE",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_LO_FORCE",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_HI_TIME",
+        "type": "float",
+        "default": "0.25",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_HI_SCALE",
+        "type": "float",
+        "default": "0.15",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_HI_FORCE",
+        "type": "float",
+        "default": "1.5",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_GRAVITY",
+        "type": "float",
+        "default": "-160",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_LIFETIME_MIN",
+        "type": "int",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_LIFETIME_MAX",
+        "type": "int",
+        "default": "30",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_GLOW_ALPHA",
+        "type": "float",
+        "default": "0.04",
+        "required": false
+    },
+    {
+        "name": "RENDER_FIRE_SHARP_ALPHA",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "RENDER_POTION_PARTICLE_MAX_COLOR_COMPONENT",
+        "type": "float",
+        "default": "0.65",
+        "required": false
+    },
+    {
+        "name": "RENDER_color_grading_LERP_SPEED",
+        "type": "float",
+        "default": "0.015",
+        "required": false
+    },
+    {
+        "name": "TELEPORT_FLASH_COLOR_R",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "TELEPORT_FLASH_COLOR_G",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "TELEPORT_FLASH_COLOR_B",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "AUDIO_GAMEEFFECT_FIRE_WEIGHT",
+        "type": "float",
+        "default": "0.1",
+        "required": false
+    },
+    {
+        "name": "AUDIO_FIRE_WEIGHT",
+        "type": "float",
+        "default": "1500",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MAGICAL_MATERIAL_WEIGHT",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "AUDIO_GAME_START_FADE_FRAME",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "AUDIO_GAME_START_FADE_SPEED",
+        "type": "float",
+        "default": "1.2",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_VOLUME_DEFAULT",
+        "type": "float",
+        "default": "0.8",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_QUIET_FADE_DOWN_SPEED",
+        "type": "float",
+        "default": "0.25",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_NORMAL_FADE_DOWN_SPEED",
+        "type": "float",
+        "default": "0.04",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_NORMAL_FADE_UP_SPEED",
+        "type": "float",
+        "default": "0.075",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_ACTION_FADE_DOWN_SPEED",
+        "type": "float",
+        "default": "0.12",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_ACTION_FADE_UP_SPEED",
+        "type": "float",
+        "default": "0.1",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_LOW_ENERGY_TRIGGER_COOLDOWN_SECONDS",
+        "type": "double",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_FORCED_QUIETNESS_TRIGGERS_AFTER_SECONDS",
+        "type": "int",
+        "default": "150",
+        "required": false
+    },
+    {
+        "name": "AUDIO_MUSIC_FORCED_QUIETNESS_DURATION_SECONDS",
+        "type": "int",
+        "default": "45",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_SIZE_MULTIPLIER",
+        "type": "float",
+        "default": "0.15",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "0.01",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_KICK_SIZE",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_COOLDOWN_SECONDS",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_STATIC_WALL_INTENSITY",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "AUDIO_COLLISION_STATIC_WALL_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "0.5",
+        "required": false
+    },
+    {
+        "name": "AUDIO_PHYSICS_BREAK_MASS_MULTIPLIER",
+        "type": "float",
+        "default": "5",
+        "required": false
+    },
+    {
+        "name": "AUDIO_CHARACTER_LIQUID_SPLASH_INTENSITY_MIN",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "AUDIO_CHARACTER_LIQUID_SPLASH_INTENSITY_MAX",
+        "type": "float",
+        "default": "0.63",
+        "required": false
+    },
+    {
+        "name": "AUDIO_CHARACTER_LIQUID_SPLASH_INTENSITY_SPEED_DIV",
+        "type": "float",
+        "default": "250",
+        "required": false
+    },
+    {
+        "name": "AUDIO_EXPLOSION_NO_SOUND_BELOW_RADIUS",
+        "type": "float",
+        "default": "2.05",
+        "required": false
+    },
+    {
+        "name": "AUDIO_EXPLOSION_SMALL_SOUND_MAX_RADIUS",
+        "type": "float",
+        "default": "7",
+        "required": false
+    },
+    {
+        "name": "AUDIO_PICK_GOLD_SAND_MIN_AMOUNT_FOR_SOUND",
+        "type": "int",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "AUDIO_PICK_GOLD_SAND_AMOUNT_ACCUMULATION_FRAMES",
+        "type": "int",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "AUDIO_AMBIENCE_ALTITUDE_SCALE",
+        "type": "float",
+        "default": "1000",
+        "required": false
+    },
+    {
+        "name": "AUDIO_CREDITS_TRACK_NAME",
+        "type": "string",
+        "default": "music/credits/03",
+        "required": false
+    },
+    {
+        "name": "AUDIO_PLAY_GAME_OVER_SOUND",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "AUDIO_FADE_MUSIC_ON_DEATH",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "PATHFINDING_DISTANCE_FIELD_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "STREAMING_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "STREAMING_FREQUENCY",
+        "type": "double",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "STREAMING_CHUNK_TARGET",
+        "type": "int",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "STREAMING_PERSISTENT_WORLD",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "STREAMING_AUTOSAVE_PERIOD_SECONDS",
+        "type": "int",
+        "default": "180",
+        "required": false
+    },
+    {
+        "name": "INVENTORY_ICON_SIZE",
+        "type": "int",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "INVENTORY_STASH_X",
+        "type": "float",
+        "default": "370",
+        "required": false,
+        "doc": "Unused"
+    },
+    {
+        "name": "INVENTORY_STASH_Y",
+        "type": "float",
+        "default": "80",
+        "required": false,
+        "doc": "Unused"
+    },
+    {
+        "name": "INVENTORY_DEBUG_X",
+        "type": "float",
+        "default": "165",
+        "required": false,
+        "doc": "Used to position the 'Magical Materia Summoner' background grid in noita_dev.exe"
+    },
+    {
+        "name": "INVENTORY_DEBUG_Y",
+        "type": "float",
+        "default": "45",
+        "required": false,
+        "doc": "Used to position the 'Magical Materia Summoner' background grid in noita_dev.exe"
+    },
+    {
+        "name": "UI_SNAP_TO_NEAREST_INTEGER_SCALE",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_BARS_SCALE",
+        "type": "float",
+        "default": "1",
+        "required": false,
+        "doc": "Multiplier for the health bar vertical size"
+    },
+    {
+        "name": "UI_BARS_POS_X",
+        "type": "float",
+        "default": "20",
+        "required": false,
+        "doc": "Offsets the UI elements for quick and full inventory except the backgrounds, also moves the wand boxes in the inventory (the one where you can rearrange spells on wands)"
+    },
+    {
+        "name": "UI_BARS_POS_Y",
+        "type": "float",
+        "default": "20",
+        "required": false,
+        "doc": "Offsets the UI elements for quick and full inventory except the backgrounds, also moves the wand boxes in the inventory (the one where you can rearrange spells on wands)"
+    },
+    {
+        "name": "UI_BARS2_OFFSET_X",
+        "type": "float",
+        "default": "-40",
+        "required": false,
+        "doc": "Offsets the bars at the right side of the screen (Health, Mana etc) (has no Y equivalent)"
+    },
+    {
+        "name": "UI_PLAYER_FULL_STATS_POS_X",
+        "type": "float",
+        "default": "530",
+        "required": false
+    },
+    {
+        "name": "UI_PLAYER_FULL_STATS_POS_Y",
+        "type": "float",
+        "default": "70",
+        "required": false
+    },
+    {
+        "name": "UI_PLAYER_FULL_STATS_COLUMN2_OFFSET_X",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_PLAYER_FULL_STATS_COLUMN3_OFFSET_X",
+        "type": "float",
+        "default": "45",
+        "required": false
+    },
+    {
+        "name": "UI_STAT_BAR_EXTRA_SPACING",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "UI_STAT_BAR_ICON_OFFSET_Y",
+        "type": "float",
+        "default": "-1",
+        "required": false
+    },
+    {
+        "name": "UI_STAT_BAR_TEXT_OFFSET_X",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_STAT_BAR_TEXT_OFFSET_Y",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "UI_QUICKBAR_OFFSET_X",
+        "type": "float",
+        "default": "0",
+        "required": false,
+        "doc": "Offsets the inventory in the top left where the wands and item are stored (inventory_quick)"
+    },
+    {
+        "name": "UI_QUICKBAR_OFFSET_Y",
+        "type": "float",
+        "default": "0",
+        "required": false,
+        "doc": "Offsets the inventory in the top left where the wands and item are stored (inventory_quick)"
+    },
+    {
+        "name": "UI_INVENTORY_BACKGROUND_POSITION_X",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "UI_INVENTORY_BACKGROUND_POSITION_Y",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "UI_FULL_INVENTORY_OFFSET_X",
+        "type": "float",
+        "default": "170",
+        "required": false,
+        "doc": "Spell inventory offset (has no Y equivalent)"
+    },
+    {
+        "name": "UI_IMPORTANT_MESSAGE_POS_Y",
+        "type": "int",
+        "default": "65",
+        "required": false
+    },
+    {
+        "name": "UI_IMPORTANT_MESSAGE_TITLE_SCALE",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_LOW_HP_THRESHOLD",
+        "type": "float",
+        "default": "1.3333",
+        "required": false
+    },
+    {
+        "name": "UI_LOW_HP_WARNING_FLASH_FREQUENCY",
+        "type": "float",
+        "default": "8",
+        "required": false
+    },
+    {
+        "name": "UI_PIXEL_FONT_GAME_LOG",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_PAUSE_MENU_LAYOUT_TOP_EDGE_PERCENTAGE",
+        "type": "int",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_GAME_OVER_MENU_LAYOUT_TOP_EDGE_PERCENTAGE",
+        "type": "int",
+        "default": "19",
+        "required": false
+    },
+    {
+        "name": "UI_WOBBLE_SPEED",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_WOBBLE_AMOUNT_DEGREES",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "UI_GAMEOVER_SCREEN_BOX_FROM_TOP_PERCENT",
+        "type": "float",
+        "default": "40",
+        "required": false
+    },
+    {
+        "name": "UI_GAMEOVER_SCREEN_BOX_FROM_SIDE_PERCENT",
+        "type": "float",
+        "default": "32",
+        "required": false
+    },
+    {
+        "name": "UI_GAMEOVER_SCREEN_BOX_FROM_BOTTOM_PERCENT",
+        "type": "float",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "UI_GAMEOVER_SCREEN_MUSIC_CUE_TIMER_FRAMES",
+        "type": "int",
+        "default": "300",
+        "required": false
+    },
+    {
+        "name": "UI_COOP_QUICK_INVENTORY_HEIGHT",
+        "type": "float",
+        "default": "24",
+        "required": false
+    },
+    {
+        "name": "UI_COOP_STAT_BARS_HEIGHT",
+        "type": "float",
+        "default": "48",
+        "required": false
+    },
+    {
+        "name": "UI_SCALE_IN_SPEED",
+        "type": "float",
+        "default": "0.2",
+        "required": false
+    },
+    {
+        "name": "UI_DAMAGE_INDICATOR_RANDOM_OFFSET",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "UI_ITEM_STAND_OVER_INFO_BOX_OFFSET_X",
+        "type": "float",
+        "default": "50",
+        "required": false
+    },
+    {
+        "name": "UI_ITEM_STAND_OVER_INFO_BOX_OFFSET_Y",
+        "type": "float",
+        "default": "-190",
+        "required": false
+    },
+    {
+        "name": "UI_MOUSE_WORLD_HOVER_TEXT_OFFSET_X",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_MOUSE_WORLD_HOVER_TEXT_OFFSET_Y",
+        "type": "float",
+        "default": "10",
+        "required": false
+    },
+    {
+        "name": "UI_MAX_PERKS_VISIBLE",
+        "type": "int",
+        "default": "7",
+        "required": false
+    },
+    {
+        "name": "UI_LOCALIZE_RECORD_TEXT",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_DISPLAY_NUMBERS_WITH_KS_AND_MS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_WAND_TAG_OVERWRITES_NAME",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_DISPLAY_POTION_CONTENT_PERCENTS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_POTION_CONTENTS_COMBINE_SAME_NAME_MATERIALS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "UI_HEALTHBAR_Y_SPACING",
+        "type": "float",
+        "default": "24",
+        "required": false
+    },
+    {
+        "name": "MAIN_MENU_BG_OFFSET_X",
+        "type": "float",
+        "default": "9250",
+        "required": false
+    },
+    {
+        "name": "MAIN_MENU_BG_OFFSET_Y",
+        "type": "float",
+        "default": "2250",
+        "required": false
+    },
+    {
+        "name": "MAIN_MENU_BG_OFFSET_Y_END",
+        "type": "float",
+        "default": "2320",
+        "required": false
+    },
+    {
+        "name": "MAIN_MENU_BG_TWEEN_SPEED",
+        "type": "float",
+        "default": "0.12",
+        "required": false
+    },
+    {
+        "name": "USE_CUSTOM_THREADPOOL",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "BOX2D_FREEZE_STUCK_BODIES",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "BOX2D_THREAD_MAX_WAIT_IN_MS",
+        "type": "float",
+        "default": "12",
+        "required": false
+    },
+    {
+        "name": "CREDITS_SCROLL_SPEED",
+        "type": "float",
+        "default": "25",
+        "required": false
+    },
+    {
+        "name": "CREDITS_SCROLL_END_OFFSET_EXTRA",
+        "type": "float",
+        "default": "85",
+        "required": false
+    },
+    {
+        "name": "CREDITS_SCROLL_SKIP_SPEED_MULTIPLIER",
+        "type": "float",
+        "default": "15",
+        "required": false
+    },
+    {
+        "name": "INTRO_WEATHER_FOG",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "INTRO_WEATHER_RAIN",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "SETTINGS_MIN_RESOLUTION_X",
+        "type": "int",
+        "default": "640",
+        "required": false
+    },
+    {
+        "name": "SETTINGS_MIN_RESOLUTION_Y",
+        "type": "int",
+        "default": "360",
+        "required": false
+    },
+    {
+        "name": "STEAM_CLOUD_SIZE_WARNING",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_KEYS_ENABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_EXTRA_SCREENSHOT_KEYS_ENABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_USE_PRELOAD",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_USE_DEBUG_PRELOAD",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TREES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PIXEL_SCENES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TELEPORT",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SI_TYPE",
+        "type": "int",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_AUDIO_DEV_MODE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_AUDIO_MUTE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_AUDIO_MUSIC_MUTE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_AUDIO_VOLUME",
+        "type": "float",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TEST_SYMBOL_CLASSIFIER",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_STREAMING_DISABLE_SAVING",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DRAW_ANIMAL_AI_STATE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PRINT_COMPONENT_UPDATOR_ORDER",
+        "type": "bool",
+        "default": "0",
+        "required": false,
+        "doc": "When enabled makes Noita write the component update order to 'temptemp/component_system_order.txt' relative to the installation path"
+    },
+    {
+        "name": "DEBUG_SKYLIGHT_NO_SIMD",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DISABLE_MOUSE_SCROLL_WHEEL",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_NO_SAVEGAME_CLEAR_ON_GAME_OVER",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_CAMERA_SHAKE_OFFSET",
+        "type": "float",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_FREE_CAMERA_SPEED",
+        "type": "float",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DISABLE_POSTFX_DITHERING",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SCREENSHOTS_VIDEO_PATH_PREFIX",
+        "type": "string",
+        "default": "",
+        "required": false
+    },
+    {
+        "name": "DEBUG_GIF_WIDTH",
+        "type": "int",
+        "default": "640",
+        "required": false
+    },
+    {
+        "name": "DEBUG_GIF_HEIGHT",
+        "type": "int",
+        "default": "360",
+        "required": false
+    },
+    {
+        "name": "DEBUG_GIF_RECORD_60FPS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SPRITE_UV_GEN_REPORT_MISSING_FILES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_NO_PAUSE_ON_WINDOW_FOCUS_LOST",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DEMO_MODE",
+        "type": "bool",
+        "default": "0",
+        "required": false,
+        "doc": "Removes all menu options for exiting the game and automatically starts a new run when no inputs have been received for some time"
+    },
+    {
+        "name": "DEBUG_DEMO_MODE_RESET_TIMEOUT_FRAMES",
+        "type": "int",
+        "default": "10800",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DEMO_MODE_RESET_WARNING_TIME_FRAMES",
+        "type": "int",
+        "default": "900",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DISABLE_PHYSICSBODY_OUT_OF_BOUNDS_WARNING",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ENABLE_AUTOSAVE",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_AUDIO_WRITE_TO_FILE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_NO_LOGO_SPLASHES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TEST_SAVE_SPAWN_X",
+        "type": "float",
+        "default": "190",
+        "required": false
+    },
+    {
+        "name": "DEBUG_INTRO_PLAY_ALWAYS",
+        "type": "bool",
+        "default": "0",
+        "required": false,
+        "doc": "Makes the game play the intro sequence as if the intro_has_played persistent flag doesn't exist. It never plays the intro if mods are enabled"
+    },
+    {
+        "name": "DEBUG_REPLAY_RECORDER_FPS",
+        "type": "int",
+        "default": "30",
+        "required": false
+    },
+    {
+        "name": "DEBUG_F12_OPEN_FOG_OF_WAR",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ALWAYS_COMPLETE_THE_GAME",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SKIP_RELEASE_NOTES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SKIP_MAIN_MENU",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SKIP_ALL_START_MENUS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PLAYER_NEVER_DIES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ALWAYS_GET_UNLOCKS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PROFILE_ALLOCATOR",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_STREAMING_INTEGRATION_DEV_MODE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_UI_ALL_THE_CARDS_WIDTH",
+        "type": "int",
+        "default": "24",
+        "required": false
+    },
+    {
+        "name": "DEBUG_UI_ALL_THE_CARDS_HEIGHT",
+        "type": "int",
+        "default": "20",
+        "required": false
+    },
+    {
+        "name": "DEBUG_UI_ALL_THE_CARDS_DISPLAY_EXTRA_INFO",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PERSISTENT_FLAGS_DISABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_LEVEL",
+        "type": "int",
+        "default": "-1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_STD_COUT",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_SOLID_BACKGROUND",
+        "type": "int",
+        "default": "2",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_TODO_ERRORS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_INSTANT_FLUSH",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_NEVER_VISIBLE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ALWAYS_RANDOM_SEED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ALWAYS_RANDOM_START_POS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA_REPORT_SLOW_SCRIPTS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA_REPORT_PRINT_FILES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA_LOG_BIOME_SPAWN_SCRIPTS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA_REPORT_BIOME_SPAWN_ERRORS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LUA_DONT_REPEAT_ERRORS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_GAME_LOG_SHOW_DRAWN_ACTIONS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_STREAMING_STATS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_LOG_LIFETIME_COMPONENT_DANGLING_PARENTS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_OLLI_CONFIG",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_GENERATE_BIG_WANG_MAP",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_CRASH_IF_OLD_VERSION",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_RESTART_GAME_IF_OLD_VERSION",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_CAMERABOUND_DISPLAY_ENTITIES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PROFILER_CAPTURE_OLLI_STYLE",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PROFILER_CAPTURE_PETRI_STYLE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PAUSE_BOX2D",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PAUSE_GRID_UPDATE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PAUSE_SIMULATION",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SCREENSHOTTER_ENABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SCREENSHOTTER_SAVE_PPNG",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SCREENSHOTTER_FFMPEG_PATH",
+        "type": "string",
+        "default": "",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PETRI_TAKE_RANDOM_SHADERSHOT",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_THREADED_WORLD_CREATION",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PETRI_START",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_ATTRACT_MODE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_PREV_OPENED_ENTITY",
+        "type": "string",
+        "default": "",
+        "required": false
+    },
+    {
+        "name": "DEBUG_CTRL_O_USES_PREV_ENTITY_ALWAYS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_WANG",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_WANG_PATH",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_FULL_WANG_MAPS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_MATERIAL_AREA_CHECKER",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_COLLISION_TRIGGERS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_SINGLE_THREADED_LOADING",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TEXT_ENABLE_WORK_MODE",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_TEXT_WRITE_MISSING_TRANSLATIONS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_HOTLOAD_MATERIAL_EDGES",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DEBUG_IMGUI_HOT_LOAD_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DEBUG_DISPLAY_INTERNAL_ID_IN_PROGRESS_MENU",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "_DEBUG_DONT_LOAD_OTHER_MAGIC_NUMBERS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "_DEBUG_DONT_SAVE_MAGIC_NUMBERS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_DAILY_RANDOM_STARTING_ITEMS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_NEW_GAME_PLUS_HP_SCALE_MIN",
+        "type": "float",
+        "default": "3",
+        "required": false
+    },
+    {
+        "name": "DESIGN_NEW_GAME_PLUS_HP_SCALE_MAX",
+        "type": "float",
+        "default": "100",
+        "required": false
+    },
+    {
+        "name": "DESIGN_NEW_GAME_PLUS_ATTACK_SPEED",
+        "type": "float",
+        "default": "0.5",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_START_RAYCAST_COARSE_TO_GROUND",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_START_TELEPORT_TO_GROUND",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_ALWAYS_TELEPORT_TO_GROUND",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_START_POS_X",
+        "type": "float",
+        "default": "227",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_START_POS_Y",
+        "type": "float",
+        "default": "-85",
+        "required": false
+    },
+    {
+        "name": "DESIGN_RANDOM_STARTING_ITEMS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_POLYMORPH_PLAYER_POLYMORPH_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_POLYMORPH_CONTROLS_ENABLED",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_PICKUP_ENABLED",
+        "type": "bool",
+        "default": "0",
+        "required": false,
+        "doc": "Controls whether PhysicsPickUpComponent does anything"
+    },
+    {
+        "name": "DESIGN_CARDS_MUST_BE_IDENTIFIED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_WAND_SLOTS_ARE_CONSUMED",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ITEMS_CAN_BE_EATEN",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ITEMCHEST_DROPS_ACTIONS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ENEMY_HEALTH_DROPS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ENEMY_2X_MONEY_DROPS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_FIRE_DAMAGE_BASED_ON_MAX_HP",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_AGGRO_INDICATOR",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_CARD_SYMBOL_UNLOCKS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_BLOOD_RESTORES_HP",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_MATERIAL_INGESTION_STATUS_FX",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_RANDOMIZE_TEMPLE_CONTENTS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_TEMPLE_CHECK_FOR_LEAKS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_PLAYER_PHYSICS_KILLS_DONT_TRICK_KILL",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_DAY_CYCLE_SPEED",
+        "type": "float",
+        "default": "0.0015",
+        "required": false
+    },
+    {
+        "name": "DESIGN_SPELL_VISUALIZER",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_RELOAD_ALL_THE_TIME",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_TELEKINESIS_GLITCH_FOR_TABLETS",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_TELEKINESIS_GLITCH_FOR_ITEM_PHYSICS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ALLOW_FULL_INVENTORY_SPELLS_DRAG",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    },
+    {
+        "name": "DESIGN_ALLOW_INVENTORY_CLOSING_AND_DRAGGING_GLITCH",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GLITCH_ALLOW_5TH_WAND_CARRY",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GLITCH_ALLOW_ALT_TAB_SILLINESS",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GLITCH_ALLOW_STAIN_DUPLICATION_GLITCH",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "GLITCH_ALLOW_VOMIT_BASED_STATUS_EFFECT_GLITCH",
+        "type": "bool",
+        "default": "0",
+        "required": false
+    },
+    {
+        "name": "BUGFIX_NEVER_DEFAULT_SERIALIZE_PLAYER",
+        "type": "bool",
+        "default": "1",
+        "required": false
+    }
+]
